@@ -270,9 +270,13 @@
 <span id="api"></span><h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h1>
 <p>The main header <a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mujoco.h">mujoco.h</a> exposes a large
 number of functions. However the functions that most users are likely to need are a small fraction.</p>
+<p>主要的头文件 mujoco.h 定义了大量的函数。然而，大多数用户可能需要的函数只占其中的一小部分。</p>
 <p>API function can be classified as:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="#parseandcompile"><span class="std std-ref">Parse and compile</span></a> an <a class="reference internal" href="APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> from XML files and assets.</p></li>
+<p>API函数可以分类为：</p>
+<ul>
+<li><p><a class="reference internal" href="#parseandcompile"><span class="std std-ref">Parse and compile</span></a> an <a class="reference internal" href="APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> from XML files and assets.</p>
+<p><a class="reference internal" href="#parseandcompile"><span class="std std-ref">Parse and compile</span></a> 从XML文件和资源中解析和编译一个 <a class="reference internal" href="APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> 。</p>
+</li>
 <li><p><a class="reference internal" href="#mainsimulation"><span class="std std-ref">Main simulation</span></a> entry points, including <a class="reference internal" href="#mj-step"><span class="std std-ref">mj_step</span></a>.</p></li>
 <li><p><a class="reference internal" href="#support"><span class="std std-ref">Support</span></a> functions requiring <a class="reference internal" href="APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> and <a class="reference internal" href="APItypes.html#mjdata"><span class="std std-ref">mjData</span></a>.</p></li>
 <li><p><a class="reference internal" href="#components"><span class="std std-ref">Components</span></a> of the simulation pipeline, called from <a class="reference internal" href="#mj-step"><span class="std std-ref">mj_step</span></a>, <a class="reference internal" href="#mj-forward"><span class="std std-ref">mj_forward</span></a> and <a class="reference internal" href="#mj-inverse"><span class="std std-ref">mj_inverse</span></a>.</p></li>
@@ -297,7 +301,7 @@ number of functions. However the functions that most users are likely to need ar
 <li><p><a class="reference internal" href="#macros"><span class="std std-ref">Macros</span></a>.</p></li>
 </ul>
 <section id="parse-and-compile">
-<span id="parseandcompile"></span><h2>Parse and compile<a class="headerlink" href="#parse-and-compile" title="Permalink to this headline">#</a></h2>
+<span id="parseandcompile"></span><h2>Parse and compile 解码与编译<a class="headerlink" href="#parse-and-compile" title="Permalink to this headline">#</a></h2>
 <p>The key function here is <a class="reference internal" href="#mj-loadxml"><span class="std std-ref">mj_loadXML</span></a>. It invokes the built-in parser and compiler, and either returns a pointer to
 a valid mjModel, or NULL - in which case the user should check the error information in the user-provided string.
 The model and all files referenced in it can be loaded from disk or from a VFS when provided.</p>
@@ -3217,7 +3221,7 @@ type <a class="reference internal" href="APItypes.html#mjtenablebit"><span class
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Functions</a><ul>
-<li><a class="reference internal" href="#parse-and-compile">Parse and compile</a><ul>
+<li><a class="reference internal" href="#parse-and-compile">Parse and compile 解码与编译</a><ul>
 <li><a class="reference internal" href="#mj-loadxml">mj_loadXML</a></li>
 <li><a class="reference internal" href="#mj-savelastxml">mj_saveLastXML</a></li>
 <li><a class="reference internal" href="#mj-freelastxml">mj_freeLastXML</a></li>

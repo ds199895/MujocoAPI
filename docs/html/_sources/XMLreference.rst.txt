@@ -2,30 +2,36 @@
 XML Reference
 =============
 
-Introduction
+Introduction简介
 ------------
 
 This chapter is the reference manual for the MJCF modeling language used in MuJoCo.
 
+| 这一章节是MuJoCo中使用的MJCF建模语言的参考手册。
+
 
 .. _CSchema:
 
-XML schema
+XML schema XML模式
 ~~~~~~~~~~
 
 The table below summarizes the XML elements and their attributes in MJCF. Note that all information in MJCF is entered
 through elements and attributes. Text content in elements is not used; if present, the parser ignores it.
 
-.. collapse:: Collapse schema table
+下表总结了MJCF中的XML元素及其属性。请注意，MJCF中的所有信息都通过**元素和属性输入**。元素中的文本内容不会被使用；如果存在，解析器会忽略它。
+
+.. collapse:: Collapse schema table 折叠模式表
    :open:
 
    The symbols in the second column of the table have the following meaning:
 
+   表格第二列中的符号具有以下含义：
+
    ====== ===================================================
-   **!**  required element, can appear only once
-   **?**  optional element, can appear only once
-   **\*** optional element, can appear many times
-   **R**  optional element, can appear many times recursively
+   **!**  required element, can appear only once 必需元素，只能出现一次
+   **?**  optional element, can appear only once 可选元素，只能出现一次
+   **\*** optional element, can appear many times 可选元素，可重复出现
+   **R**  optional element, can appear many times recursively 可选元素，可以递归出现多次
    ====== ===================================================
 
    .. cssclass:: schema-small
@@ -35,21 +41,26 @@ through elements and attributes. Text content in elements is not used; if presen
 
 .. _CType:
 
-Attribute types
+Attribute types 属性类型
 ~~~~~~~~~~~~~~~
 
 | Each attribute has a data type enforced by the parser. The available data types are:
 
+| 每个属性都有解析器强制执行的数据类型。可用的数据类型包括：
+
 ========= ==============================================================================================
-string    An arbitrary string, usually specifying a file name or a user-defined name of a model element.
-int(N)    An array of N integers. If N is omitted it equals 1.
-real(N)   An array of N real-valued numbers. If N is omitted it equals 1.
-[...]     Keyword attribute. The list of valid keywords is given in brackets.
+string    An arbitrary string, usually specifying a file name or a user-defined name of a model element.任意字符串，通常用于指定文件名或模型元素的用户定义名称。
+int(N)    An array of N integers. If N is omitted it equals 1. N个整数的数组。如果省略N，则默认为1
+real(N)   An array of N real-valued numbers. If N is omitted it equals 1. N个实数的数组。如果省略N，则默认为1
+[...]     Keyword attribute. The list of valid keywords is given in brackets. 关键字属性。有效关键字列表在方括号中给出
 ========= ==============================================================================================
 
 |
 | For array-type attributes, the length of the array is enforced by the parser unless specified otherwise in the
   reference documentation below.
+
+| 对于数组类型的属性，除非在下面的参考文档中另有规定，否则解析器会强制执行数组的长度。
+
 | In addition to having a data type, attributes can be required or optional. Optional attributes can have internal
   defaults or not. Optional attributes that do not have internal defaults are initialized in a special undefined state.
   This state is different from any valid setting that can be entered in the XML. This mechanism enables the compiler to
@@ -57,13 +68,14 @@ real(N)   An array of N real-valued numbers. If N is omitted it equals 1.
   appropriate action. Some attributes have internal defaults (usually 0) which are not actually allowed by the
   compiler. When such attributes become relevant in a given context, they must be set to allowed values.
 
+| 除了具有数据类型外，属性还可以是必需的或可选的。可选属性可以具有内部默认值，也可以没有。没有内部默认值的可选属性会在一个特殊的未定义状态下初始化。这个状态不同于可以在XML中输入的任何有效设置。这个机制使编译器能够确定属性是否已被用户“触及”，无论是显式地还是通过默认值，并采取适当的操作。某些属性具有内部默认值（通常为0），但编译器实际上不允许这些默认值。当这些属性在特定上下文中变得相关时，它们必须设置为允许的值。
+
 +-------------+--------------------------------------------------------------------------------------------------+
-| required    | The attribute is required by the parser. If it is not present the parser will generate an error. |
+| required    | The attribute is required by the parser. If it is not present the parser will generate an error. **该属性由解析器要求。如果不存在该属性，解析器将生成错误。**|
 +-------------+--------------------------------------------------------------------------------------------------+
-| optional    | The attribute is optional. There is no internal default. The attribute is initialized in the     |
-|             | undefined state.                                                                                 |
+| optional    | The attribute is optional. There is no internal default. The attribute is initialized in the undefined state. 该属性是可选的。没有内部默认值。该属性在未定义状态下初始化。|                                                                      
 +-------------+--------------------------------------------------------------------------------------------------+
-| "..."       | The attribute is optional. The internal default is given in quotes.                              |
+| "..."       | The attribute is optional. The internal default is given in quotes. 该属性是可选的。内部默认值在引号中给出。                             |
 +-------------+--------------------------------------------------------------------------------------------------+
 
 
@@ -71,6 +83,8 @@ In the reference documentation below the attribute name is shown in boldface, fo
 required/optional status including the internal default if any. For example, the attribute angle is a keyword attribute
 whose value can be "radian" or "degree". It is an optional attribute and has internal default "degree". Therefore it
 will appear in the reference documentation as
+
+在下面的参考文档中，属性名称以粗体显示，后跟其数据类型，然后是所需/可选状态，包括内部默认值（如果有）。例如，属性"angle" 是一个关键字属性，其值可以是"radian"或"degree"。它是一个可选属性，并具有内部默认值"degree"。因此，它将在参考文档中显示为：
 
 :at:`angle`: :at-val:`[radian, degree], "degree"`
    .. raw:: html
@@ -80,7 +94,7 @@ will appear in the reference documentation as
 
 .. _Reference:
 
-MJCF Reference
+MJCF Reference MJCF 参考
 --------------
 
 MJCF files have a unique top-level element :ref:`mujoco <mujoco>`. The next-level elements are referred to as
@@ -89,20 +103,34 @@ repeated, to facilitate merging of models via the :ref:`include <include>` eleme
 element can be arbitrary. The order of child elements within a parent element can also be arbitrary, with four
 exceptions:
 
+MJCF文件具有一个唯一的顶级元素::ref:`mujoco <mujoco>`。下一级的元素被称为*sections*。它们都是可选的。某些部分仅用于分组，没有属性。部分可以重复出现，以便通过 :ref:`include <include>` 元素合并模型。在元素内的属性顺序可以是任意的。在父元素内的子元素顺序也可以是任意的，但有四个例外：
+
 -  The order of :ref:`joint <body-joint>` elements within a :ref:`body <body>` matters because joint transformations are
    performed in sequence.
+
+   a :ref:`body <body>` 元素内 :ref:`joint <body-joint>`元素的顺序很重要，因为关节变换是按顺序执行的。
+
 -  The order of elements in a :ref:`spatial <tendon-spatial>` tendon matters because it determines the sequence of
    objects that the tendon passes through or wraps around.
+
+   在 :ref:`spatial <tendon-spatial>` 张力元素中的元素顺序很重要，因为它**决定了张力通过或缠绕的对象的顺序。**
+
 -  The order of repeated sections matters when the same attribute is set multiple times to different values. In that
    case the last setting takes effect for the entire model.
+
+   当相同的属性多次设置为不同的值时，重复部分的顺序很重要。在这种情况下，最后的设置将对整个模型生效。
+
 -  The order of multiple actuator shortcuts in the same defaults class matters, because each shortcut sets the
    attributes of the single :ref:`general <actuator-general>` element in that defaults class, overriding the previous
    settings.
+
+   在同一个默认类中的多个执行器快捷方式的顺序很重要，因为每个快捷方式设置了该默认类中单个 :ref:`general <actuator-general>` 元素的属性，覆盖了先前的设置。
 
 In the remainder of this chapter we describe all valid MJCF elements and their attributes. Some elements can be used in
 multiple contexts, in which case their meaning depends on the parent element. This is why we always show the parent as a
 prefix in the documentation below.
 
+在本章的其余部分，我们将描述所有有效的MJCF元素及其属性。一些元素可以在多个上下文中使用，**此时它们的含义取决于父元素**。这就是为什么我们在下面的文档中始终将父元素作为前缀显示的原因。
 
 .. _include:
 
@@ -118,10 +146,13 @@ however a given XML file can be included at most once in the entire model. After
 assembled into a single DOM, it must correspond to a valid MJCF model. Other than that, it is up to the user to decide
 how to use includes and how to modularize large files if desired.
 
+这个元素严格来说不属于MJCF。相反，它是一个元元素，用于在解析之前将多个XML文件组合到单个文档对象模型（DOM）中。被包含的文件必须是一个带有唯一顶级元素的有效XML文件。解析器会删除此顶级元素，并将其下的元素插入到 :el:`include` 元素的位置。至少必须有一个元素作为此过程的结果插入。 :el:`include` 元素可以在MJFC文件中的任何需要XML元素的地方使用。允许嵌套包含，但给定的XML文件在整个模型中最多只能包含一次。在所有包含的XML文件被组合成单个DOM后，它必须对应于一个有效的MJCF模型。除此之外，用户可以自行决定如何使用包含和如何模块化大文件（如果需要的话）
+
 :at:`file`: :at-val:`string, required`
    The name of the XML file to be included. The file location is relative to the directory of the main MJCF file. If the
    file is not in the same directory, it should be prefixed with a relative path.
 
+   要包含的XML文件的名称。文件位置相对于主MJCF文件的目录。如果文件不在同一目录中，应该使用相对路径前缀。
 
 .. _mujoco:
 
@@ -130,11 +161,14 @@ how to use includes and how to modularize large files if desired.
 
 The unique top-level element, identifying the XML file as an MJCF model file.
 
+这是**唯一的顶级元素**，用于标识XML文件为MJCF模型文件。
+
 .. _mujoco-model:
 
 :at:`model`: :at-val:`string, "MuJoCo Model"`
    The name of the model. This name is shown in the title bar of :ref:`simulate.cc <saSimulate>`.
 
+   模型的名称。这个名称显示在 :ref:`simulate.cc <saSimulate>` 的标题栏中。
 
 .. _compiler:
 
@@ -143,6 +177,8 @@ The unique top-level element, identifying the XML file as an MJCF model file.
 
 This element is used to set options for the built-in parser and compiler. After parsing and compilation it no longer has
 any effect. The settings here are global and apply to the entire model.
+
+此元素用于设置内置解析器和编译器的选项。在解析和编译之后，它不再具有任何效果。**这里的设置是全局的**，适用于整个模型。
 
 .. _compiler-autolimits:
 
@@ -154,6 +190,9 @@ any effect. The settings here are global and apply to the entire model.
    be specified. In this mode, it is an error to specify a range without a limit.
    |br| The default for this option will be set to "true" in an upcoming release.
 
+   此属性影响"limited"（在<body-joint>或<tendon>上），"forcelimited"，"ctrllimited"和"actlimited"（在<actuator>上）等属性的行为。**如果设置为"true"，这些属性是不必要的，它们的值将从相应的"range"属性的存在中推断出来**。如果设置为"false"，将不会进行这种推断：要使关节受限制，必须同时指定"limited"="true"和"range"="min max"。**在这种模式下，如果指定了范围而没有限制，将会引发错误**。
+   |br|在即将发布的版本中，此选项的默认值将设置为"true"。
+
 .. _compiler-boundmass:
 
 :at:`boundmass`: :at-val:`real, "0"`
@@ -162,11 +201,15 @@ any effect. The settings here are global and apply to the entire model.
    such as the dummy bodies often used in URDF models to attach sensors. Note that in MuJoCo there is no need to create
    dummy bodies.
 
+   此属性对除了worldbody以外的每个实体的质量设定了下限。将此属性设置为大于0的值可以用作对**包含无质量运动实体的设计不良模型的快速修复**，例如，在URDF模型中通常用于连接传感器的虚拟实体。请注意，在MuJoCo中，不需要创建虚拟实体。
+
 .. _compiler-boundinertia:
 
 :at:`boundinertia`: :at-val:`real, "0"`
    This attribute imposes a lower bound on the diagonal inertia components of each body except for the world body. Its
    use is similar to boundmass above.
+
+   此属性对除了worldbody以外的每个实体的对角惯性分量设定了下限。其使用方式类似于上面的boundmass。
 
 .. _compiler-settotalmass:
 
@@ -177,6 +220,8 @@ any effect. The settings here are global and apply to the entire model.
    same scaling operation can be applied at runtime to the compiled mjModel with the function
    :ref:`mj_setTotalmass`.
 
+   如果此值为正数，编译器将缩放模型中所有实体的质量和惯性，**使总质量等于此处指定的值**。worldbody的质量为0，不参与任何与质量相关的计算。此缩放是在所有其他影响实体质量和惯性的操作之后执行的。可以在运行时使用函数对已编译的mjModel执行相同的缩放操作。
+
 .. _compiler-balanceinertia:
 
 :at:`balanceinertia`: :at-val:`[false, true], "false"`
@@ -185,11 +230,15 @@ any effect. The settings here are global and apply to the entire model.
    "true", the compiler will silently set all three diagonal elements to their average value whenever the above
    condition is violated.
 
+   有效的**对角惯性矩阵**必须满足所有三个对角元素的排列组合的条件A+B>=C。一些设计不良的模型违反了这个约束，通常会导致编译错误。如果将此属性设置为"true"，则在违反上述条件时，**编译器会默默地将所有三个对角元素设置为它们的平均值**。
+
 .. _compiler-strippath:
 
 :at:`strippath`: :at-val:`[false, true], "false" for MJCF, "true" for URDF`
    When this attribute is "true", the parser will remove any path information in file names specified in the model. This
    is useful for loading models created on a different system using a different directory structure.
+
+   当此属性设置为"true"时，解析器将删除模型中指定的文件名中的任何路径信息。**这对于加载在不同系统上创建的模型，使用不同的目录结构的情况非常有用。**
 
 .. _compiler-coordinate:
 
@@ -199,12 +248,16 @@ any effect. The settings here are global and apply to the entire model.
    generated. In order to convert older models which used the "global" option, load and save them in MuJoCo 2.3.3 or
    older.
 
+   在早期版本中，此属性可以用于指定框架位置和方向是用本地坐标还是全局坐标表示，**但"global"选项已被删除**，并将导致生成错误。为了转换使用了"global"选项的旧模型，将其加载并保存在MuJoCo 2.3.3或更早版本中。
+
 .. _compiler-angle:
 
 :at:`angle`: :at-val:`[radian, degree], "degree" for MJCF, always "radian" for URDF`
    This attribute specifies whether the angles in the MJCF model are expressed in units of degrees or radians. The
    compiler converts degrees into radians, and mjModel always uses radians. For URDF models the parser sets this
    attribute to "radian" internally, regardless of the XML setting.
+
+   此属性**指定MJCF模型中的角度是否以度或弧度为单位表示**。编译器将度转换为弧度，而mjModel始终使用弧度。**对于URDF模型，解析器始终在内部将此属性设置为"radian"，不管XML设置如何**。
 
 .. _compiler-fitaabb:
 
@@ -214,6 +267,8 @@ any effect. The settings here are global and apply to the entire model.
    Otherwise it uses the equivalent-inertia box of the mesh. The type of geometric primitive used for fitting is
    specified separately for each geom.
 
+   编译器能够用一个适应于该网格的几何图元替换一个网格；请参阅下面的 :ref:`geom <body-geom>` 。**如果此属性为"true"，则拟合过程使用网格的轴对齐边界框（aabb）**。否则，它使用网格的等效惯性框。用于拟合的几何图元类型是单独为每个几何体指定的。
+
 .. _compiler-eulerseq:
 
 :at:`eulerseq`: :at-val:`string, "xyz"`
@@ -222,6 +277,8 @@ any effect. The settings here are global and apply to the entire model.
    characters from the set {'x', 'y', 'z', 'X', 'Y', 'Z'}. The character at position n determines the axis around which
    the n-th rotation is performed. Lower case denotes axes that rotate with the frame, while upper case denotes axes
    that remain fixed in the parent frame. The "rpy" convention used in URDF corresponds to the default "xyz" in MJCF.
+
+   此属性指定了所有具有空间框架的元素的euler属性的欧拉旋转顺序，如:ref:COrientation中所解释的。这必须是一个字符串，由集合{'x'，'y'，'z'，'X'，'Y'，'Z'} 中的3个字符组成。位置n处的字符确定了第n个旋转的轴。**小写表示与框架一起旋转的轴，而大写表示在父框架中保持固定的轴**。**URDF中使用的"rpy"对应于MJCF中的默认"xyz"。**
 
 .. _compiler-meshdir:
 
@@ -233,17 +290,23 @@ any effect. The settings here are global and apply to the entire model.
    given here appended with the file name; (3) the full path is the path to the main MJCF model file, appended with the
    value of this attribute if specified, appended with the file name.
 
+   此属性指示编译器**查找网格和高度字段文件的路径**。文件的完整路径如下确定:如果上面描述的strippath属性为"true"，则从文件名中删除所有路径信息。然后按顺序应用以下检查：(1) 如果文件名包含绝对路径，则使用它而不进行其他更改；(2) 如果设置了此属性并包含绝对路径，则完整路径是给定字符串与文件名连接的结果；(3) 完整路径是主MJCF模型文件的路径，如果指定了此属性，则附加其值，然后附加文件名。
+
 .. _compiler-texturedir:
 
 :at:`texturedir`: :at-val:`string, optional`
    This attribute is used to instruct the compiler where to look for texture files. It works in the same way as meshdir
    above.
 
+   此属性用于指示编译器查找纹理文件的路径。它与上面的meshdir属性的工作方式相同。
+
 .. _compiler-assetdir:
 
 :at:`assetdir`: :at-val:`string, optional`
    This attribute sets the values of both :at:`meshdir` and :at:`texturedir` above. Values in the latter attributes take
    precedence over :at:`assetdir`.
+
+   此属性设置了上面的 :at:`meshdir` 和:at:`texturedir` 的值。后者的值优先于 :at:`assetdir` 。
 
 .. _compiler-discardvisual:
 
@@ -257,6 +320,8 @@ any effect. The settings here are global and apply to the entire model.
    :ref:`pairs <contact-pair>`. The parser does not check this list before discarding geoms; it relies solely on the geom
    attributes to make the determination.
 
+   此属性指示解析器丢弃"可视几何体"，定义为其contype和conaffinity属性均设置为0的几何体。**此功能对包含两组几何体的模型非常有用，一组用于碰撞，另一组用于可视化**。请注意，URDF模型通常以这种方式构建。在模型中拥有两组几何体很少有意义，特别是因为MuJoCo使用凸包进行碰撞，因此我们建议使用此功能来丢弃多余的几何体。但请记住，根据上述定义，被视为可视的几何体仍然可以参与碰撞，如果它们出现在明确的接触对的列表中。解析器在丢弃几何体之前不会检查此列表；它完全依赖于几何体属性来做出决定。
+
 .. _compiler-convexhull:
 
 :at:`convexhull`: :at-val:`[false, true], "true"`
@@ -268,6 +333,8 @@ any effect. The settings here are global and apply to the entire model.
    hull computation is the slowest operation performed by the compiler). However once model design is finished, this
    feature should be enabled, because the availability of convex hulls substantially speeds up collision detection with
    large meshes.
+
+   如果此属性为"true"，则编译器将自动生成每个用于至少一个非可视几何体（按照上面的discardvisual属性的定义）的网格的凸包。**这是为了加速碰撞检测**；请参考计算章节中的 :ref:`Collision` 部分。即使网格已经是凸的，凸包中包含了网格文件中不存在的边缘信息，因此需要构造它。禁用此功能的唯一原因是在模型编辑期间加速重新加载具有大网格的模型（因为凸包计算是编译器执行的最慢的操作）。然而，一旦模型设计完成，应该启用此功能，因为凸包的可用性极大地加速了与大网格的碰撞检测。
 
 .. _compiler-usethread:
 
@@ -287,6 +354,8 @@ any effect. The settings here are global and apply to the entire model.
    can also be used to optimize MJCF models. After optimization, the new model has identical kinematics and dynamics as
    the original but is faster to simulate.
 
+   如果此属性为"true"，模型编译器将以多线程模式运行。目前，**多线程仅用于计算执行器的长度范围**，但在将来，其他编译器阶段可能也会采用多线程。
+
 .. _compiler-inertiafromgeom:
 
 :at:`inertiafromgeom`: :at-val:`[false, true, auto], "auto"`
@@ -301,11 +370,15 @@ any effect. The settings here are global and apply to the entire model.
    to the mass. This results in equivalent inertia boxes which extend far beyond the geometric boundaries of the model.
    Note that the built-in OpenGL visualizer can render equivalent inertia boxes.
 
+   此属性控制从连接到身体的几何体推断身体质量和惯性的自动推断。如果此设置为"false"，则不执行自动推断。在这种情况下，每个身体必须具有明确定义的质量和惯性，使用 :ref:`inertial <body-inertial>` 元素，否则将生成编译错误。如果此设置为"true"，则将从连接到每个身体的几何体中推断每个身体的质量和惯性，覆盖使用 :el:`inertial` 元素指定的任何值。默认设置"auto"表示只有在身体定义中缺少 :el:`inertial` 元素时才会自动推断质量和惯性。将此属性设置为"true"而不是"auto"的一个原因是覆盖从设计不良的模型导入的惯性数据。特别是，一些公开可用的URDF模型具有看似任意的惯性，与质量相比太大。这导致了等效的惯性箱，其范围远远超出了模型的几何边界。请注意，内置的OpenGL可视化器可以渲染等效的惯性箱。
+
 .. _compiler-exactmeshinertia:
 
 :at:`exactmeshinertia`: :at-val:`[false, true], "false"`
    If this attribute is set to false, computes mesh inertia with the legacy algorithm, which is exact only for convex
    meshes. If set to true, it is exact for any closed mesh geometry.
+
+   如果将此属性设置为false，则使用传统算法计算网格的惯性，该算法仅对凸网格精确。如果设置为true，则对任何闭合网格几何都是精确的。
 
 .. _compiler-inertiagrouprange:
 
@@ -318,6 +391,7 @@ any effect. The settings here are global and apply to the entire model.
    necessary to adjust this attribute and the geom-specific groups so as to exclude world geoms from the inertial
    computation.
 
+   这个属性指定了用于推断身体质量和惯性的geom组的范围（当启用这种推断时）。geom的group属性是一个整数。如果这个整数在此处指定的范围内，那么geom将用于惯性计算，否则将被忽略。这个功能在具有冗余的碰撞和可视化geom集的模型中很有用。请注意，worldbody不参与惯性计算，**因此自动忽略附加到它的任何geom**。因此，不需要调整此属性和geom特定的组，以排除世界geom不参与惯性计算。
 
 .. _compiler-lengthrange:
 
@@ -328,6 +402,8 @@ This element controls the computation of actuator length ranges. For an overview
 range <CLengthRange>` section. Note that if this element is omitted the defaults shown below still apply. In order to
 disable length range computations altogether, include this element and set mode="none".
 
+此元素控制**执行器长度范围的计算**。有关此功能的概述，请参阅 :ref:`Length range <CLengthRange>` 章节。请注意，如果省略此元素，仍然适用下面显示的默认值。为了完全禁用长度范围的计算，包括此元素并设置mode="none"。
+
 .. _compiler-lengthrange-mode:
 
 :at:`mode`: :at-val:`[none, muscle, muscleuser, all], "muscle"`
@@ -335,6 +411,8 @@ disable length range computations altogether, include this element and set mode=
    "all" applies it to all actuators. "muscle" applies it to actuators whose gaintype or biastype is set to "muscle".
    "muscleuser" applies it to actuators whose gaintype or biastype is set to either "muscle" or "user". The default is
    "muscle" because MuJoCo's muscle model requires actuator length ranges to be defined.
+
+   决定应用长度范围计算的执行器类型。 "none" 禁用此功能。 "all" 将其应用于所有执行器。 "muscle" 将其应用于 gaintype 或 biastype 设置为 "muscle" 的执行器。 "muscleuser" 将其应用于 gaintype 或 biastype 设置为 "muscle" 或 "user" 的执行器。**默认值为 "muscle"，因为 MuJoCo 的肌肉模型需要定义执行器的长度范围**。
 
 .. _compiler-lengthrange-useexisting:
 
@@ -345,6 +423,8 @@ disable length range computations altogether, include this element and set mode=
    actuator length ranges - which is needed when the model geometry is modified. Note that the automatic computation
    relies on simulation and can be slow, so saving the model and using the existing values when possible is recommended.
 
+   如果此属性为 "true"，并且已经在模型中定义了给定执行器的长度范围，将使用现有值，并跳过自动计算。如果第一个数字小于第二个数字，则认为已定义范围。将此属性设置为 "false" 的唯一原因是强制重新计算执行器长度范围 - 当修改模型几何形状时需要这样做。请注意，自动计算依赖于模拟，可能会很慢，因此建议在可能的情况下保存模型并使用现有值。
+
 .. _compiler-lengthrange-uselimit:
 
 :at:`uselimit`: :at-val:`[false, true], "false"`
@@ -354,12 +434,16 @@ disable length range computations altogether, include this element and set mode=
    and may be smaller than the user-defined limits for that tendon. So the safer approach is to set this to "false", and
    let the automatic computation discover the feasible range.
 
+   如果此属性为 "true"，并且执行器连接到具有定义的极限的关节或肌腱，则这些极限将被复制到执行器长度范围中，并且将跳过自动计算。这可能看起来是个不错的主意，但请注意，在复杂的模型中，肌腱执行器的可行范围取决于整个模型，可能小于该肌腱的用户定义的极限。因此，更安全的方法是将其设置为 "false"，并让自动计算发现可行范围。
+
 .. _compiler-lengthrange-accel:
 
 :at:`accel`: :at-val:`real, "20"`
    This attribute scales the forces applied to the simulation in order to push each actuator to its smallest and largest
    length. The force magnitude is computed so that the resulting joint-space acceleration vector has norm equal to this
    attribute.
+
+   此属性**缩放施加于模拟的力**，以推动每个执行器到其最小和最大长度。力的大小计算为，使得由此产生的关节空间加速度矢量的范数等于此属性。
 
 .. _compiler-lengthrange-maxforce:
 
@@ -370,6 +454,8 @@ disable length range computations altogether, include this element and set mode=
    larger than 0 limits the norm of the force being applied during simulation. The default setting of 0 disables this
    safeguard.
 
+   尽管通过上面的accel属性计算得到的力可能在执行器具有非常小的力矩时非常大，但这样的力仍会产生合理的加速度（通过构造）。但是，**大的数值可能会引发数值问题**。尽管我们从未观察到此类问题，但当前的属性被提供**作为一种保护措施**。将其设置为大于0的值将限制在模拟期间施加的力的范数。默认设置为0，禁用此保护机制。
+
 .. _compiler-lengthrange-timeconst:
 
 :at:`timeconst`: :at-val:`real, "1"`
@@ -377,6 +463,8 @@ disable length range computations altogether, include this element and set mode=
    instabilities. This is done by simply scaling down the joint velocity at each time step. In the absence of new
    accelerations, such scaling will decrease the velocity exponentially. The timeconst attribute specifies the time
    constant of this exponential decrease, in seconds.
+
+   模拟以一种非物理的方式进行阻尼，以将执行器推向它们的极限，而不会出现不稳定的风险。这是通过简单地缩小每个时间步长的关节速度来实现的。**在没有新的加速度的情况下，这种缩放将指数性地减小速度**。timeconst属性指定了这种指数下降的时间常数，以秒为单位。
 
 .. _compiler-lengthrange-timestep:
 
@@ -386,11 +474,15 @@ disable length range computations altogether, include this element and set mode=
    artificially damped and very stable. To speed up the length range computation, users can attempt to increase this
    value.
 
+   用于**内部模拟的时间步长**。将其设置为0将导致使用模型的时间步长。之所以不是默认值，是因为**通常可能会出现不稳定的模型通常具有较小的时间步长**，而这里的模拟是人为阻尼的且非常稳定的。为了加速长度范围的计算，用户可以尝试增加这个值。
+
 .. _compiler-lengthrange-inttotal:
 
 :at:`inttotal`: :at-val:`real, "10"`
    The total time interval (in seconds) for running the internal simulation, for each actuator and actuator direction.
    Each simulation is initialized at qpos0. It is expected to settle after inttotal time has passed.
+
+   每个执行器和执行器方向的内部模拟的总时间间隔（以秒为单位）。每次模拟都是从qpos0初始化的。预期在经过inttotal时间后会稳定下来。
 
 .. _compiler-lengthrange-interval:
 
@@ -404,6 +496,8 @@ disable length range computations altogether, include this element and set mode=
    are disabled in this simulation, so joint and tendon limits as well as overall geometry are the only things that can
    prevent actuators from having infinite length.
 
+   模拟结束时收集和分析长度数据的时间间隔。在此间隔内记录所达到的最大（或最小）长度。还记录最大值和最小值之间的差异，并将其用作发散程度的度量。如果模拟稳定，这个差异将会很小。如果不小，这可能是因为模拟还没有稳定 - 在这种情况下，应该调整上述属性 - 或者是因为模型没有足够的关节和肌腱限制，因此执行器范围实际上是无限的。这两种情况都会导致相同的编译器错误。请注意，此模拟中禁用了接触，因此关节和肌腱限制以及总体几何形状是防止执行器长度无限的唯一因素。
+
 .. _compiler-lengthrange-tolrange:
 
 :at:`tolrange`: :at-val:`real, "0.05"`
@@ -412,6 +506,7 @@ disable length range computations altogether, include this element and set mode=
    tolrange, a compiler error is generated. So one way to suppress compiler errors is to simply make this attribute
    larger, but in that case the results could be inaccurate.
 
+   这确定了检测发散并生成编译器错误的阈值。在间隔期间观察到的执行器长度范围将与通过模拟计算的总体范围相除。如果该值大于tolrange，则会生成编译器错误。因此，抑制编译器错误的一种方法是简单地增加此属性的值，但在这种情况下，结果可能不准确。
 
 .. _size:
 
@@ -422,6 +517,8 @@ This element specifies size parameters that cannot be inferred from the number o
 fields of mjOption which can be modified at runtime, sizes are structural parameters and should not be modified after
 compilation.
 
+这个元素指定了不能从模型中元素的数量推断出的大小参数。与mjOption的字段不同，大小是结构参数，不应在编译后修改。
+
 .. _size-memory:
 
 :at:`memory`: :at-val:`string, "-1"`
@@ -430,6 +527,8 @@ compilation.
    with one of the letters {K, M, G, T, P, E} sets the unit to be {kilo, mega, giga, tera, peta, exa}-byte,
    respectively. Thus "16M" means "allocate 16 megabytes of ``arena`` memory".
    See the :ref:`Memory allocation <CSize>` section for details.
+
+   这个属性**指定了在mjData.arena内存空间中为动态数组分配的内存大小**，以字节为单位。默认设置为-1，指示编译器猜测要分配多少空间。将数字附加到字母{K、M、G、T、P、E}中的一个可以将单位设置为{kilo、mega、giga、tera、peta、exa}-字节。因此，"16M"表示"分配16兆字节的arena内存"。有关详细信息，请参阅 :ref:`Memory allocation <CSize>` 部分。
 
 .. _size-njmax:
 

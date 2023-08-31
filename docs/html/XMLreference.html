@@ -269,32 +269,37 @@
           <section id="xml-reference">
 <h1>XML Reference<a class="headerlink" href="#xml-reference" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<h2>Introduction简介<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>This chapter is the reference manual for the MJCF modeling language used in MuJoCo.</p>
-<section id="xml-schema">
-<span id="cschema"></span><h3>XML schema<a class="headerlink" href="#xml-schema" title="Permalink to this headline">#</a></h3>
+<div class="line-block">
+<div class="line">这一章节是MuJoCo中使用的MJCF建模语言的参考手册。</div>
+</div>
+<section id="xml-schema-xml">
+<span id="cschema"></span><h3>XML schema XML模式<a class="headerlink" href="#xml-schema-xml" title="Permalink to this headline">#</a></h3>
 <p>The table below summarizes the XML elements and their attributes in MJCF. Note that all information in MJCF is entered
 through elements and attributes. Text content in elements is not used; if present, the parser ignores it.</p>
+<p>下表总结了MJCF中的XML元素及其属性。请注意，MJCF中的所有信息都通过**元素和属性输入**。元素中的文本内容不会被使用；如果存在，解析器会忽略它。</p>
 <details class="summary-collapse-schema-table" open>
-<summary>Collapse schema table</summary><p>The symbols in the second column of the table have the following meaning:</p>
+<summary>Collapse schema table 折叠模式表</summary><p>The symbols in the second column of the table have the following meaning:</p>
+<p>表格第二列中的符号具有以下含义：</p>
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 11%" />
-<col style="width: 89%" />
+<col style="width: 7%" />
+<col style="width: 93%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>!</strong></p></td>
-<td><p>required element, can appear only once</p></td>
+<td><p>required element, can appear only once 必需元素，只能出现一次</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>?</strong></p></td>
-<td><p>optional element, can appear only once</p></td>
+<td><p>optional element, can appear only once 可选元素，只能出现一次</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>*</strong></p></td>
-<td><p>optional element, can appear many times</p></td>
+<td><p>optional element, can appear many times 可选元素，可重复出现</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>R</strong></p></td>
-<td><p>optional element, can appear many times recursively</p></td>
+<td><p>optional element, can appear many times recursively 可选元素，可以递归出现多次</p></td>
 </tr>
 </tbody>
 </table>
@@ -4300,28 +4305,31 @@ through elements and attributes. Text content in elements is not used; if presen
 </div>
 </details></section>
 <section id="attribute-types">
-<span id="ctype"></span><h3>Attribute types<a class="headerlink" href="#attribute-types" title="Permalink to this headline">#</a></h3>
+<span id="ctype"></span><h3>Attribute types 属性类型<a class="headerlink" href="#attribute-types" title="Permalink to this headline">#</a></h3>
 <div class="line-block">
 <div class="line">Each attribute has a data type enforced by the parser. The available data types are:</div>
+</div>
+<div class="line-block">
+<div class="line">每个属性都有解析器强制执行的数据类型。可用的数据类型包括：</div>
 </div>
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 9%" />
-<col style="width: 91%" />
+<col style="width: 6%" />
+<col style="width: 94%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>string</p></td>
-<td><p>An arbitrary string, usually specifying a file name or a user-defined name of a model element.</p></td>
+<td><p>An arbitrary string, usually specifying a file name or a user-defined name of a model element.任意字符串，通常用于指定文件名或模型元素的用户定义名称。</p></td>
 </tr>
 <tr class="row-even"><td><p>int(N)</p></td>
-<td><p>An array of N integers. If N is omitted it equals 1.</p></td>
+<td><p>An array of N integers. If N is omitted it equals 1. N个整数的数组。如果省略N，则默认为1</p></td>
 </tr>
 <tr class="row-odd"><td><p>real(N)</p></td>
-<td><p>An array of N real-valued numbers. If N is omitted it equals 1.</p></td>
+<td><p>An array of N real-valued numbers. If N is omitted it equals 1. N个实数的数组。如果省略N，则默认为1</p></td>
 </tr>
 <tr class="row-even"><td><p>[…]</p></td>
-<td><p>Keyword attribute. The list of valid keywords is given in brackets.</p></td>
+<td><p>Keyword attribute. The list of valid keywords is given in brackets. 关键字属性。有效关键字列表在方括号中给出</p></td>
 </tr>
 </tbody>
 </table>
@@ -4330,6 +4338,11 @@ through elements and attributes. Text content in elements is not used; if presen
 <div class="line"><br /></div>
 <div class="line">For array-type attributes, the length of the array is enforced by the parser unless specified otherwise in the
 reference documentation below.</div>
+</div>
+<div class="line-block">
+<div class="line">对于数组类型的属性，除非在下面的参考文档中另有规定，否则解析器会强制执行数组的长度。</div>
+</div>
+<div class="line-block">
 <div class="line">In addition to having a data type, attributes can be required or optional. Optional attributes can have internal
 defaults or not. Optional attributes that do not have internal defaults are initialized in a special undefined state.
 This state is different from any valid setting that can be entered in the XML. This mechanism enables the compiler to
@@ -4337,58 +4350,52 @@ determine if the attribute has been “touched” by the user, either explicitly
 appropriate action. Some attributes have internal defaults (usually 0) which are not actually allowed by the
 compiler. When such attributes become relevant in a given context, they must be set to allowed values.</div>
 </div>
-<div class="table-wrapper docutils container">
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 12%" />
-<col style="width: 88%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p>required</p></td>
-<td><p>The attribute is required by the parser. If it is not present the parser will generate an error.</p></td>
-</tr>
-<tr class="row-even"><td><p>optional</p></td>
-<td><p>The attribute is optional. There is no internal default. The attribute is initialized in the
-undefined state.</p></td>
-</tr>
-<tr class="row-odd"><td><p>“…”</p></td>
-<td><p>The attribute is optional. The internal default is given in quotes.</p></td>
-</tr>
-</tbody>
-</table>
+<div class="line-block">
+<div class="line">除了具有数据类型外，属性还可以是必需的或可选的。可选属性可以具有内部默认值，也可以没有。没有内部默认值的可选属性会在一个特殊的未定义状态下初始化。这个状态不同于可以在XML中输入的任何有效设置。这个机制使编译器能够确定属性是否已被用户“触及”，无论是显式地还是通过默认值，并采取适当的操作。某些属性具有内部默认值（通常为0），但编译器实际上不允许这些默认值。当这些属性在特定上下文中变得相关时，它们必须设置为允许的值。</div>
 </div>
 <p>In the reference documentation below the attribute name is shown in boldface, followed by its data type, followed by the
 required/optional status including the internal default if any. For example, the attribute angle is a keyword attribute
 whose value can be “radian” or “degree”. It is an optional attribute and has internal default “degree”. Therefore it
 will appear in the reference documentation as</p>
+<p>在下面的参考文档中，属性名称以粗体显示，后跟其数据类型，然后是所需/可选状态，包括内部默认值（如果有）。例如，属性”angle” 是一个关键字属性，其值可以是”radian”或”degree”。它是一个可选属性，并具有内部默认值”degree”。因此，它将在参考文档中显示为：</p>
 <dl>
 <dt><span class="at">angle</span>: <span class="at-val">[radian, degree], “degree”</span></dt><dd><p style="display: none"></p></dd>
 </dl>
 </section>
 </section>
-<section id="mjcf-reference">
-<span id="reference"></span><h2>MJCF Reference<a class="headerlink" href="#mjcf-reference" title="Permalink to this headline">#</a></h2>
+<section id="mjcf-reference-mjcf">
+<span id="reference"></span><h2>MJCF Reference MJCF 参考<a class="headerlink" href="#mjcf-reference-mjcf" title="Permalink to this headline">#</a></h2>
 <p>MJCF files have a unique top-level element <a class="reference internal" href="#mujoco"><span class="std std-ref">mujoco</span></a>. The next-level elements are referred to as
 <em>sections</em>. They are all optional. Some sections are merely used for grouping and have no attributes. Sections can be
 repeated, to facilitate merging of models via the <a class="reference internal" href="#include"><span class="std std-ref">include</span></a> element. The <em>order</em> of attributes within an
 element can be arbitrary. The order of child elements within a parent element can also be arbitrary, with four
 exceptions:</p>
-<ul class="simple">
+<p>MJCF文件具有一个唯一的顶级元素:<a class="reference internal" href="#mujoco"><span class="std std-ref">mujoco</span></a>。下一级的元素被称为*sections*。它们都是可选的。某些部分仅用于分组，没有属性。部分可以重复出现，以便通过 <a class="reference internal" href="#include"><span class="std std-ref">include</span></a> 元素合并模型。在元素内的属性顺序可以是任意的。在父元素内的子元素顺序也可以是任意的，但有四个例外：</p>
+<ul>
 <li><p>The order of <a class="reference internal" href="#body-joint"><span class="std std-ref">joint</span></a> elements within a <a class="reference internal" href="#body"><span class="std std-ref">body</span></a> matters because joint transformations are
-performed in sequence.</p></li>
+performed in sequence.</p>
+<p>a <a class="reference internal" href="#body"><span class="std std-ref">body</span></a> 元素内 :ref:<a href="#id1"><span class="problematic" id="id2">`</span></a>joint &lt;body-joint&gt;`元素的顺序很重要，因为关节变换是按顺序执行的。</p>
+</li>
 <li><p>The order of elements in a <a class="reference internal" href="#tendon-spatial"><span class="std std-ref">spatial</span></a> tendon matters because it determines the sequence of
-objects that the tendon passes through or wraps around.</p></li>
+objects that the tendon passes through or wraps around.</p>
+<p>在 <a class="reference internal" href="#tendon-spatial"><span class="std std-ref">spatial</span></a> 张力元素中的元素顺序很重要，因为它**决定了张力通过或缠绕的对象的顺序。**</p>
+</li>
 <li><p>The order of repeated sections matters when the same attribute is set multiple times to different values. In that
-case the last setting takes effect for the entire model.</p></li>
+case the last setting takes effect for the entire model.</p>
+<p>当相同的属性多次设置为不同的值时，重复部分的顺序很重要。在这种情况下，最后的设置将对整个模型生效。</p>
+</li>
 <li><p>The order of multiple actuator shortcuts in the same defaults class matters, because each shortcut sets the
 attributes of the single <a class="reference internal" href="#actuator-general"><span class="std std-ref">general</span></a> element in that defaults class, overriding the previous
-settings.</p></li>
+settings.</p>
+<p>在同一个默认类中的多个执行器快捷方式的顺序很重要，因为每个快捷方式设置了该默认类中单个 <a class="reference internal" href="#actuator-general"><span class="std std-ref">general</span></a> 元素的属性，覆盖了先前的设置。</p>
+</li>
 </ul>
 <p>In the remainder of this chapter we describe all valid MJCF elements and their attributes. Some elements can be used in
 multiple contexts, in which case their meaning depends on the parent element. This is why we always show the parent as a
 prefix in the documentation below.</p>
+<p>在本章的其余部分，我们将描述所有有效的MJCF元素及其属性。一些元素可以在多个上下文中使用，<strong>此时它们的含义取决于父元素</strong>。这就是为什么我们在下面的文档中始终将父元素作为前缀显示的原因。</p>
 <section id="include">
-<span id="id1"></span><h3><strong>include</strong> (*)<a class="headerlink" href="#include" title="Permalink to this headline">#</a></h3>
+<span id="id3"></span><h3><strong>include</strong> (*)<a class="headerlink" href="#include" title="Permalink to this headline">#</a></h3>
 <p>This element does not strictly speaking belong to MJCF. Instead it is a meta-element, used to assemble multiple XML
 files in a single document object model (DOM) before parsing. The included file must be a valid XML file with a unique
 top-level element. This top-level element is removed by the parser, and the elements below it are inserted at the
@@ -4397,113 +4404,132 @@ location of the <span class="el">include</span> element. At least one element mu
 however a given XML file can be included at most once in the entire model. After all the included XML files have been
 assembled into a single DOM, it must correspond to a valid MJCF model. Other than that, it is up to the user to decide
 how to use includes and how to modularize large files if desired.</p>
-<dl class="simple">
+<p>这个元素严格来说不属于MJCF。相反，它是一个元元素，用于在解析之前将多个XML文件组合到单个文档对象模型（DOM）中。被包含的文件必须是一个带有唯一顶级元素的有效XML文件。解析器会删除此顶级元素，并将其下的元素插入到 <span class="el">include</span> 元素的位置。至少必须有一个元素作为此过程的结果插入。 <span class="el">include</span> 元素可以在MJFC文件中的任何需要XML元素的地方使用。允许嵌套包含，但给定的XML文件在整个模型中最多只能包含一次。在所有包含的XML文件被组合成单个DOM后，它必须对应于一个有效的MJCF模型。除此之外，用户可以自行决定如何使用包含和如何模块化大文件（如果需要的话）</p>
+<dl>
 <dt><span class="at">file</span>: <span class="at-val">string, required</span></dt><dd><p>The name of the XML file to be included. The file location is relative to the directory of the main MJCF file. If the
 file is not in the same directory, it should be prefixed with a relative path.</p>
+<p>要包含的XML文件的名称。文件位置相对于主MJCF文件的目录。如果文件不在同一目录中，应该使用相对路径前缀。</p>
 </dd>
 </dl>
 </section>
 <section id="mujoco">
-<span id="id2"></span><h3><strong>mujoco</strong> (!)<a class="headerlink" href="#mujoco" title="Permalink to this headline">#</a></h3>
+<span id="id4"></span><h3><strong>mujoco</strong> (!)<a class="headerlink" href="#mujoco" title="Permalink to this headline">#</a></h3>
 <p>The unique top-level element, identifying the XML file as an MJCF model file.</p>
-<dl class="simple" id="mujoco-model">
+<p>这是**唯一的顶级元素**，用于标识XML文件为MJCF模型文件。</p>
+<dl id="mujoco-model">
 <dt><span class="at">model</span>: <span class="at-val">string, “MuJoCo Model”</span></dt><dd><p>The name of the model. This name is shown in the title bar of <a class="reference internal" href="programming/samples.html#sasimulate"><span class="std std-ref">simulate.cc</span></a>.</p>
+<p>模型的名称。这个名称显示在 <a class="reference internal" href="programming/samples.html#sasimulate"><span class="std std-ref">simulate.cc</span></a> 的标题栏中。</p>
 </dd>
 </dl>
 </section>
 <section id="compiler">
-<span id="id3"></span><h3><strong>compiler</strong> (*)<a class="headerlink" href="#compiler" title="Permalink to this headline">#</a></h3>
+<span id="id5"></span><h3><strong>compiler</strong> (*)<a class="headerlink" href="#compiler" title="Permalink to this headline">#</a></h3>
 <p>This element is used to set options for the built-in parser and compiler. After parsing and compilation it no longer has
 any effect. The settings here are global and apply to the entire model.</p>
-<dl class="simple" id="compiler-autolimits">
+<p>此元素用于设置内置解析器和编译器的选项。在解析和编译之后，它不再具有任何效果。<strong>这里的设置是全局的</strong>，适用于整个模型。</p>
+<dl id="compiler-autolimits">
 <dt><span class="at">autolimits</span>: <span class="at-val">[false, true], “false”</span></dt><dd><p>This attribute affects the behavior of attributes such as “limited” (on &lt;body-joint&gt; or &lt;tendon&gt;), “forcelimited”,
 “ctrllimited”, and “actlimited” (on &lt;actuator&gt;). If “true”, these attributes are unnecessary and their value
 will be inferred from the presence of their corresponding “range” attribute.
 If “false”, no such inference will happen: For a joint to be limited, both limited=”true” and range=”min max” must
 be specified. In this mode, it is an error to specify a range without a limit.
 <br/> The default for this option will be set to “true” in an upcoming release.</p>
+<p>此属性影响”limited”（在&lt;body-joint&gt;或&lt;tendon&gt;上），”forcelimited”，”ctrllimited”和”actlimited”（在&lt;actuator&gt;上）等属性的行为。<strong>如果设置为”true”，这些属性是不必要的，它们的值将从相应的”range”属性的存在中推断出来</strong>。如果设置为”false”，将不会进行这种推断：要使关节受限制，必须同时指定”limited”=”true”和”range”=”min max”。<strong>在这种模式下，如果指定了范围而没有限制，将会引发错误</strong>。
+<a href="#id6"><span class="problematic" id="id7">|</span></a>br|在即将发布的版本中，此选项的默认值将设置为”true”。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-boundmass">
+<dl id="compiler-boundmass">
 <dt><span class="at">boundmass</span>: <span class="at-val">real, “0”</span></dt><dd><p>This attribute imposes a lower bound on the mass of each body except for the world body. Setting this attribute to
 a value greater than 0 can be used as a quick fix for poorly designed models that contain massless moving bodies,
 such as the dummy bodies often used in URDF models to attach sensors. Note that in MuJoCo there is no need to create
 dummy bodies.</p>
+<p>此属性对除了worldbody以外的每个实体的质量设定了下限。将此属性设置为大于0的值可以用作对**包含无质量运动实体的设计不良模型的快速修复**，例如，在URDF模型中通常用于连接传感器的虚拟实体。请注意，在MuJoCo中，不需要创建虚拟实体。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-boundinertia">
+<dl id="compiler-boundinertia">
 <dt><span class="at">boundinertia</span>: <span class="at-val">real, “0”</span></dt><dd><p>This attribute imposes a lower bound on the diagonal inertia components of each body except for the world body. Its
 use is similar to boundmass above.</p>
+<p>此属性对除了worldbody以外的每个实体的对角惯性分量设定了下限。其使用方式类似于上面的boundmass。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-settotalmass">
+<dl id="compiler-settotalmass">
 <dt><span class="at">settotalmass</span>: <span class="at-val">real, “-1”</span></dt><dd><p>If this value is positive, the compiler will scale the masses and inertias of all bodies in the model, so that the
 total mass equals the value specified here. The world body has mass 0 and does not participate in any mass-related
 computations. This scaling is performed last, after all other operations affecting the body mass and inertia. The
 same scaling operation can be applied at runtime to the compiled mjModel with the function
 <a class="reference internal" href="APIreference/APIfunctions.html#mj-settotalmass"><span class="std std-ref">mj_setTotalmass</span></a>.</p>
+<p>如果此值为正数，编译器将缩放模型中所有实体的质量和惯性，<strong>使总质量等于此处指定的值</strong>。worldbody的质量为0，不参与任何与质量相关的计算。此缩放是在所有其他影响实体质量和惯性的操作之后执行的。可以在运行时使用函数对已编译的mjModel执行相同的缩放操作。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-balanceinertia">
+<dl id="compiler-balanceinertia">
 <dt><span class="at">balanceinertia</span>: <span class="at-val">[false, true], “false”</span></dt><dd><p>A valid diagonal inertia matrix must satisfy A+B&gt;=C for all permutations of the three diagonal elements. Some poorly
 designed models violate this constraint, which will normally result in a compile error. If this attribute is set to
 “true”, the compiler will silently set all three diagonal elements to their average value whenever the above
 condition is violated.</p>
+<p>有效的**对角惯性矩阵**必须满足所有三个对角元素的排列组合的条件A+B&gt;=C。一些设计不良的模型违反了这个约束，通常会导致编译错误。如果将此属性设置为”true”，则在违反上述条件时，<strong>编译器会默默地将所有三个对角元素设置为它们的平均值</strong>。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-strippath">
+<dl id="compiler-strippath">
 <dt><span class="at">strippath</span>: <span class="at-val">[false, true], “false” for MJCF, “true” for URDF</span></dt><dd><p>When this attribute is “true”, the parser will remove any path information in file names specified in the model. This
 is useful for loading models created on a different system using a different directory structure.</p>
+<p>当此属性设置为”true”时，解析器将删除模型中指定的文件名中的任何路径信息。<strong>这对于加载在不同系统上创建的模型，使用不同的目录结构的情况非常有用。</strong></p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-coordinate">
+<dl id="compiler-coordinate">
 <dt><span class="at">coordinate</span>: <span class="at-val">[local, global], “local”</span></dt><dd><p>In previous versions, this attribute could be used to specify whether frame positions and orientations are expressed
 in local or global coordinates, but the “global” option has since been removed, and will cause an error to be
 generated. In order to convert older models which used the “global” option, load and save them in MuJoCo 2.3.3 or
 older.</p>
+<p>在早期版本中，此属性可以用于指定框架位置和方向是用本地坐标还是全局坐标表示，<strong>但”global”选项已被删除</strong>，并将导致生成错误。为了转换使用了”global”选项的旧模型，将其加载并保存在MuJoCo 2.3.3或更早版本中。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-angle">
+<dl id="compiler-angle">
 <dt><span class="at">angle</span>: <span class="at-val">[radian, degree], “degree” for MJCF, always “radian” for URDF</span></dt><dd><p>This attribute specifies whether the angles in the MJCF model are expressed in units of degrees or radians. The
 compiler converts degrees into radians, and mjModel always uses radians. For URDF models the parser sets this
 attribute to “radian” internally, regardless of the XML setting.</p>
+<p>此属性**指定MJCF模型中的角度是否以度或弧度为单位表示**。编译器将度转换为弧度，而mjModel始终使用弧度。<strong>对于URDF模型，解析器始终在内部将此属性设置为”radian”，不管XML设置如何</strong>。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-fitaabb">
+<dl id="compiler-fitaabb">
 <dt><span class="at">fitaabb</span>: <span class="at-val">[false, true], “false”</span></dt><dd><p>The compiler is able to replace a mesh with a geometric primitive fitted to that mesh; see <a class="reference internal" href="#body-geom"><span class="std std-ref">geom</span></a>
 below. If this attribute is “true”, the fitting procedure uses the axis-aligned bounding box (aabb) of the mesh.
 Otherwise it uses the equivalent-inertia box of the mesh. The type of geometric primitive used for fitting is
 specified separately for each geom.</p>
+<p>编译器能够用一个适应于该网格的几何图元替换一个网格；请参阅下面的 <a class="reference internal" href="#body-geom"><span class="std std-ref">geom</span></a> 。<strong>如果此属性为”true”，则拟合过程使用网格的轴对齐边界框（aabb）</strong>。否则，它使用网格的等效惯性框。用于拟合的几何图元类型是单独为每个几何体指定的。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-eulerseq">
+<dl id="compiler-eulerseq">
 <dt><span class="at">eulerseq</span>: <span class="at-val">string, “xyz”</span></dt><dd><p>This attribute specifies the sequence of Euler rotations for all euler attributes of elements that have spatial
 frames, as explained in <a class="reference internal" href="modeling.html#corientation"><span class="std std-ref">Frame orientations</span></a>. This must be a string with exactly 3
 characters from the set {‘x’, ‘y’, ‘z’, ‘X’, ‘Y’, ‘Z’}. The character at position n determines the axis around which
 the n-th rotation is performed. Lower case denotes axes that rotate with the frame, while upper case denotes axes
 that remain fixed in the parent frame. The “rpy” convention used in URDF corresponds to the default “xyz” in MJCF.</p>
+<p>此属性指定了所有具有空间框架的元素的euler属性的欧拉旋转顺序，如:ref:COrientation中所解释的。这必须是一个字符串，由集合{‘x’，’y’，’z’，’X’，’Y’，’Z’} 中的3个字符组成。位置n处的字符确定了第n个旋转的轴。<strong>小写表示与框架一起旋转的轴，而大写表示在父框架中保持固定的轴</strong>。<strong>URDF中使用的”rpy”对应于MJCF中的默认”xyz”。</strong></p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-meshdir">
+<dl id="compiler-meshdir">
 <dt><span class="at">meshdir</span>: <span class="at-val">string, optional</span></dt><dd><p>This attribute instructs the compiler where to look for mesh and height field files. The full path to a file is
 determined as follows. If the strippath attribute described above is “true”, all path information from the file name
 is removed. The following checks are then applied in order: (1) if the file name contains an absolute path, it is
 used without further changes; (2) if this attribute is set and contains an absolute path, the full path is the string
 given here appended with the file name; (3) the full path is the path to the main MJCF model file, appended with the
 value of this attribute if specified, appended with the file name.</p>
+<p>此属性指示编译器**查找网格和高度字段文件的路径**。文件的完整路径如下确定:如果上面描述的strippath属性为”true”，则从文件名中删除所有路径信息。然后按顺序应用以下检查：(1) 如果文件名包含绝对路径，则使用它而不进行其他更改；(2) 如果设置了此属性并包含绝对路径，则完整路径是给定字符串与文件名连接的结果；(3) 完整路径是主MJCF模型文件的路径，如果指定了此属性，则附加其值，然后附加文件名。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-texturedir">
+<dl id="compiler-texturedir">
 <dt><span class="at">texturedir</span>: <span class="at-val">string, optional</span></dt><dd><p>This attribute is used to instruct the compiler where to look for texture files. It works in the same way as meshdir
 above.</p>
+<p>此属性用于指示编译器查找纹理文件的路径。它与上面的meshdir属性的工作方式相同。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-assetdir">
+<dl id="compiler-assetdir">
 <dt><span class="at">assetdir</span>: <span class="at-val">string, optional</span></dt><dd><p>This attribute sets the values of both <span class="at">meshdir</span> and <span class="at">texturedir</span> above. Values in the latter attributes take
 precedence over <span class="at">assetdir</span>.</p>
+<p>此属性设置了上面的 <span class="at">meshdir</span> 和:at:<cite>texturedir</cite> 的值。后者的值优先于 <span class="at">assetdir</span> 。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-discardvisual">
+<dl id="compiler-discardvisual">
 <dt><span class="at">discardvisual</span>: <span class="at-val">[false, true], “false” for MJCF, “true” for URDF</span></dt><dd><p>This attribute instructs the parser to discard “visual geoms”, defined as geoms whose contype and conaffinity
 attributes are both set to 0. This functionality is useful for models that contain two sets of geoms, one for
 collisions and the other for visualization. Note that URDF models are usually constructed in this way. It rarely
@@ -4512,9 +4538,10 @@ recommend using this feature to discard redundant geoms. Keep in mind however th
 above definition can still participate in collisions, if they appear in the explicit list of contact
 <a class="reference internal" href="#contact-pair"><span class="std std-ref">pairs</span></a>. The parser does not check this list before discarding geoms; it relies solely on the geom
 attributes to make the determination.</p>
+<p>此属性指示解析器丢弃”可视几何体”，定义为其contype和conaffinity属性均设置为0的几何体。<strong>此功能对包含两组几何体的模型非常有用，一组用于碰撞，另一组用于可视化</strong>。请注意，URDF模型通常以这种方式构建。在模型中拥有两组几何体很少有意义，特别是因为MuJoCo使用凸包进行碰撞，因此我们建议使用此功能来丢弃多余的几何体。但请记住，根据上述定义，被视为可视的几何体仍然可以参与碰撞，如果它们出现在明确的接触对的列表中。解析器在丢弃几何体之前不会检查此列表；它完全依赖于几何体属性来做出决定。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-convexhull">
+<dl id="compiler-convexhull">
 <dt><span class="at">convexhull</span>: <span class="at-val">[false, true], “true”</span></dt><dd><p>If this attribute is “true”, the compiler will automatically generate a convex hull for every mesh that is used in at
 least one non-visual geom (in the sense of the discardvisual attribute above). This is done to speed up collision
 detection; recall <a class="reference internal" href="computation.html#collision"><span class="std std-ref">Collision detection</span></a> section in the Computation chapter. Even if the mesh is already convex, the hull
@@ -4523,6 +4550,7 @@ disable this feature is to speed up re-loading of a model with large meshes duri
 hull computation is the slowest operation performed by the compiler). However once model design is finished, this
 feature should be enabled, because the availability of convex hulls substantially speeds up collision detection with
 large meshes.</p>
+<p>如果此属性为”true”，则编译器将自动生成每个用于至少一个非可视几何体（按照上面的discardvisual属性的定义）的网格的凸包。<strong>这是为了加速碰撞检测</strong>；请参考计算章节中的 <a class="reference internal" href="computation.html#collision"><span class="std std-ref">Collision detection</span></a> 部分。即使网格已经是凸的，凸包中包含了网格文件中不存在的边缘信息，因此需要构造它。禁用此功能的唯一原因是在模型编辑期间加速重新加载具有大网格的模型（因为凸包计算是编译器执行的最慢的操作）。然而，一旦模型设计完成，应该启用此功能，因为凸包的可用性极大地加速了与大网格的碰撞检测。</p>
 </dd>
 </dl>
 <dl class="simple" id="compiler-usethread">
@@ -4531,7 +4559,7 @@ used when computing the length ranges of actuators, but in the future additional
 multi-threaded.</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-fusestatic">
+<dl id="compiler-fusestatic">
 <dt><span class="at">fusestatic</span>: <span class="at-val">[false, true], “false” for MJCF, “true” for URDF</span></dt><dd><p>This attribute controls a compiler optimization feature where static bodies are fused with their parent, and any
 elements defined in those bodies are reassigned to the parent. This feature can only be used in models which do not
 have elements capable of named references inside the kinematic tree - namely skins, contact pairs, excludes, tendons,
@@ -4539,9 +4567,10 @@ actuators, sensors, tuples, cameras, lights. If a model has any these elements, 
 enabled. This optimization is particularly useful when importing URDF models which often have many dummy bodies, but
 can also be used to optimize MJCF models. After optimization, the new model has identical kinematics and dynamics as
 the original but is faster to simulate.</p>
+<p>如果此属性为”true”，模型编译器将以多线程模式运行。目前，<strong>多线程仅用于计算执行器的长度范围</strong>，但在将来，其他编译器阶段可能也会采用多线程。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-inertiafromgeom">
+<dl id="compiler-inertiafromgeom">
 <dt><span class="at">inertiafromgeom</span>: <span class="at-val">[false, true, auto], “auto”</span></dt><dd><p>This attribute controls the automatic inference of body masses and inertias from geoms attached to the body. If this
 setting is “false”, no automatic inference is performed. In that case each body must have explicitly defined mass and
 inertia with the <a class="reference internal" href="#body-inertial"><span class="std std-ref">inertial</span></a> element, or else a compile error will be generated. If this setting is
@@ -4552,14 +4581,16 @@ attribute to “true” instead of “auto” is to override inertial data impor
 particular, a number of publicly available URDF models have seemingly arbitrary inertias which are too large compared
 to the mass. This results in equivalent inertia boxes which extend far beyond the geometric boundaries of the model.
 Note that the built-in OpenGL visualizer can render equivalent inertia boxes.</p>
+<p>此属性控制从连接到身体的几何体推断身体质量和惯性的自动推断。如果此设置为”false”，则不执行自动推断。在这种情况下，每个身体必须具有明确定义的质量和惯性，使用 <a class="reference internal" href="#body-inertial"><span class="std std-ref">inertial</span></a> 元素，否则将生成编译错误。如果此设置为”true”，则将从连接到每个身体的几何体中推断每个身体的质量和惯性，覆盖使用 <span class="el">inertial</span> 元素指定的任何值。默认设置”auto”表示只有在身体定义中缺少 <span class="el">inertial</span> 元素时才会自动推断质量和惯性。将此属性设置为”true”而不是”auto”的一个原因是覆盖从设计不良的模型导入的惯性数据。特别是，一些公开可用的URDF模型具有看似任意的惯性，与质量相比太大。这导致了等效的惯性箱，其范围远远超出了模型的几何边界。请注意，内置的OpenGL可视化器可以渲染等效的惯性箱。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-exactmeshinertia">
+<dl id="compiler-exactmeshinertia">
 <dt><span class="at">exactmeshinertia</span>: <span class="at-val">[false, true], “false”</span></dt><dd><p>If this attribute is set to false, computes mesh inertia with the legacy algorithm, which is exact only for convex
 meshes. If set to true, it is exact for any closed mesh geometry.</p>
+<p>如果将此属性设置为false，则使用传统算法计算网格的惯性，该算法仅对凸网格精确。如果设置为true，则对任何闭合网格几何都是精确的。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-inertiagrouprange">
+<dl id="compiler-inertiagrouprange">
 <dt><span class="at">inertiagrouprange</span>: <span class="at-val">int(2), “0 5”</span></dt><dd><p>This attribute specifies the range of geom groups that are used to infer body masses and inertias (when such
 inference is enabled). The group attribute of <a class="reference internal" href="#body-geom"><span class="std std-ref">geom</span></a> is an integer. If this integer falls in the range
 specified here, the geom will be used in the inertial computation, otherwise it will be ignored. This feature is
@@ -4567,70 +4598,80 @@ useful in models that have redundant sets of geoms for collision and visualizati
 participate in the inertial computations, so any geoms attached to it are automatically ignored. Therefore it is not
 necessary to adjust this attribute and the geom-specific groups so as to exclude world geoms from the inertial
 computation.</p>
+<p>这个属性指定了用于推断身体质量和惯性的geom组的范围（当启用这种推断时）。geom的group属性是一个整数。如果这个整数在此处指定的范围内，那么geom将用于惯性计算，否则将被忽略。这个功能在具有冗余的碰撞和可视化geom集的模型中很有用。请注意，worldbody不参与惯性计算，<strong>因此自动忽略附加到它的任何geom</strong>。因此，不需要调整此属性和geom特定的组，以排除世界geom不参与惯性计算。</p>
 </dd>
 </dl>
 <section id="compiler-lengthrange">
-<span id="id4"></span><h4><span class="el-prefix">compiler/</span>⁠<strong>lengthrange</strong> (?)<a class="headerlink" href="#compiler-lengthrange" title="Permalink to this headline">#</a></h4>
+<span id="id8"></span><h4><span class="el-prefix">compiler/</span>⁠<strong>lengthrange</strong> (?)<a class="headerlink" href="#compiler-lengthrange" title="Permalink to this headline">#</a></h4>
 <p>This element controls the computation of actuator length ranges. For an overview of this functionality see <a class="reference internal" href="modeling.html#clengthrange"><span class="std std-ref">Length
 range</span></a> section. Note that if this element is omitted the defaults shown below still apply. In order to
 disable length range computations altogether, include this element and set mode=”none”.</p>
-<dl class="simple" id="compiler-lengthrange-mode">
+<p>此元素控制**执行器长度范围的计算**。有关此功能的概述，请参阅 <a class="reference internal" href="modeling.html#clengthrange"><span class="std std-ref">Length range</span></a> 章节。请注意，如果省略此元素，仍然适用下面显示的默认值。为了完全禁用长度范围的计算，包括此元素并设置mode=”none”。</p>
+<dl id="compiler-lengthrange-mode">
 <dt><span class="at">mode</span>: <span class="at-val">[none, muscle, muscleuser, all], “muscle”</span></dt><dd><p>Determines the type of actuators to which length range computation is applied. “none” disables this functionality.
 “all” applies it to all actuators. “muscle” applies it to actuators whose gaintype or biastype is set to “muscle”.
 “muscleuser” applies it to actuators whose gaintype or biastype is set to either “muscle” or “user”. The default is
 “muscle” because MuJoCo’s muscle model requires actuator length ranges to be defined.</p>
+<p>决定应用长度范围计算的执行器类型。 “none” 禁用此功能。 “all” 将其应用于所有执行器。 “muscle” 将其应用于 gaintype 或 biastype 设置为 “muscle” 的执行器。 “muscleuser” 将其应用于 gaintype 或 biastype 设置为 “muscle” 或 “user” 的执行器。<strong>默认值为 “muscle”，因为 MuJoCo 的肌肉模型需要定义执行器的长度范围</strong>。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-lengthrange-useexisting">
+<dl id="compiler-lengthrange-useexisting">
 <dt><span class="at">useexisting</span>: <span class="at-val">[false, true], “true”</span></dt><dd><p>If this attribute is “true” and the length range for a given actuator is already defined in the model, the existing
 value will be used and the automatic computation will be skipped. The range is considered defined if the first number
 is smaller than the second number. The only reason to set this attribute to “false” is to force re-computation of
 actuator length ranges - which is needed when the model geometry is modified. Note that the automatic computation
 relies on simulation and can be slow, so saving the model and using the existing values when possible is recommended.</p>
+<p>如果此属性为 “true”，并且已经在模型中定义了给定执行器的长度范围，将使用现有值，并跳过自动计算。如果第一个数字小于第二个数字，则认为已定义范围。将此属性设置为 “false” 的唯一原因是强制重新计算执行器长度范围 - 当修改模型几何形状时需要这样做。请注意，自动计算依赖于模拟，可能会很慢，因此建议在可能的情况下保存模型并使用现有值。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-lengthrange-uselimit">
+<dl id="compiler-lengthrange-uselimit">
 <dt><span class="at">uselimit</span>: <span class="at-val">[false, true], “false”</span></dt><dd><p>If this attribute is “true” and the actuator is attached to a joint or a tendon which has limits defined, these
 limits will be copied into the actuator length range and the automatic computation will be skipped. This may seem
 like a good idea but note that in complex models the feasible range of tendon actuators depends on the entire model,
 and may be smaller than the user-defined limits for that tendon. So the safer approach is to set this to “false”, and
 let the automatic computation discover the feasible range.</p>
+<p>如果此属性为 “true”，并且执行器连接到具有定义的极限的关节或肌腱，则这些极限将被复制到执行器长度范围中，并且将跳过自动计算。这可能看起来是个不错的主意，但请注意，在复杂的模型中，肌腱执行器的可行范围取决于整个模型，可能小于该肌腱的用户定义的极限。因此，更安全的方法是将其设置为 “false”，并让自动计算发现可行范围。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-lengthrange-accel">
+<dl id="compiler-lengthrange-accel">
 <dt><span class="at">accel</span>: <span class="at-val">real, “20”</span></dt><dd><p>This attribute scales the forces applied to the simulation in order to push each actuator to its smallest and largest
 length. The force magnitude is computed so that the resulting joint-space acceleration vector has norm equal to this
 attribute.</p>
+<p>此属性**缩放施加于模拟的力**，以推动每个执行器到其最小和最大长度。力的大小计算为，使得由此产生的关节空间加速度矢量的范数等于此属性。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-lengthrange-maxforce">
+<dl id="compiler-lengthrange-maxforce">
 <dt><span class="at">maxforce</span>: <span class="at-val">real, “0”</span></dt><dd><p>The force computed via the accel attribute above can be very large when the actuator has very small moments. Such a
 force will still produce reasonable acceleration (by construction) but large numbers could cause numerical issues.
 Although we have never observed such issues, the present attribute is provided as a safeguard. Setting it to a value
 larger than 0 limits the norm of the force being applied during simulation. The default setting of 0 disables this
 safeguard.</p>
+<p>尽管通过上面的accel属性计算得到的力可能在执行器具有非常小的力矩时非常大，但这样的力仍会产生合理的加速度（通过构造）。但是，<strong>大的数值可能会引发数值问题</strong>。尽管我们从未观察到此类问题，但当前的属性被提供**作为一种保护措施**。将其设置为大于0的值将限制在模拟期间施加的力的范数。默认设置为0，禁用此保护机制。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-lengthrange-timeconst">
+<dl id="compiler-lengthrange-timeconst">
 <dt><span class="at">timeconst</span>: <span class="at-val">real, “1”</span></dt><dd><p>The simulation is damped in a non-physical way so as to push the actuators to their limits without the risk of
 instabilities. This is done by simply scaling down the joint velocity at each time step. In the absence of new
 accelerations, such scaling will decrease the velocity exponentially. The timeconst attribute specifies the time
 constant of this exponential decrease, in seconds.</p>
+<p>模拟以一种非物理的方式进行阻尼，以将执行器推向它们的极限，而不会出现不稳定的风险。这是通过简单地缩小每个时间步长的关节速度来实现的。<strong>在没有新的加速度的情况下，这种缩放将指数性地减小速度</strong>。timeconst属性指定了这种指数下降的时间常数，以秒为单位。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-lengthrange-timestep">
+<dl id="compiler-lengthrange-timestep">
 <dt><span class="at">timestep</span>: <span class="at-val">real, “0.01”</span></dt><dd><p>The timestep used for the internal simulation. Setting this to 0 will cause the model timestep to be used. The latter
 is not the default because models that can go unstable usually have small timesteps, while the simulation here is
 artificially damped and very stable. To speed up the length range computation, users can attempt to increase this
 value.</p>
+<p>用于**内部模拟的时间步长**。将其设置为0将导致使用模型的时间步长。之所以不是默认值，是因为**通常可能会出现不稳定的模型通常具有较小的时间步长**，而这里的模拟是人为阻尼的且非常稳定的。为了加速长度范围的计算，用户可以尝试增加这个值。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-lengthrange-inttotal">
+<dl id="compiler-lengthrange-inttotal">
 <dt><span class="at">inttotal</span>: <span class="at-val">real, “10”</span></dt><dd><p>The total time interval (in seconds) for running the internal simulation, for each actuator and actuator direction.
 Each simulation is initialized at qpos0. It is expected to settle after inttotal time has passed.</p>
+<p>每个执行器和执行器方向的内部模拟的总时间间隔（以秒为单位）。每次模拟都是从qpos0初始化的。预期在经过inttotal时间后会稳定下来。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-lengthrange-interval">
+<dl id="compiler-lengthrange-interval">
 <dt><span class="at">interval</span>: <span class="at-val">real, “2”</span></dt><dd><p>The time interval at the end of the simulation over which length data is collected and analyzed. The maximum (or
 respectively minimum) length achieved during this interval is recorded. The difference between the maximum and
 minimum is also recorded and is used as a measure of divergence. If the simulation settles, this difference will be
@@ -4639,28 +4680,32 @@ attributes should be adjusted - or because the model does not have sufficient jo
 actuator range is effectively unlimited. Both of these conditions cause the same compiler error. Recall that contacts
 are disabled in this simulation, so joint and tendon limits as well as overall geometry are the only things that can
 prevent actuators from having infinite length.</p>
+<p>模拟结束时收集和分析长度数据的时间间隔。在此间隔内记录所达到的最大（或最小）长度。还记录最大值和最小值之间的差异，并将其用作发散程度的度量。如果模拟稳定，这个差异将会很小。如果不小，这可能是因为模拟还没有稳定 - 在这种情况下，应该调整上述属性 - 或者是因为模型没有足够的关节和肌腱限制，因此执行器范围实际上是无限的。这两种情况都会导致相同的编译器错误。请注意，此模拟中禁用了接触，因此关节和肌腱限制以及总体几何形状是防止执行器长度无限的唯一因素。</p>
 </dd>
 </dl>
-<dl class="simple" id="compiler-lengthrange-tolrange">
+<dl id="compiler-lengthrange-tolrange">
 <dt><span class="at">tolrange</span>: <span class="at-val">real, “0.05”</span></dt><dd><p>This determines the threshold for detecting divergence and generating a compiler error. The range of actuator lengths
 observed during interval is divided by the overall range computed via simulation. If that value is larger than
 tolrange, a compiler error is generated. So one way to suppress compiler errors is to simply make this attribute
 larger, but in that case the results could be inaccurate.</p>
+<p>这确定了检测发散并生成编译器错误的阈值。在间隔期间观察到的执行器长度范围将与通过模拟计算的总体范围相除。如果该值大于tolrange，则会生成编译器错误。因此，抑制编译器错误的一种方法是简单地增加此属性的值，但在这种情况下，结果可能不准确。</p>
 </dd>
 </dl>
 </section>
 </section>
 <section id="size">
-<span id="id5"></span><h3><strong>size</strong> (*)<a class="headerlink" href="#size" title="Permalink to this headline">#</a></h3>
+<span id="id9"></span><h3><strong>size</strong> (*)<a class="headerlink" href="#size" title="Permalink to this headline">#</a></h3>
 <p>This element specifies size parameters that cannot be inferred from the number of elements in the model. Unlike the
 fields of mjOption which can be modified at runtime, sizes are structural parameters and should not be modified after
 compilation.</p>
-<dl class="simple" id="size-memory">
+<p>这个元素指定了不能从模型中元素的数量推断出的大小参数。与mjOption的字段不同，大小是结构参数，不应在编译后修改。</p>
+<dl id="size-memory">
 <dt><span class="at">memory</span>: <span class="at-val">string, “-1”</span></dt><dd><p>This attribute specifies the size of memory allocated for dynamic arrays in the <code class="docutils literal notranslate"><span class="pre">mjData.arena</span></code> memory space, in
 bytes. The default setting of <code class="docutils literal notranslate"><span class="pre">-1</span></code> instructs the compiler to guess how much space to allocate. Appending the digits
 with one of the letters {K, M, G, T, P, E} sets the unit to be {kilo, mega, giga, tera, peta, exa}-byte,
 respectively. Thus “16M” means “allocate 16 megabytes of <code class="docutils literal notranslate"><span class="pre">arena</span></code> memory”.
 See the <a class="reference internal" href="modeling.html#csize"><span class="std std-ref">Memory allocation</span></a> section for details.</p>
+<p>这个属性**指定了在mjData.arena内存空间中为动态数组分配的内存大小**，以字节为单位。默认设置为-1，指示编译器猜测要分配多少空间。将数字附加到字母{K、M、G、T、P、E}中的一个可以将单位设置为{kilo、mega、giga、tera、peta、exa}-字节。因此，”16M”表示”分配16兆字节的arena内存”。有关详细信息，请参阅 <a class="reference internal" href="modeling.html#csize"><span class="std std-ref">Memory allocation</span></a> 部分。</p>
 </dd>
 </dl>
 <dl class="simple" id="size-njmax">
@@ -4730,7 +4775,7 @@ by MuJoCo. They can be used to define element properties needed in user callback
 </dl>
 </section>
 <section id="statistic">
-<span id="id6"></span><h3><strong>statistic</strong> (*)<a class="headerlink" href="#statistic" title="Permalink to this headline">#</a></h3>
+<span id="id10"></span><h3><strong>statistic</strong> (*)<a class="headerlink" href="#statistic" title="Permalink to this headline">#</a></h3>
 <p>This element is used to override model statistics computed by the compiler. These statistics are not only informational
 but are also used to scale various components of the rendering and perturbation. We provide an override mechanism in the
 XML because it is sometimes easier to adjust a small number of model statistics than a larger number of visual
@@ -4773,7 +4818,7 @@ center the view of the free camera when the model is first loaded.</p>
 </dl>
 </section>
 <section id="visual">
-<span id="id7"></span><h3><strong>visual</strong> (*)<a class="headerlink" href="#visual" title="Permalink to this headline">#</a></h3>
+<span id="id11"></span><h3><strong>visual</strong> (*)<a class="headerlink" href="#visual" title="Permalink to this headline">#</a></h3>
 <p>This element is in one-to-one correspondence with the low level structure mjVisual contained in the field mjModel.vis
 of mjModel. The settings here affect the visualizer, or more precisely the abstract phase of visualization which
 yields a list of geometric entities for subsequent rendering. The settings here are global, in contrast with the
@@ -4785,7 +4830,7 @@ subsections.
 <br/> This element is a good candidate for the <a class="reference internal" href="modeling.html#cinclude"><span class="std std-ref">file include</span></a> mechanism. One can create an XML file with
 coordinated visual settings corresponding to a “theme”, and then include this file in multiple models.</p>
 <section id="visual-global">
-<span id="id8"></span><h4><span class="el-prefix">visual/</span>⁠<strong>global</strong> (?)<a class="headerlink" href="#visual-global" title="Permalink to this headline">#</a></h4>
+<span id="id12"></span><h4><span class="el-prefix">visual/</span>⁠<strong>global</strong> (?)<a class="headerlink" href="#visual-global" title="Permalink to this headline">#</a></h4>
 <p>While all settings in mjVisual are global, the settings here could not be fit into any of the other subsections. So this
 is effectively a miscellaneous subsection.</p>
 <dl class="simple" id="visual-global-fovy">
@@ -4844,7 +4889,7 @@ use box, “true”: use ellipsoid.</p>
 </dl>
 </section>
 <section id="visual-quality">
-<span id="id9"></span><h4><span class="el-prefix">visual/</span>⁠<strong>quality</strong> (?)<a class="headerlink" href="#visual-quality" title="Permalink to this headline">#</a></h4>
+<span id="id13"></span><h4><span class="el-prefix">visual/</span>⁠<strong>quality</strong> (?)<a class="headerlink" href="#visual-quality" title="Permalink to this headline">#</a></h4>
 <p>This element specifies settings that affect the quality of the rendering. Larger values result in higher quality but
 possibly slower speed. Note that <a class="reference internal" href="programming/samples.html#sasimulate"><span class="std std-ref">simulate.cc</span></a> displays the frames per second (FPS). The target FPS is
 60 Hz; if the number shown in the visualizer is substantially lower, this means that the GPU is over-loaded and the
@@ -4884,7 +4929,7 @@ larger values because we use per-vertex illumination (as opposed to per-fragment
 </dl>
 </section>
 <section id="visual-headlight">
-<span id="id10"></span><h4><span class="el-prefix">visual/</span>⁠<strong>headlight</strong> (?)<a class="headerlink" href="#visual-headlight" title="Permalink to this headline">#</a></h4>
+<span id="id14"></span><h4><span class="el-prefix">visual/</span>⁠<strong>headlight</strong> (?)<a class="headerlink" href="#visual-headlight" title="Permalink to this headline">#</a></h4>
 <p>This element is used to adjust the properties of the headlight. There is always a built-in headlight, in addition to any
 lights explicitly defined in the model. The headlight is a directional light centered at the current camera and pointed
 in the direction in which the camera is looking. It does not cast shadows (which would be invisible anyway). Note that
@@ -4909,7 +4954,7 @@ attributes is set to 1 and cannot be adjusted.</p>
 </dl>
 </section>
 <section id="visual-map">
-<span id="id11"></span><h4><span class="el-prefix">visual/</span>⁠<strong>map</strong> (?)<a class="headerlink" href="#visual-map" title="Permalink to this headline">#</a></h4>
+<span id="id15"></span><h4><span class="el-prefix">visual/</span>⁠<strong>map</strong> (?)<a class="headerlink" href="#visual-map" title="Permalink to this headline">#</a></h4>
 <p>This element is used to specify scaling quantities that affect both the visualization and built-in mouse perturbations.
 Unlike the scaling quantities in the next element which are specific to spatial extent, the quantities here are
 miscellaneous.</p>
@@ -4986,7 +5031,7 @@ can be cast is the light cutoff multiplied by the present value.</p>
 </dl>
 </section>
 <section id="visual-scale">
-<span id="id12"></span><h4><span class="el-prefix">visual/</span>⁠<strong>scale</strong> (?)<a class="headerlink" href="#visual-scale" title="Permalink to this headline">#</a></h4>
+<span id="id16"></span><h4><span class="el-prefix">visual/</span>⁠<strong>scale</strong> (?)<a class="headerlink" href="#visual-scale" title="Permalink to this headline">#</a></h4>
 <p>The settings in this element control the spatial extent of various decorative objects. In all cases, the rendered size
 equals the mean body size (see <a class="reference internal" href="#statistic"><span class="std std-ref">statistic</span></a> element) multiplied by the value of an attribute
 documented below.</p>
@@ -5061,7 +5106,7 @@ scaled relative to this setting.</p>
 </dl>
 </section>
 <section id="visual-rgba">
-<span id="id13"></span><h4><span class="el-prefix">visual/</span>⁠<strong>rgba</strong> (?)<a class="headerlink" href="#visual-rgba" title="Permalink to this headline">#</a></h4>
+<span id="id17"></span><h4><span class="el-prefix">visual/</span>⁠<strong>rgba</strong> (?)<a class="headerlink" href="#visual-rgba" title="Permalink to this headline">#</a></h4>
 <p>The settings in this element control the color and transparency (rgba) of various decorative objects. We will call this
 combined attribute “color” to simplify terminology below. All values should be in the range [0 1]. An alpha value of 0
 disables the rendering of the corresponding object.</p>
@@ -5162,7 +5207,7 @@ cannot be maintained, i.e., it is “broken”.</p>
 </section>
 </section>
 <section id="asset">
-<span id="id14"></span><h3><strong>asset</strong> (*)<a class="headerlink" href="#asset" title="Permalink to this headline">#</a></h3>
+<span id="id18"></span><h3><strong>asset</strong> (*)<a class="headerlink" href="#asset" title="Permalink to this headline">#</a></h3>
 <p>This is a grouping element for defining assets. It does not have attributes. Assets are created in the model so that
 they can be referenced from other model elements; recall the discussion of <a class="reference internal" href="overview.html#assets"><span class="std std-ref">Assets</span></a> in the Overview
 chapter. Assets opened from a file can be identified in two different ways: filename extensions or the <code class="docutils literal notranslate"><span class="pre">content_type</span></code>
@@ -5170,7 +5215,7 @@ attribute. MuJoCo will attempt to open a file specified by the content type prov
 extension if no <code class="docutils literal notranslate"><span class="pre">content_type</span></code> attribute is specified. The content type is ignored if the asset isn’t loaded from a
 file.</p>
 <section id="asset-texture">
-<span id="id15"></span><h4><span class="el-prefix">asset/</span>⁠<strong>texture</strong> (*)<a class="headerlink" href="#asset-texture" title="Permalink to this headline">#</a></h4>
+<span id="id19"></span><h4><span class="el-prefix">asset/</span>⁠<strong>texture</strong> (*)<a class="headerlink" href="#asset-texture" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element creates a texture asset, which is then referenced from a <a class="reference internal" href="#asset-material"><span class="std std-ref">material</span></a> asset, which is
 finally referenced from a model element that needs to be textured. MuJoCo provides access to the texture mapping
@@ -5347,7 +5392,7 @@ cases (e.g. checker patterns) small values are sufficient.</p>
 </dl>
 </section>
 <section id="asset-hfield">
-<span id="id16"></span><h4><span class="el-prefix">asset/</span>⁠<strong>hfield</strong> (*)<a class="headerlink" href="#asset-hfield" title="Permalink to this headline">#</a></h4>
+<span id="id20"></span><h4><span class="el-prefix">asset/</span>⁠<strong>hfield</strong> (*)<a class="headerlink" href="#asset-hfield" title="Permalink to this headline">#</a></h4>
 <p>This element creates a height field asset, which can then be referenced from geoms with type “hfield”. A height field,
 also known as terrain map, is a 2D matrix of elevation data. The data can be specified in one of three ways:</p>
 <ol class="arabic">
@@ -5433,7 +5478,7 @@ minimum elevation is 1, and the depth of the base added below the minimum elevat
 </dl>
 </section>
 <section id="asset-mesh">
-<span id="id18"></span><h4><span class="el-prefix">asset/</span>⁠<strong>mesh</strong> (*)<a class="headerlink" href="#asset-mesh" title="Permalink to this headline">#</a></h4>
+<span id="id22"></span><h4><span class="el-prefix">asset/</span>⁠<strong>mesh</strong> (*)<a class="headerlink" href="#asset-mesh" title="Permalink to this headline">#</a></h4>
 <p>This element creates a mesh asset, which can then be referenced from geoms. If the referencing geom type is
 <span class="at-val">mesh</span> the mesh is instantiated in the model, otherwise a geometric primitive is automatically fitted to it; see
 the <a class="reference internal" href="#body-geom"><span class="std std-ref">geom</span></a> element below.</p>
@@ -5596,7 +5641,7 @@ quaternion is used to rotate the positions and normals. The model compiler norma
 </dl>
 </section>
 <section id="mesh-plugin">
-<span id="id20"></span><h4><span class="el-prefix">mesh/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#mesh-plugin" title="Permalink to this headline">#</a></h4>
+<span id="id24"></span><h4><span class="el-prefix">mesh/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#mesh-plugin" title="Permalink to this headline">#</a></h4>
 <p>Associate this mesh with an <a class="reference internal" href="programming/extension.html#explugin"><span class="std std-ref">engine plugin</span></a>. Either <span class="at">plugin</span> or <span class="at">instance</span> are required.</p>
 <dl class="simple" id="mesh-plugin-plugin">
 <dt><span class="at">plugin</span>: <span class="at-val">string, optional</span></dt><dd><p>Plugin identifier, used for implicit plugin instantiation.</p>
@@ -5608,7 +5653,7 @@ quaternion is used to rotate the positions and normals. The model compiler norma
 </dl>
 </section>
 <section id="asset-skin">
-<span id="id21"></span><h4><span class="el-prefix">asset/</span>⁠<strong>skin</strong> (*)<a class="headerlink" href="#asset-skin" title="Permalink to this headline">#</a></h4>
+<span id="id25"></span><h4><span class="el-prefix">asset/</span>⁠<strong>skin</strong> (*)<a class="headerlink" href="#asset-skin" title="Permalink to this headline">#</a></h4>
 <p>Skinned meshes (or skins) were added in MuJoCo 2.0. These are deformable meshes whose vertex positions and normals are
 computed each time the model is rendered. MuJoCo skins are only used for visualization and do not affect the physics
 in any way. In particular, collisions involve the geoms of the bodies to which the skin is attached, and not the skin
@@ -5708,7 +5753,7 @@ visualizer to enable and disable the rendering of entire groups of skins.</p>
 </dd>
 </dl>
 <section id="skin-bone">
-<span id="id22"></span><h5><span class="el-prefix">skin/</span>⁠<strong>bone</strong> (*)<a class="headerlink" href="#skin-bone" title="Permalink to this headline">#</a></h5>
+<span id="id26"></span><h5><span class="el-prefix">skin/</span>⁠<strong>bone</strong> (*)<a class="headerlink" href="#skin-bone" title="Permalink to this headline">#</a></h5>
 <p>This element defines a bone of the skin. The bone is a regular MuJoCo body which is referenced by name here.</p>
 <dl class="simple" id="skin-bone-body">
 <dt><span class="at">body</span>: <span class="at-val">string, required</span></dt><dd><p>Name of the body corresponding to this bone.</p>
@@ -5738,7 +5783,7 @@ must be positive.</p>
 </section>
 </section>
 <section id="asset-material">
-<span id="id23"></span><h4><span class="el-prefix">asset/</span>⁠<strong>material</strong> (*)<a class="headerlink" href="#asset-material" title="Permalink to this headline">#</a></h4>
+<span id="id27"></span><h4><span class="el-prefix">asset/</span>⁠<strong>material</strong> (*)<a class="headerlink" href="#asset-material" title="Permalink to this headline">#</a></h4>
 <p>This element creates a material asset. It can be referenced from <a class="reference internal" href="#asset-skin"><span class="std std-ref">skins</span></a>, <a class="reference internal" href="#body-geom"><span class="std std-ref">geoms</span></a>,
 <a class="reference internal" href="#body-site"><span class="std std-ref">sites</span></a> and <a class="reference internal" href="#tendon"><span class="std std-ref">tendons</span></a> to set their appearance. Note that all these elements also have a
 local rgba attribute, which is more convenient when only colors need to be adjusted, because it does not require
@@ -5814,7 +5859,7 @@ definition could in fact come from a defaults class. The remaining material prop
 </section>
 </section>
 <section id="option">
-<span id="id24"></span><h3><strong>option</strong> (*)<a class="headerlink" href="#option" title="Permalink to this headline">#</a></h3>
+<span id="id28"></span><h3><strong>option</strong> (*)<a class="headerlink" href="#option" title="Permalink to this headline">#</a></h3>
 <p>This element is in one-to-one correspondence with the low level structure mjOption contained in the field mjModel.opt of
 mjModel. These are simulation options and do not affect the compilation process in any way; they are simply copied into
 the low level model. Even though mjOption can be modified by the user at runtime, it is nevertheless a good idea to
@@ -5963,7 +6008,7 @@ except in situations where some geoms have very large aspect ratios.</p>
 </dd>
 </dl>
 <section id="option-flag">
-<span id="id25"></span><h4><span class="el-prefix">option/</span>⁠<strong>flag</strong> (?)<a class="headerlink" href="#option-flag" title="Permalink to this headline">#</a></h4>
+<span id="id29"></span><h4><span class="el-prefix">option/</span>⁠<strong>flag</strong> (?)<a class="headerlink" href="#option-flag" title="Permalink to this headline">#</a></h4>
 <p>This element sets the flags that enable and disable different parts of the simulation pipeline. The actual flags used at
 runtime are represented as the bits of two integers, namely mjModel.opt.disableflags and mjModel.opt.enableflags, used
 to disable standard features and enable optional features respectively. The reason for this separation is that setting
@@ -6146,7 +6191,7 @@ force or buoyancy effect.</p>
 </dd>
 </dl>
 <section id="body-plugin">
-<span id="id26"></span><h4><span class="el-prefix">body/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#body-plugin" title="Permalink to this headline">#</a></h4>
+<span id="id30"></span><h4><span class="el-prefix">body/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#body-plugin" title="Permalink to this headline">#</a></h4>
 <p>Associate this body with an <a class="reference internal" href="programming/extension.html#explugin"><span class="std std-ref">engine plugin</span></a>. Either <span class="at">plugin</span> or <span class="at">instance</span> are required.</p>
 <dl class="simple" id="body-plugin-plugin">
 <dt><span class="at">plugin</span>: <span class="at-val">string, optional</span></dt><dd><p>Plugin identifier, used for implicit plugin instantiation.</p>
@@ -6158,7 +6203,7 @@ force or buoyancy effect.</p>
 </dl>
 </section>
 <section id="body-inertial">
-<span id="id27"></span><h4><span class="el-prefix">body/</span>⁠<strong>inertial</strong> (?)<a class="headerlink" href="#body-inertial" title="Permalink to this headline">#</a></h4>
+<span id="id31"></span><h4><span class="el-prefix">body/</span>⁠<strong>inertial</strong> (?)<a class="headerlink" href="#body-inertial" title="Permalink to this headline">#</a></h4>
 <p>This element specifies the mass and inertial properties of the body. If this element is not included in a given body,
 the inertial properties are inferred from the geoms attached to the body. When a compiled MJCF model is saved, the XML
 writer saves the inertial properties explicitly using this element, even if they were inferred from geoms. The inertial
@@ -6195,7 +6240,7 @@ positive definite) a compile error is generated.</p>
 </dl>
 </section>
 <section id="body-joint">
-<span id="id28"></span><h4><span class="el-prefix">body/</span>⁠<strong>joint</strong> (*)<a class="headerlink" href="#body-joint" title="Permalink to this headline">#</a></h4>
+<span id="id32"></span><h4><span class="el-prefix">body/</span>⁠<strong>joint</strong> (*)<a class="headerlink" href="#body-joint" title="Permalink to this headline">#</a></h4>
 <p>This element creates a joint. As explained in <a class="reference internal" href="modeling.html#ctree"><span class="std std-ref">Kinematic tree</span></a>, a joint creates motion degrees of freedom
 between the body where it is defined and the body’s parent. If multiple joints are defined in the same body, the
 corresponding spatial transformations (of the body frame relative to the parent frame) are applied in order. If no
@@ -6354,7 +6399,7 @@ set this attribute to a positive value.</p>
 </dl>
 </section>
 <section id="body-freejoint">
-<span id="id29"></span><h4><span class="el-prefix">body/</span>⁠<strong>freejoint</strong> (*)<a class="headerlink" href="#body-freejoint" title="Permalink to this headline">#</a></h4>
+<span id="id33"></span><h4><span class="el-prefix">body/</span>⁠<strong>freejoint</strong> (*)<a class="headerlink" href="#body-freejoint" title="Permalink to this headline">#</a></h4>
 <p>This element creates a free joint whose only attributes are <span class="at">name</span> and <span class="at">group</span>. The <span class="el">freejoint</span> element is
 an XML shortcut for</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;free&quot;</span><span class="w"> </span><span class="na">stiffness=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">damping=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">frictionloss=</span><span class="s">&quot;0&quot;</span><span class="w"> </span><span class="na">armature=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
@@ -6375,7 +6420,7 @@ visualizer to enable and disable the rendering of entire groups of joints.</p>
 </dl>
 </section>
 <section id="body-geom">
-<span id="id30"></span><h4><span class="el-prefix">body/</span>⁠<strong>geom</strong> (*)<a class="headerlink" href="#body-geom" title="Permalink to this headline">#</a></h4>
+<span id="id34"></span><h4><span class="el-prefix">body/</span>⁠<strong>geom</strong> (*)<a class="headerlink" href="#body-geom" title="Permalink to this headline">#</a></h4>
 <p>This element creates a geom, and attaches it rigidly to the body within which the geom is defined. Multiple geoms can
 be attached to the same body. At runtime they determine the appearance and collision properties of the body. At
 compile time they can also determine the inertial properties of the body, depending on the presence of the
@@ -6741,7 +6786,7 @@ shape. When active, the model based on <a class="reference internal" href="compu
 </dl>
 </section>
 <section id="geom-plugin">
-<span id="id31"></span><h4><span class="el-prefix">geom/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#geom-plugin" title="Permalink to this headline">#</a></h4>
+<span id="id35"></span><h4><span class="el-prefix">geom/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#geom-plugin" title="Permalink to this headline">#</a></h4>
 <p>Associate this geom with an <a class="reference internal" href="programming/extension.html#explugin"><span class="std std-ref">engine plugin</span></a>. Either <span class="at">plugin</span> or <span class="at">instance</span> are required.</p>
 <dl class="simple" id="geom-plugin-plugin">
 <dt><span class="at">plugin</span>: <span class="at-val">string, optional</span></dt><dd><p>Plugin identifier, used for implicit plugin instantiation.</p>
@@ -6753,7 +6798,7 @@ shape. When active, the model based on <a class="reference internal" href="compu
 </dl>
 </section>
 <section id="body-site">
-<span id="id32"></span><h4><span class="el-prefix">body/</span>⁠<strong>site</strong> (*)<a class="headerlink" href="#body-site" title="Permalink to this headline">#</a></h4>
+<span id="id36"></span><h4><span class="el-prefix">body/</span>⁠<strong>site</strong> (*)<a class="headerlink" href="#body-site" title="Permalink to this headline">#</a></h4>
 <p>This element creates a site, which is a simplified and restricted kind of geom. A small subset of the geom attributes
 are available here; see the <a class="reference internal" href="#body-geom"><span class="std std-ref">geom</span></a> element for their detailed documentation. Semantically sites represent
 locations of interest relative to the body frames. Sites do not participate in collisions and computation of body masses
@@ -6814,7 +6859,7 @@ remaining position and orientation-related attributes are ignored.</p>
 </dl>
 </section>
 <section id="body-camera">
-<span id="id33"></span><h4><span class="el-prefix">body/</span>⁠<strong>camera</strong> (*)<a class="headerlink" href="#body-camera" title="Permalink to this headline">#</a></h4>
+<span id="id37"></span><h4><span class="el-prefix">body/</span>⁠<strong>camera</strong> (*)<a class="headerlink" href="#body-camera" title="Permalink to this headline">#</a></h4>
 <p>This element creates a camera, which moves with the body where it is defined. To create a fixed camera, define it in the
 world body. The cameras created here are in addition to the default free camera which is always defined and is adjusted
 via the <a class="reference internal" href="#visual"><span class="std std-ref">visual</span></a> element. Internally MuJoCo uses a flexible camera model, where the viewpoint and
@@ -6879,7 +6924,7 @@ the X axis of the camera frame.</p>
 </dl>
 </section>
 <section id="body-light">
-<span id="id34"></span><h4><span class="el-prefix">body/</span>⁠<strong>light</strong> (*)<a class="headerlink" href="#body-light" title="Permalink to this headline">#</a></h4>
+<span id="id38"></span><h4><span class="el-prefix">body/</span>⁠<strong>light</strong> (*)<a class="headerlink" href="#body-light" title="Permalink to this headline">#</a></h4>
 <p>This element creates a light, which moves with the body where it is defined. To create a fixed light, define it in the
 world body. The lights created here are in addition to the default headlight which is always defined and is adjusted via
 the <a class="reference internal" href="#visual"><span class="std std-ref">visual</span></a> element. MuJoCo relies on the standard lighting model in OpenGL (fixed functionality)
@@ -6966,7 +7011,7 @@ attenuation. See the OpenGL documentation for more information on this and all o
 </dl>
 </section>
 <section id="body-composite">
-<span id="id35"></span><h4><span class="el-prefix">body/</span>⁠<strong>composite</strong> (*)<a class="headerlink" href="#body-composite" title="Permalink to this headline">#</a></h4>
+<span id="id39"></span><h4><span class="el-prefix">body/</span>⁠<strong>composite</strong> (*)<a class="headerlink" href="#body-composite" title="Permalink to this headline">#</a></h4>
 <p>This is not a model element, but rather a macro which expands into multiple model elements representing a composite
 object. These elements are bodies (with their own joints, geoms and sites) that become children of the parent body
 containing the macro, as well as tendons and equality constraints added to the corresponding model sections. The
@@ -7101,7 +7146,7 @@ and <cite>sin(s)</cite>, and <cite>size[2]</cite> is the speed of the argument (
 </dd>
 </dl>
 <section id="composite-joint">
-<span id="id36"></span><h5><span class="el-prefix">composite/</span>⁠<strong>joint</strong> (*)<a class="headerlink" href="#composite-joint" title="Permalink to this headline">#</a></h5>
+<span id="id40"></span><h5><span class="el-prefix">composite/</span>⁠<strong>joint</strong> (*)<a class="headerlink" href="#composite-joint" title="Permalink to this headline">#</a></h5>
 <p>Depending on the composite type, some joints are created automatically (e.g. the universal joints in rope) while other
 joints are optional (e.g. the stretch and twist joints in rope). This sub-element is used to specify which optional
 joints should be created, as well as to adjust the attributes of both automatic and optional joints.</p>
@@ -7139,7 +7184,7 @@ parameters</span></a>.</p>
 </dl>
 </section>
 <section id="composite-tendon">
-<span id="id37"></span><h5><span class="el-prefix">composite/</span>⁠<strong>tendon</strong> (*)<a class="headerlink" href="#composite-tendon" title="Permalink to this headline">#</a></h5>
+<span id="id41"></span><h5><span class="el-prefix">composite/</span>⁠<strong>tendon</strong> (*)<a class="headerlink" href="#composite-tendon" title="Permalink to this headline">#</a></h5>
 <p>Tendons are treated similarly to joints in composite objects. The tendon kind specified here together with the composite
 body type imply the tendon type as used in the rest of MJCF. This sub-element is used to both create optional tendons,
 and adjust the attributes of automatic and optional tendons. One difference from joints is that all tendons used in
@@ -7167,7 +7212,7 @@ MJCF. See <a class="reference internal" href="modeling.html#csolver"><span class
 </dl>
 </section>
 <section id="composite-geom">
-<span id="id38"></span><h5><span class="el-prefix">composite/</span>⁠<strong>geom</strong> (?)<a class="headerlink" href="#composite-geom" title="Permalink to this headline">#</a></h5>
+<span id="id42"></span><h5><span class="el-prefix">composite/</span>⁠<strong>geom</strong> (?)<a class="headerlink" href="#composite-geom" title="Permalink to this headline">#</a></h5>
 <p>This sub-element adjusts the attributes of the geoms in the composite object. The default attributes are the same as in
 the rest of MJCF (except that user-defined defaults have no effect here). Note that the geom sub-element can appears
 only once, unlike joint and tendon sub-elements which can appear multiple times. This is because different kinds of
@@ -7180,7 +7225,7 @@ joints and tendons have different sets of attributes, while all geoms in the com
 </dl>
 </section>
 <section id="composite-site">
-<span id="id39"></span><h5><span class="el-prefix">composite/</span>⁠<strong>site</strong> (?)<a class="headerlink" href="#composite-site" title="Permalink to this headline">#</a></h5>
+<span id="id43"></span><h5><span class="el-prefix">composite/</span>⁠<strong>site</strong> (?)<a class="headerlink" href="#composite-site" title="Permalink to this headline">#</a></h5>
 <p>This sub-element adjusts the attributes of the sites in the composite object. Otherwise it is the same as geom above.</p>
 <span id="composite-site-material"></span><span id="composite-site-size"></span><span id="composite-site-group"></span><dl class="simple" id="composite-site-rgba">
 <dt><span class="at">group</span>, <span class="at">size</span>, <span class="at">material</span>, <span class="at">rgba</span></dt><dd><p>Same meaning as regular <a class="reference internal" href="#body-site"><span class="std std-ref">site</span></a> attributes.</p>
@@ -7188,7 +7233,7 @@ joints and tendons have different sets of attributes, while all geoms in the com
 </dl>
 </section>
 <section id="composite-skin">
-<span id="id40"></span><h5><span class="el-prefix">composite/</span>⁠<strong>skin</strong> (?)<a class="headerlink" href="#composite-skin" title="Permalink to this headline">#</a></h5>
+<span id="id44"></span><h5><span class="el-prefix">composite/</span>⁠<strong>skin</strong> (?)<a class="headerlink" href="#composite-skin" title="Permalink to this headline">#</a></h5>
 <p>If this element is included, the model compiler will generate a skinned mesh asset and attach it to the element bodies
 of the composite object. Skin can be attached to 2D grid, cloth, box, cylinder and ellipsoid. For other composite types
 it has no effect. Note that the skin created here is equivalent to a skin specified directly in the XML, as opposed to a
@@ -7226,7 +7271,7 @@ slows down the renderer, so use it with caution. Values above 3 are unlikely to 
 </dl>
 </section>
 <section id="composite-pin">
-<span id="id41"></span><h5><span class="el-prefix">composite/</span>⁠<strong>pin</strong> (*)<a class="headerlink" href="#composite-pin" title="Permalink to this headline">#</a></h5>
+<span id="id45"></span><h5><span class="el-prefix">composite/</span>⁠<strong>pin</strong> (*)<a class="headerlink" href="#composite-pin" title="Permalink to this headline">#</a></h5>
 <p>This sub-element can be used to pin some of the element bodies in grid objects (both 1D and 2D). Pinning means that the
 corresponding body has no joints, and therefore it is rigidly fixed to the parent body. When the parent is the world,
 this has the effect of hanging a string or a cloth in space. If the parent body is moving, this can be used to model a
@@ -7239,7 +7284,7 @@ attribute can have only one number, in which case the second number is automatic
 </section>
 </section>
 <section id="composite-plugin">
-<span id="id42"></span><h4><span class="el-prefix">composite/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#composite-plugin" title="Permalink to this headline">#</a></h4>
+<span id="id46"></span><h4><span class="el-prefix">composite/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#composite-plugin" title="Permalink to this headline">#</a></h4>
 <p>Associate this composite with an <a class="reference internal" href="programming/extension.html#explugin"><span class="std std-ref">engine plugin</span></a>. Either <span class="at">plugin</span> or <span class="at">instance</span> are required.</p>
 <dl class="simple" id="composite-plugin-plugin">
 <dt><span class="at">plugin</span>: <span class="at-val">string, optional</span></dt><dd><p>Plugin identifier, used for implicit plugin instantiation.</p>
@@ -7252,12 +7297,12 @@ attribute can have only one number, in which case the second number is automatic
 </section>
 </section>
 <section id="contact">
-<span id="id43"></span><h3><strong>contact</strong> (*)<a class="headerlink" href="#contact" title="Permalink to this headline">#</a></h3>
+<span id="id47"></span><h3><strong>contact</strong> (*)<a class="headerlink" href="#contact" title="Permalink to this headline">#</a></h3>
 <p>This is a grouping element and does not have any attributes. It groups elements that are used to adjust the generation
 of candidate contact pairs for collision checking. <a class="reference internal" href="computation.html#collision"><span class="std std-ref">Collision detection</span></a> was described in detail in the Computation chapter,
 thus the description here is brief.</p>
 <section id="contact-pair">
-<span id="id44"></span><h4><span class="el-prefix">contact/</span>⁠<strong>pair</strong> (*)<a class="headerlink" href="#contact-pair" title="Permalink to this headline">#</a></h4>
+<span id="id48"></span><h4><span class="el-prefix">contact/</span>⁠<strong>pair</strong> (*)<a class="headerlink" href="#contact-pair" title="Permalink to this headline">#</a></h4>
 <p>This element creates a predefined geom pair, which will be checked for collision if the collision attribute of
 <a class="reference internal" href="#option"><span class="std std-ref">option</span></a> is set to “all” or “predefined”. Unlike dynamically generated pairs whose properties are inferred
 from the corresponding geom properties, the pairs created here specify all their properties explicitly or through
@@ -7322,7 +7367,7 @@ positive, geom distances between margin and margin-gap correspond to such inacti
 </dl>
 </section>
 <section id="contact-exclude">
-<span id="id45"></span><h4><span class="el-prefix">contact/</span>⁠<strong>exclude</strong> (*)<a class="headerlink" href="#contact-exclude" title="Permalink to this headline">#</a></h4>
+<span id="id49"></span><h4><span class="el-prefix">contact/</span>⁠<strong>exclude</strong> (*)<a class="headerlink" href="#contact-exclude" title="Permalink to this headline">#</a></h4>
 <p>This element is used to exclude a pair of bodies from collision checking. Unlike all other contact-related elements
 which refer to geoms, this element refers to bodies. Experience has shown that exclusion is more useful on the level of
 bodies. The collision between any geom defined in the first body and any geom defined in the second body is excluded.
@@ -7344,12 +7389,12 @@ the <a class="reference internal" href="#contact-pair"><span class="std std-ref"
 </section>
 </section>
 <section id="equality">
-<span id="id46"></span><h3><strong>equality</strong> (*)<a class="headerlink" href="#equality" title="Permalink to this headline">#</a></h3>
+<span id="id50"></span><h3><strong>equality</strong> (*)<a class="headerlink" href="#equality" title="Permalink to this headline">#</a></h3>
 <p>This is a grouping element for equality constraints. It does not have attributes. See the <a class="reference internal" href="computation.html#coequality"><span class="std std-ref">Equality</span></a>
 section of the Computation chapter for a detailed description of equality constraints. Several attributes are common to
 all equality constraint types, thus we document them only once, under the <a class="reference internal" href="#equality-connect"><span class="std std-ref">connect</span></a> element.</p>
 <section id="equality-connect">
-<span id="id47"></span><h4><span class="el-prefix">equality/</span>⁠<strong>connect</strong> (*)<a class="headerlink" href="#equality-connect" title="Permalink to this headline">#</a></h4>
+<span id="id51"></span><h4><span class="el-prefix">equality/</span>⁠<strong>connect</strong> (*)<a class="headerlink" href="#equality-connect" title="Permalink to this headline">#</a></h4>
 <p>This element creates an equality constraint that connects two bodies at a point. The point is not necessarily within the
 geoms volumes of either body. This constraint can be used to define ball joints outside the kinematic tree.</p>
 <dl class="simple" id="equality-connect-name">
@@ -7391,7 +7436,7 @@ the <em>first</em> body.</p>
 </dl>
 </section>
 <section id="equality-weld">
-<span id="id48"></span><h4><span class="el-prefix">equality/</span>⁠<strong>weld</strong> (*)<a class="headerlink" href="#equality-weld" title="Permalink to this headline">#</a></h4>
+<span id="id52"></span><h4><span class="el-prefix">equality/</span>⁠<strong>weld</strong> (*)<a class="headerlink" href="#equality-weld" title="Permalink to this headline">#</a></h4>
 <p>This element creates a weld equality constraint. It attaches two bodies to each other, removing all relative degrees of
 freedom between them (softly of course, like all other constraints in MuJoCo). The two bodies are not required to be
 close to each other. The relative body position and orientation being enforced by the constraint solver is the one in
@@ -7433,7 +7478,7 @@ interpreted as the diameter of this glue patch.</p>
 </dl>
 </section>
 <section id="equality-joint">
-<span id="id49"></span><h4><span class="el-prefix">equality/</span>⁠<strong>joint</strong> (*)<a class="headerlink" href="#equality-joint" title="Permalink to this headline">#</a></h4>
+<span id="id53"></span><h4><span class="el-prefix">equality/</span>⁠<strong>joint</strong> (*)<a class="headerlink" href="#equality-joint" title="Permalink to this headline">#</a></h4>
 <p>This element constrains the position or angle of one joint to be a quartic polynomial of another joint. Only scalar
 joint types (slide and hinge) can be used.</p>
 <span id="equality-joint-solref"></span><span id="equality-joint-active"></span><span id="equality-joint-class"></span><span id="equality-joint-name"></span><dl class="simple" id="equality-joint-solimp">
@@ -7457,7 +7502,7 @@ Omitting the second joint is equivalent to setting x = x0, in which case the con
 </dl>
 </section>
 <section id="equality-tendon">
-<span id="id50"></span><h4><span class="el-prefix">equality/</span>⁠<strong>tendon</strong> (*)<a class="headerlink" href="#equality-tendon" title="Permalink to this headline">#</a></h4>
+<span id="id54"></span><h4><span class="el-prefix">equality/</span>⁠<strong>tendon</strong> (*)<a class="headerlink" href="#equality-tendon" title="Permalink to this headline">#</a></h4>
 <p>This element constrains the length of one tendon to be a quartic polynomial of another tendon.</p>
 <span id="equality-tendon-solref"></span><span id="equality-tendon-active"></span><span id="equality-tendon-class"></span><span id="equality-tendon-name"></span><dl class="simple" id="equality-tendon-solimp">
 <dt><span class="at">name</span>, <span class="at">class</span>, <span class="at">active</span>, <span class="at">solref</span>, <span class="at">solimp</span></dt><dd><p>Same as in <a class="reference internal" href="#equality-connect"><span class="std std-ref">connect</span></a> element.</p>
@@ -7478,19 +7523,19 @@ positions.</p>
 </dl>
 </section>
 <section id="equality-distance">
-<span id="id51"></span><h4><span class="el-prefix">equality/</span>⁠<strong>distance</strong> (*)<a class="headerlink" href="#equality-distance" title="Permalink to this headline">#</a></h4>
+<span id="id55"></span><h4><span class="el-prefix">equality/</span>⁠<strong>distance</strong> (*)<a class="headerlink" href="#equality-distance" title="Permalink to this headline">#</a></h4>
 <p>Distance equality constraints were removed in MuJoCo version 2.2.2. If you are using an earlier version, please switch
 to the corresponding version of the documentation.</p>
 </section>
 </section>
 <section id="tendon">
-<span id="id52"></span><h3><strong>tendon</strong> (*)<a class="headerlink" href="#tendon" title="Permalink to this headline">#</a></h3>
+<span id="id56"></span><h3><strong>tendon</strong> (*)<a class="headerlink" href="#tendon" title="Permalink to this headline">#</a></h3>
 <p>Grouping element for tendon definitions. The attributes of fixed tendons are a subset of the attributes of spatial
 tendons, thus we document them only once under spatial tendons. Tendons can be used to impose length limits, simulate
 spring, damping and dry friction forces, as well as attach actuators to them. When used in equality constraints, tendons
 can also represent different forms of mechanical coupling.</p>
 <section id="tendon-spatial">
-<span id="id53"></span><h4><span class="el-prefix">tendon/</span>⁠<strong>spatial</strong> (*)<a class="headerlink" href="#tendon-spatial" title="Permalink to this headline">#</a></h4>
+<span id="id57"></span><h4><span class="el-prefix">tendon/</span>⁠<strong>spatial</strong> (*)<a class="headerlink" href="#tendon-spatial" title="Permalink to this headline">#</a></h4>
 <figure class="align-right">
 <a class="reference internal image-reference" href="_images/tendon.png"><img alt="_images/tendon.png" src="_images/tendon.png" style="width: 400px;" /></a>
 </figure>
@@ -7589,7 +7634,7 @@ joint damping should be used if possible.</p>
 </dd>
 </dl>
 <section id="spatial-site">
-<span id="id54"></span><h5><span class="el-prefix">spatial/</span>⁠<strong>site</strong> (*)<a class="headerlink" href="#spatial-site" title="Permalink to this headline">#</a></h5>
+<span id="id58"></span><h5><span class="el-prefix">spatial/</span>⁠<strong>site</strong> (*)<a class="headerlink" href="#spatial-site" title="Permalink to this headline">#</a></h5>
 <p>This attribute specifies a site that the tendon path has to pass through. Recall that sites are rigidly attached to
 bodies.</p>
 <dl class="simple" id="spatial-site-site">
@@ -7598,7 +7643,7 @@ bodies.</p>
 </dl>
 </section>
 <section id="spatial-geom">
-<span id="id55"></span><h5><span class="el-prefix">spatial/</span>⁠<strong>geom</strong> (*)<a class="headerlink" href="#spatial-geom" title="Permalink to this headline">#</a></h5>
+<span id="id59"></span><h5><span class="el-prefix">spatial/</span>⁠<strong>geom</strong> (*)<a class="headerlink" href="#spatial-geom" title="Permalink to this headline">#</a></h5>
 <p>This element specifies a geom that acts as an obstacle for the tendon path. If the minimum-length path does not touch
 the geom it has no effect; otherwise the path wraps around the surface of the geom. Wrapping is computed analytically,
 which is why we restrict the geom types allowed here to spheres and cylinders. The latter are treated as having infinite
@@ -7618,7 +7663,7 @@ tendon is constrained to pass through the interior of the geom.</p>
 </dl>
 </section>
 <section id="spatial-pulley">
-<span id="id56"></span><h5><span class="el-prefix">spatial/</span>⁠<strong>pulley</strong> (*)<a class="headerlink" href="#spatial-pulley" title="Permalink to this headline">#</a></h5>
+<span id="id60"></span><h5><span class="el-prefix">spatial/</span>⁠<strong>pulley</strong> (*)<a class="headerlink" href="#spatial-pulley" title="Permalink to this headline">#</a></h5>
 <p>This element starts a new branch in the tendon path. The branches are not required to be connected spatially. Similar to
 the transmissions described in the <a class="reference internal" href="computation.html#geactuation"><span class="std std-ref">Actuation model</span></a> section of the Computation
 chapter, the quantity that affects the simulation is the tendon length and its gradient with respect to the joint
@@ -7638,7 +7683,7 @@ path, the first and only branch has divisor value of 1.</p>
 </section>
 </section>
 <section id="tendon-fixed">
-<span id="id57"></span><h4><span class="el-prefix">tendon/</span>⁠<strong>fixed</strong> (*)<a class="headerlink" href="#tendon-fixed" title="Permalink to this headline">#</a></h4>
+<span id="id61"></span><h4><span class="el-prefix">tendon/</span>⁠<strong>fixed</strong> (*)<a class="headerlink" href="#tendon-fixed" title="Permalink to this headline">#</a></h4>
 <p>This element creates an abstract tendon whose length is defined as a linear combination of joint positions. Recall that
 the tendon length and its gradient are the only quantities needed for simulation. Thus we could define any scalar
 function of joint positions, call it “tendon”, and plug it in MuJoCo. Presently the only such function is a fixed linear
@@ -7651,7 +7696,7 @@ as above.</p>
 </dd>
 </dl>
 <section id="fixed-joint">
-<span id="id58"></span><h5><span class="el-prefix">fixed/</span>⁠<strong>joint</strong> (*)<a class="headerlink" href="#fixed-joint" title="Permalink to this headline">#</a></h5>
+<span id="id62"></span><h5><span class="el-prefix">fixed/</span>⁠<strong>joint</strong> (*)<a class="headerlink" href="#fixed-joint" title="Permalink to this headline">#</a></h5>
 <p>This element adds a joint to the computation of the fixed tendon length. The position or angle of each included joint is
 multiplied by the corresponding coef value, and added up to obtain the tendon length.</p>
 <dl class="simple" id="fixed-joint-joint">
@@ -7666,12 +7711,12 @@ multiplied by the corresponding coef value, and added up to obtain the tendon le
 </section>
 </section>
 <section id="actuator">
-<span id="id59"></span><h3><strong>actuator</strong> (*)<a class="headerlink" href="#actuator" title="Permalink to this headline">#</a></h3>
+<span id="id63"></span><h3><strong>actuator</strong> (*)<a class="headerlink" href="#actuator" title="Permalink to this headline">#</a></h3>
 <p>This is a grouping element for actuator definitions. Recall the discussion of MuJoCo’s <a class="reference internal" href="computation.html#geactuation"><span class="std std-ref">Actuation model</span></a> in the Computation chapter, and the <a class="reference internal" href="modeling.html#cactuator"><span class="std std-ref">Actuator shortcuts</span></a> discussed earlier in this
 chapter. The first 13 attributes of all actuator-related elements below are the same, so we document them only once,
 under the <span class="el">general</span> actuator.</p>
 <section id="actuator-general">
-<span id="id60"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>general</strong> (*)<a class="headerlink" href="#actuator-general" title="Permalink to this headline">#</a></h4>
+<span id="id64"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>general</strong> (*)<a class="headerlink" href="#actuator-general" title="Permalink to this headline">#</a></h4>
 <p>This element creates a general actuator, providing full access to all actuator components and allowing the user to
 specify them independently.</p>
 <dl class="simple" id="actuator-general-name">
@@ -7956,7 +8001,7 @@ Setting this flag reduces the delay between the control and accelerations by one
 </dl>
 </section>
 <section id="actuator-motor">
-<span id="id61"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>motor</strong> (*)<a class="headerlink" href="#actuator-motor" title="Permalink to this headline">#</a></h4>
+<span id="id65"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>motor</strong> (*)<a class="headerlink" href="#actuator-motor" title="Permalink to this headline">#</a></h4>
 <p>This and the next three elements are the <a class="reference internal" href="modeling.html#cactuator"><span class="std std-ref">Actuator shortcuts</span></a> discussed earlier. When a
 such shortcut is encountered, the parser creates a <span class="el">general</span> actuator and sets its dynprm, gainprm and biasprm
 attributes to the internal defaults shown above, regardless of any default settings. It then adjusts dyntype, gaintype
@@ -8006,7 +8051,7 @@ into regular attributes (i.e., attributes of the <span class="el">general</span>
 </dl>
 </section>
 <section id="actuator-position">
-<span id="id62"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>position</strong> (*)<a class="headerlink" href="#actuator-position" title="Permalink to this headline">#</a></h4>
+<span id="id66"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>position</strong> (*)<a class="headerlink" href="#actuator-position" title="Permalink to this headline">#</a></h4>
 <p>This element creates a position servo. The underlying <span class="el">general</span> attributes are set as follows:</p>
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
@@ -8055,7 +8100,7 @@ into regular attributes (i.e., attributes of the <span class="el">general</span>
 </dl>
 </section>
 <section id="actuator-velocity">
-<span id="id63"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>velocity</strong> (*)<a class="headerlink" href="#actuator-velocity" title="Permalink to this headline">#</a></h4>
+<span id="id67"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>velocity</strong> (*)<a class="headerlink" href="#actuator-velocity" title="Permalink to this headline">#</a></h4>
 <p>This element creates a velocity servo. Note that in order create a PD controller, one has to define two actuators: a
 position servo and a velocity servo. This is because MuJoCo actuators are SISO while a PD controller takes two control
 inputs (reference position and reference velocity). The underlying <span class="el">general</span> attributes are set as follows:</p>
@@ -8106,7 +8151,7 @@ inputs (reference position and reference velocity). The underlying <span class="
 </dl>
 </section>
 <section id="actuator-intvelocity">
-<span id="id64"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>intvelocity</strong> (*)<a class="headerlink" href="#actuator-intvelocity" title="Permalink to this headline">#</a></h4>
+<span id="id68"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>intvelocity</strong> (*)<a class="headerlink" href="#actuator-intvelocity" title="Permalink to this headline">#</a></h4>
 <p>This element creates an integrated-velocity servo. For more information, see the
 <a class="reference internal" href="modeling.html#cactrange"><span class="std std-ref">Activation clamping</span></a> section of the Modeling chapter. The underlying
 <span class="el">general</span> attributes are set as follows:</p>
@@ -8162,7 +8207,7 @@ inputs (reference position and reference velocity). The underlying <span class="
 </dl>
 </section>
 <section id="actuator-damper">
-<span id="id65"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>damper</strong> (*)<a class="headerlink" href="#actuator-damper" title="Permalink to this headline">#</a></h4>
+<span id="id69"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>damper</strong> (*)<a class="headerlink" href="#actuator-damper" title="Permalink to this headline">#</a></h4>
 <p>This element is an active damper which produces a force proportional to both velocity and control: <code class="docutils literal notranslate"><span class="pre">F</span> <span class="pre">=</span> <span class="pre">-</span> <span class="pre">kv</span> <span class="pre">*</span> <span class="pre">velocity</span>
 <span class="pre">*</span> <span class="pre">control</span></code>, where <code class="docutils literal notranslate"><span class="pre">kv</span></code> must be nonnegative. <span class="at">ctrlrange</span> is required and must also be nonnegative. The underlying
 <span class="el">general</span> attributes are set as follows:</p>
@@ -8218,7 +8263,7 @@ inputs (reference position and reference velocity). The underlying <span class="
 </dl>
 </section>
 <section id="actuator-cylinder">
-<span id="id66"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>cylinder</strong> (*)<a class="headerlink" href="#actuator-cylinder" title="Permalink to this headline">#</a></h4>
+<span id="id70"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>cylinder</strong> (*)<a class="headerlink" href="#actuator-cylinder" title="Permalink to this headline">#</a></h4>
 <p>This element is suitable for modeling pneumatic or hydraulic cylinders. The underlying <span class="el">general</span> attributes are
 set as follows:</p>
 <div class="table-wrapper docutils container">
@@ -8280,7 +8325,7 @@ set as follows:</p>
 </dl>
 </section>
 <section id="actuator-muscle">
-<span id="id67"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>muscle</strong> (*)<a class="headerlink" href="#actuator-muscle" title="Permalink to this headline">#</a></h4>
+<span id="id71"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>muscle</strong> (*)<a class="headerlink" href="#actuator-muscle" title="Permalink to this headline">#</a></h4>
 <p>This element is used to model a muscle actuator, as described in the <a class="reference internal" href="modeling.html#cmuscle"><span class="std std-ref">Muscles actuators</span></a>
 section. The underlying <span class="el">general</span> attributes are set as follows:</p>
 <div class="table-wrapper docutils container">
@@ -8371,7 +8416,7 @@ weight.</p>
 </dl>
 </section>
 <section id="actuator-adhesion">
-<span id="id68"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>adhesion</strong> (*)<a class="headerlink" href="#actuator-adhesion" title="Permalink to this headline">#</a></h4>
+<span id="id72"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>adhesion</strong> (*)<a class="headerlink" href="#actuator-adhesion" title="Permalink to this headline">#</a></h4>
 <div class="video_wrapper align-right" style="text-align: right">
 <iframe allowfullscreen="true" src="https://www.youtube.com/embed/BcHZ5BFeTmU" style="border: 0; height: 180px; width: 266px">
 </iframe></div><p>This element defines an active adhesion actuator which injects forces at contacts in the normal direction, see
@@ -8442,7 +8487,7 @@ to the target body.</p>
 </dl>
 </section>
 <section id="actuator-plugin">
-<span id="id69"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#actuator-plugin" title="Permalink to this headline">#</a></h4>
+<span id="id73"></span><h4><span class="el-prefix">actuator/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#actuator-plugin" title="Permalink to this headline">#</a></h4>
 <p>Associate this actuator with an <a class="reference internal" href="programming/extension.html#explugin"><span class="std std-ref">engine plugin</span></a>. Either <span class="at">plugin</span> or <span class="at">instance</span> are required.</p>
 <dl class="simple" id="actuator-plugin-plugin">
 <dt><span class="at">plugin</span>: <span class="at-val">string, optional</span></dt><dd><p>Plugin identifier, used for implicit plugin instantiation.</p>
@@ -8461,7 +8506,7 @@ to the target body.</p>
 </section>
 </section>
 <section id="sensor">
-<span id="id70"></span><h3><strong>sensor</strong> (*)<a class="headerlink" href="#sensor" title="Permalink to this headline">#</a></h3>
+<span id="id74"></span><h3><strong>sensor</strong> (*)<a class="headerlink" href="#sensor" title="Permalink to this headline">#</a></h3>
 <p>This is a grouping element for sensor definitions. It does not have attributes. The outputs of all sensors are
 concatenated in the field mjData.sensordata which has size mjModel.nsensordata. This data is not used in any internal
 computations.</p>
@@ -8471,7 +8516,7 @@ corresponding to body accelerations and interaction forces. Some of these quanti
 certain sensors (force, acceleration etc.) but even if no such sensors are defined in the model, these quantities
 themselves are “features” that could be of interest to the user.</p>
 <section id="sensor-touch">
-<span id="id71"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>touch</strong> (*)<a class="headerlink" href="#sensor-touch" title="Permalink to this headline">#</a></h4>
+<span id="id75"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>touch</strong> (*)<a class="headerlink" href="#sensor-touch" title="Permalink to this headline">#</a></h4>
 <p>This element creates a touch sensor. The active sensor zone is defined by a site. If a contact point falls within the
 site’s volume, and involves a geom attached to the same body as the site, the corresponding contact force is included in
 the sensor reading. If a contact point falls outside the sensor zone, but the normal ray intersects the sensor zone, it
@@ -8488,7 +8533,7 @@ scalar. It is computed by adding up the (scalar) normal forces from all included
 </dl>
 </section>
 <section id="sensor-accelerometer">
-<span id="id72"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>accelerometer</strong> (*)<a class="headerlink" href="#sensor-accelerometer" title="Permalink to this headline">#</a></h4>
+<span id="id76"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>accelerometer</strong> (*)<a class="headerlink" href="#sensor-accelerometer" title="Permalink to this headline">#</a></h4>
 <p>This element creates a 3-axis accelerometer. The sensor is mounted at a site, and has the same position and orientation
 as the site frame. This sensor outputs three numbers, which are the linear acceleration of the site (including gravity)
 in local coordinates.</p>
@@ -8502,7 +8547,7 @@ in local coordinates.</p>
 </dl>
 </section>
 <section id="sensor-velocimeter">
-<span id="id73"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>velocimeter</strong> (*)<a class="headerlink" href="#sensor-velocimeter" title="Permalink to this headline">#</a></h4>
+<span id="id77"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>velocimeter</strong> (*)<a class="headerlink" href="#sensor-velocimeter" title="Permalink to this headline">#</a></h4>
 <p>This element creates a 3-axis velocimeter. The sensor is mounted at a site, and has the same position and orientation as
 the site frame. This sensor outputs three numbers, which are the linear velocity of the site in local coordinates.</p>
 <span id="sensor-velocimeter-cutoff"></span><span id="sensor-velocimeter-noise"></span><span id="sensor-velocimeter-name"></span><dl class="simple" id="sensor-velocimeter-user">
@@ -8515,7 +8560,7 @@ the site frame. This sensor outputs three numbers, which are the linear velocity
 </dl>
 </section>
 <section id="sensor-gyro">
-<span id="id74"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>gyro</strong> (*)<a class="headerlink" href="#sensor-gyro" title="Permalink to this headline">#</a></h4>
+<span id="id78"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>gyro</strong> (*)<a class="headerlink" href="#sensor-gyro" title="Permalink to this headline">#</a></h4>
 <p>This element creates a 3-axis gyroscope. The sensor is mounted at a site, and has the same position and orientation as
 the site frame. This sensor outputs three numbers, which are the angular velocity of the site in local coordinates. This
 sensor is often used in conjunction with an <a class="reference internal" href="#sensor-accelerometer"><span class="std std-ref">accelerometer</span></a> mounted at the same site, to
@@ -8530,7 +8575,7 @@ simulate an inertial measurement unit (IMU).</p>
 </dl>
 </section>
 <section id="sensor-force">
-<span id="id75"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>force</strong> (*)<a class="headerlink" href="#sensor-force" title="Permalink to this headline">#</a></h4>
+<span id="id79"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>force</strong> (*)<a class="headerlink" href="#sensor-force" title="Permalink to this headline">#</a></h4>
 <p>This element creates a 3-axis force sensor. The sensor outputs three numbers, which are the interaction force between a
 child and a parent body, expressed in the site frame defining the sensor. The convention is that the site is attached to
 the child body, and the force points from the child towards the parent. The computation here takes into account all
@@ -8550,7 +8595,7 @@ parent body in the pair.</p>
 </dl>
 </section>
 <section id="sensor-torque">
-<span id="id76"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>torque</strong> (*)<a class="headerlink" href="#sensor-torque" title="Permalink to this headline">#</a></h4>
+<span id="id80"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>torque</strong> (*)<a class="headerlink" href="#sensor-torque" title="Permalink to this headline">#</a></h4>
 <p>This element creates a 3-axis torque sensor. This is similar to the <a class="reference internal" href="#sensor-force"><span class="std std-ref">force</span></a> sensor above, but
 measures torque rather than force.</p>
 <span id="sensor-torque-cutoff"></span><span id="sensor-torque-noise"></span><span id="sensor-torque-name"></span><dl class="simple" id="sensor-torque-user">
@@ -8564,7 +8609,7 @@ its parent body.</p>
 </dl>
 </section>
 <section id="sensor-magnetometer">
-<span id="id77"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>magnetometer</strong> (*)<a class="headerlink" href="#sensor-magnetometer" title="Permalink to this headline">#</a></h4>
+<span id="id81"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>magnetometer</strong> (*)<a class="headerlink" href="#sensor-magnetometer" title="Permalink to this headline">#</a></h4>
 <p>This element creates a magnetometer. It measures the magnetic flux at the sensor site position, expressed in the sensor
 site frame. The output is a 3D vector.</p>
 <span id="sensor-magnetometer-cutoff"></span><span id="sensor-magnetometer-noise"></span><span id="sensor-magnetometer-name"></span><dl class="simple" id="sensor-magnetometer-user">
@@ -8577,7 +8622,7 @@ site frame. The output is a 3D vector.</p>
 </dl>
 </section>
 <section id="sensor-rangefinder">
-<span id="id78"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>rangefinder</strong> (*)<a class="headerlink" href="#sensor-rangefinder" title="Permalink to this headline">#</a></h4>
+<span id="id82"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>rangefinder</strong> (*)<a class="headerlink" href="#sensor-rangefinder" title="Permalink to this headline">#</a></h4>
 <p>This element creates a rangefinder. It measures the distance to the nearest geom surface, along the ray defined by the
 positive Z-axis of the sensor site. If the ray does not intersect any geom surface, the sensor output is -1. If the
 origin of the ray is inside a geom, the surface is still sensed (but not the inner volume). Geoms attached to the same
@@ -8594,7 +8639,7 @@ excluded; this is because sensor calculations are independent of the visualizer.
 </dl>
 </section>
 <section id="sensor-jointpos">
-<span id="id79"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointpos</strong> (*)<a class="headerlink" href="#sensor-jointpos" title="Permalink to this headline">#</a></h4>
+<span id="id83"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointpos</strong> (*)<a class="headerlink" href="#sensor-jointpos" title="Permalink to this headline">#</a></h4>
 <p>This and the remaining sensor elements do not involve sensor-specific computations. Instead they copy into the array
 mjData.sensordata quantities that are already computed. This element creates a joint position or angle sensor. It can be
 attached to scalar joints (slide or hinge). Its output is scalar.</p>
@@ -8609,7 +8654,7 @@ copied from mjData.qpos.</p>
 </dl>
 </section>
 <section id="sensor-jointvel">
-<span id="id80"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointvel</strong> (*)<a class="headerlink" href="#sensor-jointvel" title="Permalink to this headline">#</a></h4>
+<span id="id84"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointvel</strong> (*)<a class="headerlink" href="#sensor-jointvel" title="Permalink to this headline">#</a></h4>
 <p>This element creates a joint velocity sensor. It can be attached to scalar joints (slide or hinge). Its output is
 scalar.</p>
 <span id="sensor-jointvel-cutoff"></span><span id="sensor-jointvel-noise"></span><span id="sensor-jointvel-name"></span><dl class="simple" id="sensor-jointvel-user">
@@ -8623,7 +8668,7 @@ mjData.qvel.</p>
 </dl>
 </section>
 <section id="sensor-tendonpos">
-<span id="id81"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>tendonpos</strong> (*)<a class="headerlink" href="#sensor-tendonpos" title="Permalink to this headline">#</a></h4>
+<span id="id85"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>tendonpos</strong> (*)<a class="headerlink" href="#sensor-tendonpos" title="Permalink to this headline">#</a></h4>
 <p>This element creates a tendon length sensor. It can be attached to both spatial and fixed tendons. Its output is scalar.</p>
 <span id="sensor-tendonpos-cutoff"></span><span id="sensor-tendonpos-noise"></span><span id="sensor-tendonpos-name"></span><dl class="simple" id="sensor-tendonpos-user">
 <dt><span class="at">name</span>, <span class="at">noise</span>, <span class="at">cutoff</span>, <span class="at">user</span></dt><dd><p>See <a class="reference internal" href="modeling.html#csensor"><span class="std std-ref">Sensors</span></a>.</p>
@@ -8635,7 +8680,7 @@ mjData.qvel.</p>
 </dl>
 </section>
 <section id="sensor-tendonvel">
-<span id="id82"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>tendonvel</strong> (*)<a class="headerlink" href="#sensor-tendonvel" title="Permalink to this headline">#</a></h4>
+<span id="id86"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>tendonvel</strong> (*)<a class="headerlink" href="#sensor-tendonvel" title="Permalink to this headline">#</a></h4>
 <p>This element creates a tendon velocity sensor. It can be attached to both spatial and fixed tendons. Its output is
 scalar.</p>
 <span id="sensor-tendonvel-cutoff"></span><span id="sensor-tendonvel-noise"></span><span id="sensor-tendonvel-name"></span><dl class="simple" id="sensor-tendonvel-user">
@@ -8648,7 +8693,7 @@ scalar.</p>
 </dl>
 </section>
 <section id="sensor-actuatorpos">
-<span id="id83"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>actuatorpos</strong> (*)<a class="headerlink" href="#sensor-actuatorpos" title="Permalink to this headline">#</a></h4>
+<span id="id87"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>actuatorpos</strong> (*)<a class="headerlink" href="#sensor-actuatorpos" title="Permalink to this headline">#</a></h4>
 <p>This element creates an actuator length sensor. Recall that each actuator has a transmission which has length. This
 sensor can be attached to any actuator. Its output is scalar.</p>
 <span id="sensor-actuatorpos-cutoff"></span><span id="sensor-actuatorpos-noise"></span><span id="sensor-actuatorpos-name"></span><dl class="simple" id="sensor-actuatorpos-user">
@@ -8661,7 +8706,7 @@ sensor can be attached to any actuator. Its output is scalar.</p>
 </dl>
 </section>
 <section id="sensor-actuatorvel">
-<span id="id84"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>actuatorvel</strong> (*)<a class="headerlink" href="#sensor-actuatorvel" title="Permalink to this headline">#</a></h4>
+<span id="id88"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>actuatorvel</strong> (*)<a class="headerlink" href="#sensor-actuatorvel" title="Permalink to this headline">#</a></h4>
 <p>This element creates an actuator velocity sensor. This sensor can be attached to any actuator. Its output is scalar.</p>
 <span id="sensor-actuatorvel-cutoff"></span><span id="sensor-actuatorvel-noise"></span><span id="sensor-actuatorvel-name"></span><dl class="simple" id="sensor-actuatorvel-user">
 <dt><span class="at">name</span>, <span class="at">noise</span>, <span class="at">cutoff</span>, <span class="at">user</span></dt><dd><p>See <a class="reference internal" href="modeling.html#csensor"><span class="std std-ref">Sensors</span></a>.</p>
@@ -8673,7 +8718,7 @@ sensor can be attached to any actuator. Its output is scalar.</p>
 </dl>
 </section>
 <section id="sensor-actuatorfrc">
-<span id="id85"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>actuatorfrc</strong> (*)<a class="headerlink" href="#sensor-actuatorfrc" title="Permalink to this headline">#</a></h4>
+<span id="id89"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>actuatorfrc</strong> (*)<a class="headerlink" href="#sensor-actuatorfrc" title="Permalink to this headline">#</a></h4>
 <p>This element creates an actuator force sensor. The quantity being sensed is the scalar actuator force, not the
 generalized force contributed by the actuator (the latter is the product of the scalar force and the vector of moment
 arms determined by the transmission). This sensor can be attached to any actuator. Its output is scalar.</p>
@@ -8687,7 +8732,7 @@ arms determined by the transmission). This sensor can be attached to any actuato
 </dl>
 </section>
 <section id="sensor-jointactuatorfrc">
-<span id="id86"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointactuatorfrc</strong> (*)<a class="headerlink" href="#sensor-jointactuatorfrc" title="Permalink to this headline">#</a></h4>
+<span id="id90"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointactuatorfrc</strong> (*)<a class="headerlink" href="#sensor-jointactuatorfrc" title="Permalink to this headline">#</a></h4>
 <p>This element creates an actuator force sensor, measured at a joint. The quantity being sensed is the
 generalized force contributed by all actuators to a single scalar joint (hinge or slider). This type of sensor is
 important when multiple actuators act on a single joint or when a single actuator act on multiple joints. See
@@ -8702,7 +8747,7 @@ important when multiple actuators act on a single joint or when a single actuato
 </dl>
 </section>
 <section id="sensor-ballquat">
-<span id="id87"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>ballquat</strong> (*)<a class="headerlink" href="#sensor-ballquat" title="Permalink to this headline">#</a></h4>
+<span id="id91"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>ballquat</strong> (*)<a class="headerlink" href="#sensor-ballquat" title="Permalink to this headline">#</a></h4>
 <p>This element creates a quaternion sensor for a ball joints. It outputs 4 numbers corresponding to a unit quaternion.</p>
 <span id="sensor-ballquat-cutoff"></span><span id="sensor-ballquat-noise"></span><span id="sensor-ballquat-name"></span><dl class="simple" id="sensor-ballquat-user">
 <dt><span class="at">name</span>, <span class="at">noise</span>, <span class="at">cutoff</span>, <span class="at">user</span></dt><dd><p>See <a class="reference internal" href="modeling.html#csensor"><span class="std std-ref">Sensors</span></a>.</p>
@@ -8714,7 +8759,7 @@ important when multiple actuators act on a single joint or when a single actuato
 </dl>
 </section>
 <section id="sensor-ballangvel">
-<span id="id88"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>ballangvel</strong> (*)<a class="headerlink" href="#sensor-ballangvel" title="Permalink to this headline">#</a></h4>
+<span id="id92"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>ballangvel</strong> (*)<a class="headerlink" href="#sensor-ballangvel" title="Permalink to this headline">#</a></h4>
 <p>This element creates a ball joint angular velocity sensor. It outputs 3 numbers corresponding to the angular velocity of
 the joint. The norm of that vector is the rotation speed in rad/s and the direction is the axis around which the
 rotation takes place.</p>
@@ -8728,7 +8773,7 @@ rotation takes place.</p>
 </dl>
 </section>
 <section id="sensor-jointlimitpos">
-<span id="id89"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointlimitpos</strong> (*)<a class="headerlink" href="#sensor-jointlimitpos" title="Permalink to this headline">#</a></h4>
+<span id="id93"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointlimitpos</strong> (*)<a class="headerlink" href="#sensor-jointlimitpos" title="Permalink to this headline">#</a></h4>
 <p>This element creates a joint limit sensor for position.</p>
 <span id="sensor-jointlimitpos-cutoff"></span><span id="sensor-jointlimitpos-noise"></span><span id="sensor-jointlimitpos-name"></span><dl class="simple" id="sensor-jointlimitpos-user">
 <dt><span class="at">name</span>, <span class="at">noise</span>, <span class="at">cutoff</span>, <span class="at">user</span></dt><dd><p>See <a class="reference internal" href="modeling.html#csensor"><span class="std std-ref">Sensors</span></a>.</p>
@@ -8743,7 +8788,7 @@ no violation, the result is 0.</p>
 </dl>
 </section>
 <section id="sensor-jointlimitvel">
-<span id="id90"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointlimitvel</strong> (*)<a class="headerlink" href="#sensor-jointlimitvel" title="Permalink to this headline">#</a></h4>
+<span id="id94"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointlimitvel</strong> (*)<a class="headerlink" href="#sensor-jointlimitvel" title="Permalink to this headline">#</a></h4>
 <p>This element creates a joint limit sensor for velocity.</p>
 <span id="sensor-jointlimitvel-cutoff"></span><span id="sensor-jointlimitvel-noise"></span><span id="sensor-jointlimitvel-name"></span><dl class="simple" id="sensor-jointlimitvel-user">
 <dt><span class="at">name</span>, <span class="at">noise</span>, <span class="at">cutoff</span>, <span class="at">user</span></dt><dd><p>See <a class="reference internal" href="modeling.html#csensor"><span class="std std-ref">Sensors</span></a>.</p>
@@ -8756,7 +8801,7 @@ the result is 0.</p>
 </dl>
 </section>
 <section id="sensor-jointlimitfrc">
-<span id="id91"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointlimitfrc</strong> (*)<a class="headerlink" href="#sensor-jointlimitfrc" title="Permalink to this headline">#</a></h4>
+<span id="id95"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>jointlimitfrc</strong> (*)<a class="headerlink" href="#sensor-jointlimitfrc" title="Permalink to this headline">#</a></h4>
 <p>This element creates a joint limit sensor for constraint force.</p>
 <span id="sensor-jointlimitfrc-cutoff"></span><span id="sensor-jointlimitfrc-noise"></span><span id="sensor-jointlimitfrc-name"></span><dl class="simple" id="sensor-jointlimitfrc-user">
 <dt><span class="at">name</span>, <span class="at">noise</span>, <span class="at">cutoff</span>, <span class="at">user</span></dt><dd><p>See <a class="reference internal" href="modeling.html#csensor"><span class="std std-ref">Sensors</span></a>.</p>
@@ -8769,7 +8814,7 @@ violated, the result is 0.</p>
 </dl>
 </section>
 <section id="sensor-tendonlimitpos">
-<span id="id92"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>tendonlimitpos</strong> (*)<a class="headerlink" href="#sensor-tendonlimitpos" title="Permalink to this headline">#</a></h4>
+<span id="id96"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>tendonlimitpos</strong> (*)<a class="headerlink" href="#sensor-tendonlimitpos" title="Permalink to this headline">#</a></h4>
 <p>This element creates a tendon limit sensor for position.</p>
 <span id="sensor-tendonlimitpos-cutoff"></span><span id="sensor-tendonlimitpos-noise"></span><span id="sensor-tendonlimitpos-name"></span><dl class="simple" id="sensor-tendonlimitpos-user">
 <dt><span class="at">name</span>, <span class="at">noise</span>, <span class="at">cutoff</span>, <span class="at">user</span></dt><dd><p>See <a class="reference internal" href="modeling.html#csensor"><span class="std std-ref">Sensors</span></a>.</p>
@@ -8782,7 +8827,7 @@ limit constraint. If the tendon limit is not violated, the result is 0.</p>
 </dl>
 </section>
 <section id="sensor-tendonlimitvel">
-<span id="id93"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>tendonlimitvel</strong> (*)<a class="headerlink" href="#sensor-tendonlimitvel" title="Permalink to this headline">#</a></h4>
+<span id="id97"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>tendonlimitvel</strong> (*)<a class="headerlink" href="#sensor-tendonlimitvel" title="Permalink to this headline">#</a></h4>
 <p>This element creates a tendon limit sensor for velocity.</p>
 <span id="sensor-tendonlimitvel-cutoff"></span><span id="sensor-tendonlimitvel-noise"></span><span id="sensor-tendonlimitvel-name"></span><dl class="simple" id="sensor-tendonlimitvel-user">
 <dt><span class="at">name</span>, <span class="at">noise</span>, <span class="at">cutoff</span>, <span class="at">user</span></dt><dd><p>See <a class="reference internal" href="modeling.html#csensor"><span class="std std-ref">Sensors</span></a>.</p>
@@ -8795,7 +8840,7 @@ violated, the result is 0.</p>
 </dl>
 </section>
 <section id="sensor-tendonlimitfrc">
-<span id="id94"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>tendonlimitfrc</strong> (*)<a class="headerlink" href="#sensor-tendonlimitfrc" title="Permalink to this headline">#</a></h4>
+<span id="id98"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>tendonlimitfrc</strong> (*)<a class="headerlink" href="#sensor-tendonlimitfrc" title="Permalink to this headline">#</a></h4>
 <p>This element creates a tendon limit sensor for constraint force.</p>
 <span id="sensor-tendonlimitfrc-cutoff"></span><span id="sensor-tendonlimitfrc-noise"></span><span id="sensor-tendonlimitfrc-name"></span><dl class="simple" id="sensor-tendonlimitfrc-user">
 <dt><span class="at">name</span>, <span class="at">noise</span>, <span class="at">cutoff</span>, <span class="at">user</span></dt><dd><p>See <a class="reference internal" href="modeling.html#csensor"><span class="std std-ref">Sensors</span></a>.</p>
@@ -8808,7 +8853,7 @@ violated, the result is 0.</p>
 </dl>
 </section>
 <section id="sensor-framepos">
-<span id="id95"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framepos</strong> (*)<a class="headerlink" href="#sensor-framepos" title="Permalink to this headline">#</a></h4>
+<span id="id99"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framepos</strong> (*)<a class="headerlink" href="#sensor-framepos" title="Permalink to this headline">#</a></h4>
 <p>This element creates a sensor that returns the 3D position of the spatial frame of the object, in global coordinates or
 optionally with respect to a given frame-of-reference.</p>
 <span id="sensor-framepos-cutoff"></span><span id="sensor-framepos-noise"></span><span id="sensor-framepos-name"></span><dl class="simple" id="sensor-framepos-user">
@@ -8837,7 +8882,7 @@ frame. If they are not given, sensor values will be measured with respect to the
 </dl>
 </section>
 <section id="sensor-framequat">
-<span id="id96"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framequat</strong> (*)<a class="headerlink" href="#sensor-framequat" title="Permalink to this headline">#</a></h4>
+<span id="id100"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framequat</strong> (*)<a class="headerlink" href="#sensor-framequat" title="Permalink to this headline">#</a></h4>
 <p>This element creates a sensor that returns the unit quaternion specifying the orientation of the spatial frame of the
 object, in global coordinates.</p>
 <span id="sensor-framequat-cutoff"></span><span id="sensor-framequat-noise"></span><span id="sensor-framequat-name"></span><dl class="simple" id="sensor-framequat-user">
@@ -8862,7 +8907,7 @@ object, in global coordinates.</p>
 </dl>
 </section>
 <section id="sensor-framexaxis">
-<span id="id97"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framexaxis</strong> (*)<a class="headerlink" href="#sensor-framexaxis" title="Permalink to this headline">#</a></h4>
+<span id="id101"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framexaxis</strong> (*)<a class="headerlink" href="#sensor-framexaxis" title="Permalink to this headline">#</a></h4>
 <p>This element creates a sensor that returns the 3D unit vector corresponding to the X-axis of the spatial frame of the
 object, in global coordinates.</p>
 <span id="sensor-framexaxis-cutoff"></span><span id="sensor-framexaxis-noise"></span><span id="sensor-framexaxis-name"></span><dl class="simple" id="sensor-framexaxis-user">
@@ -8887,7 +8932,7 @@ object, in global coordinates.</p>
 </dl>
 </section>
 <section id="sensor-frameyaxis">
-<span id="id98"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>frameyaxis</strong> (*)<a class="headerlink" href="#sensor-frameyaxis" title="Permalink to this headline">#</a></h4>
+<span id="id102"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>frameyaxis</strong> (*)<a class="headerlink" href="#sensor-frameyaxis" title="Permalink to this headline">#</a></h4>
 <p>This element creates a sensor that returns the 3D unit vector corresponding to the Y-axis of the spatial frame of the
 object, in global coordinates.</p>
 <span id="sensor-frameyaxis-cutoff"></span><span id="sensor-frameyaxis-noise"></span><span id="sensor-frameyaxis-name"></span><dl class="simple" id="sensor-frameyaxis-user">
@@ -8912,7 +8957,7 @@ object, in global coordinates.</p>
 </dl>
 </section>
 <section id="sensor-framezaxis">
-<span id="id99"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framezaxis</strong> (*)<a class="headerlink" href="#sensor-framezaxis" title="Permalink to this headline">#</a></h4>
+<span id="id103"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framezaxis</strong> (*)<a class="headerlink" href="#sensor-framezaxis" title="Permalink to this headline">#</a></h4>
 <p>This element creates a sensor that returns the 3D unit vector corresponding to the Z-axis of the spatial frame of the
 object, in global coordinates.</p>
 <span id="sensor-framezaxis-cutoff"></span><span id="sensor-framezaxis-noise"></span><span id="sensor-framezaxis-name"></span><dl class="simple" id="sensor-framezaxis-user">
@@ -8937,7 +8982,7 @@ object, in global coordinates.</p>
 </dl>
 </section>
 <section id="sensor-framelinvel">
-<span id="id100"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framelinvel</strong> (*)<a class="headerlink" href="#sensor-framelinvel" title="Permalink to this headline">#</a></h4>
+<span id="id104"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framelinvel</strong> (*)<a class="headerlink" href="#sensor-framelinvel" title="Permalink to this headline">#</a></h4>
 <p>This element creates a sensor that returns the 3D linear velocity of the spatial frame of the object, in global
 coordinates.</p>
 <span id="sensor-framelinvel-cutoff"></span><span id="sensor-framelinvel-noise"></span><span id="sensor-framelinvel-name"></span><dl class="simple" id="sensor-framelinvel-user">
@@ -8962,7 +9007,7 @@ coordinates.</p>
 </dl>
 </section>
 <section id="sensor-frameangvel">
-<span id="id101"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>frameangvel</strong> (*)<a class="headerlink" href="#sensor-frameangvel" title="Permalink to this headline">#</a></h4>
+<span id="id105"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>frameangvel</strong> (*)<a class="headerlink" href="#sensor-frameangvel" title="Permalink to this headline">#</a></h4>
 <p>This element creates a sensor that returns the 3D angular velocity of the spatial frame of the object, in global
 coordinates.</p>
 <span id="sensor-frameangvel-cutoff"></span><span id="sensor-frameangvel-noise"></span><span id="sensor-frameangvel-name"></span><dl class="simple" id="sensor-frameangvel-user">
@@ -8987,7 +9032,7 @@ coordinates.</p>
 </dl>
 </section>
 <section id="sensor-framelinacc">
-<span id="id102"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framelinacc</strong> (*)<a class="headerlink" href="#sensor-framelinacc" title="Permalink to this headline">#</a></h4>
+<span id="id106"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>framelinacc</strong> (*)<a class="headerlink" href="#sensor-framelinacc" title="Permalink to this headline">#</a></h4>
 <p>This element creates a sensor that returns the 3D linear acceleration of the spatial frame of the object, in global
 coordinates.</p>
 <span id="sensor-framelinacc-cutoff"></span><span id="sensor-framelinacc-noise"></span><span id="sensor-framelinacc-name"></span><dl class="simple" id="sensor-framelinacc-user">
@@ -9004,7 +9049,7 @@ coordinates.</p>
 </dl>
 </section>
 <section id="sensor-frameangacc">
-<span id="id103"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>frameangacc</strong> (*)<a class="headerlink" href="#sensor-frameangacc" title="Permalink to this headline">#</a></h4>
+<span id="id107"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>frameangacc</strong> (*)<a class="headerlink" href="#sensor-frameangacc" title="Permalink to this headline">#</a></h4>
 <p>This element creates a sensor that returns the 3D angular acceleration of the spatial frame of the object, in global
 coordinates.</p>
 <span id="sensor-frameangacc-cutoff"></span><span id="sensor-frameangacc-noise"></span><span id="sensor-frameangacc-name"></span><dl class="simple" id="sensor-frameangacc-user">
@@ -9021,7 +9066,7 @@ coordinates.</p>
 </dl>
 </section>
 <section id="sensor-subtreecom">
-<span id="id104"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>subtreecom</strong> (*)<a class="headerlink" href="#sensor-subtreecom" title="Permalink to this headline">#</a></h4>
+<span id="id108"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>subtreecom</strong> (*)<a class="headerlink" href="#sensor-subtreecom" title="Permalink to this headline">#</a></h4>
 <p>This element creates sensor that returns the center of mass of the kinematic subtree rooted at a specified body, in
 global coordinates.</p>
 <span id="sensor-subtreecom-cutoff"></span><span id="sensor-subtreecom-noise"></span><span id="sensor-subtreecom-name"></span><dl class="simple" id="sensor-subtreecom-user">
@@ -9034,7 +9079,7 @@ global coordinates.</p>
 </dl>
 </section>
 <section id="sensor-subtreelinvel">
-<span id="id105"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>subtreelinvel</strong> (*)<a class="headerlink" href="#sensor-subtreelinvel" title="Permalink to this headline">#</a></h4>
+<span id="id109"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>subtreelinvel</strong> (*)<a class="headerlink" href="#sensor-subtreelinvel" title="Permalink to this headline">#</a></h4>
 <p>This element creates sensor that returns the linear velocity of the center of mass of the kinematic subtree rooted at a
 specified body, in global coordinates.</p>
 <span id="sensor-subtreelinvel-cutoff"></span><span id="sensor-subtreelinvel-noise"></span><span id="sensor-subtreelinvel-name"></span><dl class="simple" id="sensor-subtreelinvel-user">
@@ -9047,7 +9092,7 @@ specified body, in global coordinates.</p>
 </dl>
 </section>
 <section id="sensor-subtreeangmom">
-<span id="id106"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>subtreeangmom</strong> (*)<a class="headerlink" href="#sensor-subtreeangmom" title="Permalink to this headline">#</a></h4>
+<span id="id110"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>subtreeangmom</strong> (*)<a class="headerlink" href="#sensor-subtreeangmom" title="Permalink to this headline">#</a></h4>
 <p>This element creates sensor that returns the angular momentum around the center of mass of the kinematic subtree rooted
 at a specified body, in global coordinates.</p>
 <span id="sensor-subtreeangmom-cutoff"></span><span id="sensor-subtreeangmom-noise"></span><span id="sensor-subtreeangmom-name"></span><dl class="simple" id="sensor-subtreeangmom-user">
@@ -9060,7 +9105,7 @@ at a specified body, in global coordinates.</p>
 </dl>
 </section>
 <section id="sensor-clock">
-<span id="id107"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>clock</strong> (*)<a class="headerlink" href="#sensor-clock" title="Permalink to this headline">#</a></h4>
+<span id="id111"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>clock</strong> (*)<a class="headerlink" href="#sensor-clock" title="Permalink to this headline">#</a></h4>
 <p>This element creates sensor that returns the simulation time.</p>
 <span id="sensor-clock-cutoff"></span><span id="sensor-clock-noise"></span><span id="sensor-clock-name"></span><dl class="simple" id="sensor-clock-user">
 <dt><span class="at">name</span>, <span class="at">noise</span>, <span class="at">cutoff</span>, <span class="at">user</span></dt><dd><p>See <a class="reference internal" href="modeling.html#csensor"><span class="std std-ref">Sensors</span></a>.</p>
@@ -9068,7 +9113,7 @@ at a specified body, in global coordinates.</p>
 </dl>
 </section>
 <section id="sensor-user">
-<span id="id108"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>user</strong> (*)<a class="headerlink" href="#sensor-user" title="Permalink to this headline">#</a></h4>
+<span id="id112"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>user</strong> (*)<a class="headerlink" href="#sensor-user" title="Permalink to this headline">#</a></h4>
 <p>This element creates a user sensor. MuJoCo does not know how to compute the output of this sensor. Instead the user
 should install the callback <a class="reference internal" href="APIreference/APIglobals.html#mjcb-sensor"><span class="std std-ref">mjcb_sensor</span></a> which is expected to fill in the sensor data in mjData.sensordata. The
 specification in the XML is used to allocate space for this sensor, and also determine which MuJoCo object it is
@@ -9105,7 +9150,7 @@ output of this sensor.</p>
 </dl>
 </section>
 <section id="sensor-plugin">
-<span id="id109"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#sensor-plugin" title="Permalink to this headline">#</a></h4>
+<span id="id113"></span><h4><span class="el-prefix">sensor/</span>⁠<strong>plugin</strong> (?)<a class="headerlink" href="#sensor-plugin" title="Permalink to this headline">#</a></h4>
 <p>Ascociate this sensor with an <a class="reference internal" href="programming/extension.html#explugin"><span class="std std-ref">engine plugin</span></a>. Either <span class="at">plugin</span> or <span class="at">instance</span> are required.</p>
 <dl class="simple" id="sensor-plugin-plugin">
 <dt><span class="at">plugin</span>: <span class="at-val">string, optional</span></dt><dd><p>Plugin identifier, used for implicit plugin instantiation.</p>
@@ -9123,7 +9168,7 @@ output of this sensor.</p>
 </section>
 </section>
 <section id="keyframe">
-<span id="id110"></span><h3><strong>keyframe</strong> (*)<a class="headerlink" href="#keyframe" title="Permalink to this headline">#</a></h3>
+<span id="id114"></span><h3><strong>keyframe</strong> (*)<a class="headerlink" href="#keyframe" title="Permalink to this headline">#</a></h3>
 <p>This is a grouping element for keyframe definitions. It does not have attributes. Keyframes can be used to create a
 library of states that are of interest to the user, and to initialize the simulation state to one of the states in the
 library. They are not needed by any MuJoCo computations. The number of keyframes allocated in mjModel is the larger of
@@ -9133,7 +9178,7 @@ mjModel.qpos0.
 The user can also set keyframe data in mjModel at runtime; this data will then appear in the saved MJCF model. Note that
 in <a class="reference internal" href="programming/samples.html#sasimulate"><span class="std std-ref">simulate.cc</span></a> the simulation state can be copied into a selected keyframe and vice versa.</p>
 <section id="keyframe-key">
-<span id="id111"></span><h4><span class="el-prefix">keyframe/</span>⁠<strong>key</strong> (*)<a class="headerlink" href="#keyframe-key" title="Permalink to this headline">#</a></h4>
+<span id="id115"></span><h4><span class="el-prefix">keyframe/</span>⁠<strong>key</strong> (*)<a class="headerlink" href="#keyframe-key" title="Permalink to this headline">#</a></h4>
 <p>This element sets the data for one of the keyframes. They are set in the order in which they appear here.</p>
 <dl class="simple" id="keyframe-key-name">
 <dt><span class="at">name</span>: <span class="at-val">string, optional</span></dt><dd><p>Name of this keyframe.</p>
@@ -9180,63 +9225,63 @@ active when creating an actual model element.</p>
 </dd>
 </dl>
 <section id="default-mesh-scale">
-<span id="default-mesh"></span><span id="id112"></span><h4><span class="el-prefix">default/</span>⁠<strong>mesh</strong> (?)<a class="headerlink" href="#default-mesh-scale" title="Permalink to this headline">#</a></h4>
+<span id="default-mesh"></span><span id="id116"></span><h4><span class="el-prefix">default/</span>⁠<strong>mesh</strong> (?)<a class="headerlink" href="#default-mesh-scale" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#asset-mesh"><span class="std std-ref">mesh</span></a> element of the defaults class.</div>
 <div class="line">The only mesh attribute available here is: <a class="reference internal" href="#asset-mesh-scale"><span class="std std-ref">scale</span></a>.</div>
 </div>
 </section>
 <section id="default-material-texuniform">
-<span id="default-material-texrepeat"></span><span id="default-material-rgba"></span><span id="default-material-reflectance"></span><span id="default-material-shininess"></span><span id="default-material-specular"></span><span id="default-material-emission"></span><span id="default-material-texture"></span><span id="default-material"></span><span id="id113"></span><h4><span class="el-prefix">default/</span>⁠<strong>material</strong> (?)<a class="headerlink" href="#default-material-texuniform" title="Permalink to this headline">#</a></h4>
+<span id="default-material-texrepeat"></span><span id="default-material-rgba"></span><span id="default-material-reflectance"></span><span id="default-material-shininess"></span><span id="default-material-specular"></span><span id="default-material-emission"></span><span id="default-material-texture"></span><span id="default-material"></span><span id="id117"></span><h4><span class="el-prefix">default/</span>⁠<strong>material</strong> (?)<a class="headerlink" href="#default-material-texuniform" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#asset-material"><span class="std std-ref">material</span></a> element of the defaults class.</div>
 <div class="line">All material attributes are available here except: name, class.</div>
 </div>
 </section>
 <section id="default-joint-user">
-<span id="default-joint-frictionloss"></span><span id="default-joint-damping"></span><span id="default-joint-armature"></span><span id="default-joint-springref"></span><span id="default-joint-ref"></span><span id="default-joint-margin"></span><span id="default-joint-actuatorfrcrange"></span><span id="default-joint-range"></span><span id="default-joint-stiffness"></span><span id="default-joint-solimpfriction"></span><span id="default-joint-solreffriction"></span><span id="default-joint-solimplimit"></span><span id="default-joint-solreflimit"></span><span id="default-joint-actuatorfrclimited"></span><span id="default-joint-limited"></span><span id="default-joint-springdamper"></span><span id="default-joint-axis"></span><span id="default-joint-pos"></span><span id="default-joint-group"></span><span id="default-joint-type"></span><span id="default-joint"></span><span id="id114"></span><h4><span class="el-prefix">default/</span>⁠<strong>joint</strong> (?)<a class="headerlink" href="#default-joint-user" title="Permalink to this headline">#</a></h4>
+<span id="default-joint-frictionloss"></span><span id="default-joint-damping"></span><span id="default-joint-armature"></span><span id="default-joint-springref"></span><span id="default-joint-ref"></span><span id="default-joint-margin"></span><span id="default-joint-actuatorfrcrange"></span><span id="default-joint-range"></span><span id="default-joint-stiffness"></span><span id="default-joint-solimpfriction"></span><span id="default-joint-solreffriction"></span><span id="default-joint-solimplimit"></span><span id="default-joint-solreflimit"></span><span id="default-joint-actuatorfrclimited"></span><span id="default-joint-limited"></span><span id="default-joint-springdamper"></span><span id="default-joint-axis"></span><span id="default-joint-pos"></span><span id="default-joint-group"></span><span id="default-joint-type"></span><span id="default-joint"></span><span id="id118"></span><h4><span class="el-prefix">default/</span>⁠<strong>joint</strong> (?)<a class="headerlink" href="#default-joint-user" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#body-joint"><span class="std std-ref">joint</span></a> element of the defaults class.</div>
 <div class="line">All joint attributes are available here except: name, class.</div>
 </div>
 </section>
 <section id="default-geom-user">
-<span id="default-geom-fluidcoef"></span><span id="default-geom-fluidshape"></span><span id="default-geom-rgba"></span><span id="default-geom-fitscale"></span><span id="default-geom-mesh"></span><span id="default-geom-hfield"></span><span id="default-geom-euler"></span><span id="default-geom-zaxis"></span><span id="default-geom-xyaxes"></span><span id="default-geom-axisangle"></span><span id="default-geom-fromto"></span><span id="default-geom-gap"></span><span id="default-geom-margin"></span><span id="default-geom-solimp"></span><span id="default-geom-solref"></span><span id="default-geom-solmix"></span><span id="default-geom-shellinertia"></span><span id="default-geom-density"></span><span id="default-geom-mass"></span><span id="default-geom-friction"></span><span id="default-geom-material"></span><span id="default-geom-size"></span><span id="default-geom-priority"></span><span id="default-geom-group"></span><span id="default-geom-condim"></span><span id="default-geom-conaffinity"></span><span id="default-geom-contype"></span><span id="default-geom-quat"></span><span id="default-geom-pos"></span><span id="default-geom-type"></span><span id="default-geom"></span><span id="id115"></span><h4><span class="el-prefix">default/</span>⁠<strong>geom</strong> (?)<a class="headerlink" href="#default-geom-user" title="Permalink to this headline">#</a></h4>
+<span id="default-geom-fluidcoef"></span><span id="default-geom-fluidshape"></span><span id="default-geom-rgba"></span><span id="default-geom-fitscale"></span><span id="default-geom-mesh"></span><span id="default-geom-hfield"></span><span id="default-geom-euler"></span><span id="default-geom-zaxis"></span><span id="default-geom-xyaxes"></span><span id="default-geom-axisangle"></span><span id="default-geom-fromto"></span><span id="default-geom-gap"></span><span id="default-geom-margin"></span><span id="default-geom-solimp"></span><span id="default-geom-solref"></span><span id="default-geom-solmix"></span><span id="default-geom-shellinertia"></span><span id="default-geom-density"></span><span id="default-geom-mass"></span><span id="default-geom-friction"></span><span id="default-geom-material"></span><span id="default-geom-size"></span><span id="default-geom-priority"></span><span id="default-geom-group"></span><span id="default-geom-condim"></span><span id="default-geom-conaffinity"></span><span id="default-geom-contype"></span><span id="default-geom-quat"></span><span id="default-geom-pos"></span><span id="default-geom-type"></span><span id="default-geom"></span><span id="id119"></span><h4><span class="el-prefix">default/</span>⁠<strong>geom</strong> (?)<a class="headerlink" href="#default-geom-user" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#body-geom"><span class="std std-ref">geom</span></a> element of the defaults class.</div>
 <div class="line">All geom attributes are available here except: name, class.</div>
 </div>
 </section>
 <section id="default-site-user">
-<span id="default-site-rgba"></span><span id="default-site-euler"></span><span id="default-site-zaxis"></span><span id="default-site-xyaxes"></span><span id="default-site-axisangle"></span><span id="default-site-fromto"></span><span id="default-site-size"></span><span id="default-site-material"></span><span id="default-site-quat"></span><span id="default-site-pos"></span><span id="default-site-group"></span><span id="default-site-type"></span><span id="default-site"></span><span id="id116"></span><h4><span class="el-prefix">default/</span>⁠<strong>site</strong> (?)<a class="headerlink" href="#default-site-user" title="Permalink to this headline">#</a></h4>
+<span id="default-site-rgba"></span><span id="default-site-euler"></span><span id="default-site-zaxis"></span><span id="default-site-xyaxes"></span><span id="default-site-axisangle"></span><span id="default-site-fromto"></span><span id="default-site-size"></span><span id="default-site-material"></span><span id="default-site-quat"></span><span id="default-site-pos"></span><span id="default-site-group"></span><span id="default-site-type"></span><span id="default-site"></span><span id="id120"></span><h4><span class="el-prefix">default/</span>⁠<strong>site</strong> (?)<a class="headerlink" href="#default-site-user" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#body-site"><span class="std std-ref">site</span></a> element of the defaults class.</div>
 <div class="line">All site attributes are available here except: name, class.</div>
 </div>
 </section>
 <section id="default-camera-user">
-<span id="default-camera-mode"></span><span id="default-camera-euler"></span><span id="default-camera-zaxis"></span><span id="default-camera-xyaxes"></span><span id="default-camera-axisangle"></span><span id="default-camera-quat"></span><span id="default-camera-pos"></span><span id="default-camera-ipd"></span><span id="default-camera-fovy"></span><span id="default-camera"></span><span id="id117"></span><h4><span class="el-prefix">default/</span>⁠<strong>camera</strong> (?)<a class="headerlink" href="#default-camera-user" title="Permalink to this headline">#</a></h4>
+<span id="default-camera-mode"></span><span id="default-camera-euler"></span><span id="default-camera-zaxis"></span><span id="default-camera-xyaxes"></span><span id="default-camera-axisangle"></span><span id="default-camera-quat"></span><span id="default-camera-pos"></span><span id="default-camera-ipd"></span><span id="default-camera-fovy"></span><span id="default-camera"></span><span id="id121"></span><h4><span class="el-prefix">default/</span>⁠<strong>camera</strong> (?)<a class="headerlink" href="#default-camera-user" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#body-camera"><span class="std std-ref">camera</span></a> element of the defaults class.</div>
 <div class="line">All camera attributes are available here except: name, class.</div>
 </div>
 </section>
 <section id="default-light-mode">
-<span id="default-light-specular"></span><span id="default-light-diffuse"></span><span id="default-light-ambient"></span><span id="default-light-exponent"></span><span id="default-light-cutoff"></span><span id="default-light-attenuation"></span><span id="default-light-active"></span><span id="default-light-castshadow"></span><span id="default-light-directional"></span><span id="default-light-dir"></span><span id="default-light-pos"></span><span id="default-light"></span><span id="id118"></span><h4><span class="el-prefix">default/</span>⁠<strong>light</strong> (?)<a class="headerlink" href="#default-light-mode" title="Permalink to this headline">#</a></h4>
+<span id="default-light-specular"></span><span id="default-light-diffuse"></span><span id="default-light-ambient"></span><span id="default-light-exponent"></span><span id="default-light-cutoff"></span><span id="default-light-attenuation"></span><span id="default-light-active"></span><span id="default-light-castshadow"></span><span id="default-light-directional"></span><span id="default-light-dir"></span><span id="default-light-pos"></span><span id="default-light"></span><span id="id122"></span><h4><span class="el-prefix">default/</span>⁠<strong>light</strong> (?)<a class="headerlink" href="#default-light-mode" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#body-light"><span class="std std-ref">light</span></a> element of the defaults class.</div>
 <div class="line">All light attributes are available here except: name, class.</div>
 </div>
 </section>
 <section id="default-pair-margin">
-<span id="default-pair-gap"></span><span id="default-pair-solimp"></span><span id="default-pair-solreffriction"></span><span id="default-pair-solref"></span><span id="default-pair-friction"></span><span id="default-pair-condim"></span><span id="default-pair"></span><span id="id119"></span><h4><span class="el-prefix">default/</span>⁠<strong>pair</strong> (?)<a class="headerlink" href="#default-pair-margin" title="Permalink to this headline">#</a></h4>
+<span id="default-pair-gap"></span><span id="default-pair-solimp"></span><span id="default-pair-solreffriction"></span><span id="default-pair-solref"></span><span id="default-pair-friction"></span><span id="default-pair-condim"></span><span id="default-pair"></span><span id="id123"></span><h4><span class="el-prefix">default/</span>⁠<strong>pair</strong> (?)<a class="headerlink" href="#default-pair-margin" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#contact-pair"><span class="std std-ref">pair</span></a> element of the defaults class.</div>
 <div class="line">All pair attributes are available here except: name, class, geom1, geom2.</div>
 </div>
 </section>
 <section id="default-equality-solimp">
-<span id="default-equality-solref"></span><span id="default-equality-active"></span><span id="default-equality"></span><span id="id120"></span><h4><span class="el-prefix">default/</span>⁠<strong>equality</strong> (?)<a class="headerlink" href="#default-equality-solimp" title="Permalink to this headline">#</a></h4>
+<span id="default-equality-solref"></span><span id="default-equality-active"></span><span id="default-equality"></span><span id="id124"></span><h4><span class="el-prefix">default/</span>⁠<strong>equality</strong> (?)<a class="headerlink" href="#default-equality-solimp" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#equality"><span class="std std-ref">equality</span></a> element of the defaults class. The actual
 equality constraints have types depending on the sub-element used to define them. However here we are setting
@@ -9245,7 +9290,7 @@ attributes common to all equality constraint types, which is why we do not make 
 </div>
 </section>
 <section id="default-tendon-user">
-<span id="default-tendon-rgba"></span><span id="default-tendon-damping"></span><span id="default-tendon-stiffness"></span><span id="default-tendon-margin"></span><span id="default-tendon-material"></span><span id="default-tendon-width"></span><span id="default-tendon-springlength"></span><span id="default-tendon-frictionloss"></span><span id="default-tendon-solimpfriction"></span><span id="default-tendon-solreffriction"></span><span id="default-tendon-solimplimit"></span><span id="default-tendon-solreflimit"></span><span id="default-tendon-range"></span><span id="default-tendon-limited"></span><span id="default-tendon-group"></span><span id="default-tendon"></span><span id="id121"></span><h4><span class="el-prefix">default/</span>⁠<strong>tendon</strong> (?)<a class="headerlink" href="#default-tendon-user" title="Permalink to this headline">#</a></h4>
+<span id="default-tendon-rgba"></span><span id="default-tendon-damping"></span><span id="default-tendon-stiffness"></span><span id="default-tendon-margin"></span><span id="default-tendon-material"></span><span id="default-tendon-width"></span><span id="default-tendon-springlength"></span><span id="default-tendon-frictionloss"></span><span id="default-tendon-solimpfriction"></span><span id="default-tendon-solreffriction"></span><span id="default-tendon-solimplimit"></span><span id="default-tendon-solreflimit"></span><span id="default-tendon-range"></span><span id="default-tendon-limited"></span><span id="default-tendon-group"></span><span id="default-tendon"></span><span id="id125"></span><h4><span class="el-prefix">default/</span>⁠<strong>tendon</strong> (?)<a class="headerlink" href="#default-tendon-user" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#tendon"><span class="std std-ref">tendon</span></a> element of the defaults class. Similar to
 equality constraints, the actual tendons have types, but here we are setting attributes common to all types.</div>
@@ -9253,7 +9298,7 @@ equality constraints, the actual tendons have types, but here we are setting att
 </div>
 </section>
 <section id="default-general-actearly">
-<span id="default-general-biasprm"></span><span id="default-general-gainprm"></span><span id="default-general-dynprm"></span><span id="default-general-biastype"></span><span id="default-general-gaintype"></span><span id="default-general-dyntype"></span><span id="default-general-actdim"></span><span id="default-general-group"></span><span id="default-general-user"></span><span id="default-general-cranklength"></span><span id="default-general-gear"></span><span id="default-general-actrange"></span><span id="default-general-forcerange"></span><span id="default-general-ctrlrange"></span><span id="default-general-actlimited"></span><span id="default-general-forcelimited"></span><span id="default-general-ctrllimited"></span><span id="default-general"></span><span id="id122"></span><h4><span class="el-prefix">default/</span>⁠<strong>general</strong> (?)<a class="headerlink" href="#default-general-actearly" title="Permalink to this headline">#</a></h4>
+<span id="default-general-biasprm"></span><span id="default-general-gainprm"></span><span id="default-general-dynprm"></span><span id="default-general-biastype"></span><span id="default-general-gaintype"></span><span id="default-general-dyntype"></span><span id="default-general-actdim"></span><span id="default-general-group"></span><span id="default-general-user"></span><span id="default-general-cranklength"></span><span id="default-general-gear"></span><span id="default-general-actrange"></span><span id="default-general-forcerange"></span><span id="default-general-ctrlrange"></span><span id="default-general-actlimited"></span><span id="default-general-forcelimited"></span><span id="default-general-ctrllimited"></span><span id="default-general"></span><span id="id126"></span><h4><span class="el-prefix">default/</span>⁠<strong>general</strong> (?)<a class="headerlink" href="#default-general-actearly" title="Permalink to this headline">#</a></h4>
 <div class="line-block">
 <div class="line">This element sets the attributes of the dummy <a class="reference internal" href="#actuator-general"><span class="std std-ref">general</span></a> element of the defaults class.</div>
 <div class="line">All general attributes are available here except: name, class, joint, jointinparent, site, tendon, slidersite,
@@ -9261,7 +9306,7 @@ cranksite.</div>
 </div>
 </section>
 <section id="default-motor-group">
-<span id="default-motor-user"></span><span id="default-motor-cranklength"></span><span id="default-motor-gear"></span><span id="default-motor-forcerange"></span><span id="default-motor-ctrlrange"></span><span id="default-motor-forcelimited"></span><span id="default-motor-ctrllimited"></span><span id="default-motor"></span><span id="id123"></span><h4><span class="el-prefix">default/</span>⁠<strong>motor</strong> (?)<a class="headerlink" href="#default-motor-group" title="Permalink to this headline">#</a></h4>
+<span id="default-motor-user"></span><span id="default-motor-cranklength"></span><span id="default-motor-gear"></span><span id="default-motor-forcerange"></span><span id="default-motor-ctrlrange"></span><span id="default-motor-forcelimited"></span><span id="default-motor-ctrllimited"></span><span id="default-motor"></span><span id="id127"></span><h4><span class="el-prefix">default/</span>⁠<strong>motor</strong> (?)<a class="headerlink" href="#default-motor-group" title="Permalink to this headline">#</a></h4>
 <p>This and the next three elements set the attributes of the <a class="reference internal" href="#actuator-general"><span class="std std-ref">general</span></a> element using
 <a class="reference internal" href="modeling.html#cactuator"><span class="std std-ref">Actuator shortcuts</span></a>. It does not make sense to use more than one such shortcut in the same defaults
 class, because they set the same underlying attributes, replacing any previous settings. All
@@ -9269,45 +9314,45 @@ class, because they set the same underlying attributes, replacing any previous s
 slidersite, cranksite.</p>
 </section>
 <section id="default-position-kp">
-<span id="default-position-group"></span><span id="default-position-user"></span><span id="default-position-cranklength"></span><span id="default-position-gear"></span><span id="default-position-forcerange"></span><span id="default-position-ctrlrange"></span><span id="default-position-forcelimited"></span><span id="default-position-ctrllimited"></span><span id="default-position"></span><span id="id124"></span><h4><span class="el-prefix">default/</span>⁠<strong>position</strong> (?)<a class="headerlink" href="#default-position-kp" title="Permalink to this headline">#</a></h4>
+<span id="default-position-group"></span><span id="default-position-user"></span><span id="default-position-cranklength"></span><span id="default-position-gear"></span><span id="default-position-forcerange"></span><span id="default-position-ctrlrange"></span><span id="default-position-forcelimited"></span><span id="default-position-ctrllimited"></span><span id="default-position"></span><span id="id128"></span><h4><span class="el-prefix">default/</span>⁠<strong>position</strong> (?)<a class="headerlink" href="#default-position-kp" title="Permalink to this headline">#</a></h4>
 <p>All <a class="reference internal" href="#actuator-position"><span class="std std-ref">position</span></a> attributes are available here except: name, class, joint, jointinparent, site,
 tendon, slidersite, cranksite.</p>
 </section>
 <section id="default-velocity-kv">
-<span id="default-velocity-group"></span><span id="default-velocity-user"></span><span id="default-velocity-cranklength"></span><span id="default-velocity-gear"></span><span id="default-velocity-forcerange"></span><span id="default-velocity-ctrlrange"></span><span id="default-velocity-forcelimited"></span><span id="default-velocity-ctrllimited"></span><span id="default-velocity"></span><span id="id125"></span><h4><span class="el-prefix">default/</span>⁠<strong>velocity</strong> (?)<a class="headerlink" href="#default-velocity-kv" title="Permalink to this headline">#</a></h4>
+<span id="default-velocity-group"></span><span id="default-velocity-user"></span><span id="default-velocity-cranklength"></span><span id="default-velocity-gear"></span><span id="default-velocity-forcerange"></span><span id="default-velocity-ctrlrange"></span><span id="default-velocity-forcelimited"></span><span id="default-velocity-ctrllimited"></span><span id="default-velocity"></span><span id="id129"></span><h4><span class="el-prefix">default/</span>⁠<strong>velocity</strong> (?)<a class="headerlink" href="#default-velocity-kv" title="Permalink to this headline">#</a></h4>
 <p>All <a class="reference internal" href="#actuator-velocity"><span class="std std-ref">velocity</span></a> attributes are available here except: name, class, joint, jointinparent, site,
 tendon, slidersite, cranksite.</p>
 </section>
 <section id="default-intvelocity-kp">
-<span id="default-intvelocity-group"></span><span id="default-intvelocity-user"></span><span id="default-intvelocity-cranklength"></span><span id="default-intvelocity-gear"></span><span id="default-intvelocity-actrange"></span><span id="default-intvelocity-forcerange"></span><span id="default-intvelocity-ctrlrange"></span><span id="default-intvelocity-forcelimited"></span><span id="default-intvelocity-ctrllimited"></span><span id="default-intvelocity"></span><span id="id126"></span><h4><span class="el-prefix">default/</span>⁠<strong>intvelocity</strong> (?)<a class="headerlink" href="#default-intvelocity-kp" title="Permalink to this headline">#</a></h4>
+<span id="default-intvelocity-group"></span><span id="default-intvelocity-user"></span><span id="default-intvelocity-cranklength"></span><span id="default-intvelocity-gear"></span><span id="default-intvelocity-actrange"></span><span id="default-intvelocity-forcerange"></span><span id="default-intvelocity-ctrlrange"></span><span id="default-intvelocity-forcelimited"></span><span id="default-intvelocity-ctrllimited"></span><span id="default-intvelocity"></span><span id="id130"></span><h4><span class="el-prefix">default/</span>⁠<strong>intvelocity</strong> (?)<a class="headerlink" href="#default-intvelocity-kp" title="Permalink to this headline">#</a></h4>
 <p>All <a class="reference internal" href="#actuator-intvelocity"><span class="std std-ref">intvelocity</span></a> attributes are available here except: name, class, joint, jointinparent,
 site, tendon, slidersite, cranksite.</p>
 </section>
 <section id="default-damper-kv">
-<span id="default-damper-group"></span><span id="default-damper-user"></span><span id="default-damper-cranklength"></span><span id="default-damper-gear"></span><span id="default-damper-forcerange"></span><span id="default-damper-ctrlrange"></span><span id="default-damper-forcelimited"></span><span id="default-damper"></span><span id="id127"></span><h4><span class="el-prefix">default/</span>⁠<strong>damper</strong> (?)<a class="headerlink" href="#default-damper-kv" title="Permalink to this headline">#</a></h4>
+<span id="default-damper-group"></span><span id="default-damper-user"></span><span id="default-damper-cranklength"></span><span id="default-damper-gear"></span><span id="default-damper-forcerange"></span><span id="default-damper-ctrlrange"></span><span id="default-damper-forcelimited"></span><span id="default-damper"></span><span id="id131"></span><h4><span class="el-prefix">default/</span>⁠<strong>damper</strong> (?)<a class="headerlink" href="#default-damper-kv" title="Permalink to this headline">#</a></h4>
 <p>All <a class="reference internal" href="#actuator-damper"><span class="std std-ref">damper</span></a> attributes are available here except: name, class, joint, jointinparent, site,
 tendon, slidersite, cranksite.</p>
 </section>
 <section id="default-cylinder-bias">
-<span id="default-cylinder-diameter"></span><span id="default-cylinder-area"></span><span id="default-cylinder-timeconst"></span><span id="default-cylinder-group"></span><span id="default-cylinder-user"></span><span id="default-cylinder-cranklength"></span><span id="default-cylinder-gear"></span><span id="default-cylinder-forcerange"></span><span id="default-cylinder-ctrlrange"></span><span id="default-cylinder-forcelimited"></span><span id="default-cylinder-ctrllimited"></span><span id="default-cylinder"></span><span id="id128"></span><h4><span class="el-prefix">default/</span>⁠<strong>cylinder</strong> (?)<a class="headerlink" href="#default-cylinder-bias" title="Permalink to this headline">#</a></h4>
+<span id="default-cylinder-diameter"></span><span id="default-cylinder-area"></span><span id="default-cylinder-timeconst"></span><span id="default-cylinder-group"></span><span id="default-cylinder-user"></span><span id="default-cylinder-cranklength"></span><span id="default-cylinder-gear"></span><span id="default-cylinder-forcerange"></span><span id="default-cylinder-ctrlrange"></span><span id="default-cylinder-forcelimited"></span><span id="default-cylinder-ctrllimited"></span><span id="default-cylinder"></span><span id="id132"></span><h4><span class="el-prefix">default/</span>⁠<strong>cylinder</strong> (?)<a class="headerlink" href="#default-cylinder-bias" title="Permalink to this headline">#</a></h4>
 <p>All <a class="reference internal" href="#actuator-cylinder"><span class="std std-ref">cylinder</span></a> attributes are available here except: name, class, joint, jointinparent, site,
 tendon, slidersite, cranksite.</p>
 </section>
 <section id="default-muscle-fvmax">
-<span id="default-muscle-fpmax"></span><span id="default-muscle-vmax"></span><span id="default-muscle-lmax"></span><span id="default-muscle-lmin"></span><span id="default-muscle-scale"></span><span id="default-muscle-force"></span><span id="default-muscle-range"></span><span id="default-muscle-timeconst"></span><span id="default-muscle-group"></span><span id="default-muscle-user"></span><span id="default-muscle-cranklength"></span><span id="default-muscle-gear"></span><span id="default-muscle-forcerange"></span><span id="default-muscle-ctrlrange"></span><span id="default-muscle-forcelimited"></span><span id="default-muscle-ctrllimited"></span><span id="default-muscle"></span><span id="id129"></span><h4><span class="el-prefix">default/</span>⁠<strong>muscle</strong> (?)<a class="headerlink" href="#default-muscle-fvmax" title="Permalink to this headline">#</a></h4>
+<span id="default-muscle-fpmax"></span><span id="default-muscle-vmax"></span><span id="default-muscle-lmax"></span><span id="default-muscle-lmin"></span><span id="default-muscle-scale"></span><span id="default-muscle-force"></span><span id="default-muscle-range"></span><span id="default-muscle-timeconst"></span><span id="default-muscle-group"></span><span id="default-muscle-user"></span><span id="default-muscle-cranklength"></span><span id="default-muscle-gear"></span><span id="default-muscle-forcerange"></span><span id="default-muscle-ctrlrange"></span><span id="default-muscle-forcelimited"></span><span id="default-muscle-ctrllimited"></span><span id="default-muscle"></span><span id="id133"></span><h4><span class="el-prefix">default/</span>⁠<strong>muscle</strong> (?)<a class="headerlink" href="#default-muscle-fvmax" title="Permalink to this headline">#</a></h4>
 <p>All <a class="reference internal" href="#actuator-muscle"><span class="std std-ref">muscle</span></a> attributes are available here except: name, class, joint, jointinparent, site,
 tendon, slidersite, cranksite.</p>
 </section>
 <section id="default-adhesion-group">
-<span id="default-adhesion-user"></span><span id="default-adhesion-gain"></span><span id="default-adhesion-forcerange"></span><span id="default-adhesion-ctrlrange"></span><span id="default-adhesion-forcelimited"></span><span id="default-adhesion"></span><span id="id130"></span><h4><span class="el-prefix">default/</span>⁠<strong>adhesion</strong> (?)<a class="headerlink" href="#default-adhesion-group" title="Permalink to this headline">#</a></h4>
+<span id="default-adhesion-user"></span><span id="default-adhesion-gain"></span><span id="default-adhesion-forcerange"></span><span id="default-adhesion-ctrlrange"></span><span id="default-adhesion-forcelimited"></span><span id="default-adhesion"></span><span id="id134"></span><h4><span class="el-prefix">default/</span>⁠<strong>adhesion</strong> (?)<a class="headerlink" href="#default-adhesion-group" title="Permalink to this headline">#</a></h4>
 <p>All <a class="reference internal" href="#actuator-adhesion"><span class="std std-ref">adhesion</span></a> attributes are available here except: name, class, body.</p>
 </section>
 </section>
 <section id="custom">
-<span id="id131"></span><h3><strong>custom</strong> (*)<a class="headerlink" href="#custom" title="Permalink to this headline">#</a></h3>
+<span id="id135"></span><h3><strong>custom</strong> (*)<a class="headerlink" href="#custom" title="Permalink to this headline">#</a></h3>
 <p>This is a grouping element for custom numeric and text elements. It does not have attributes.</p>
 <section id="custom-numeric">
-<span id="id132"></span><h4><span class="el-prefix">custom/</span>⁠<strong>numeric</strong> (*)<a class="headerlink" href="#custom-numeric" title="Permalink to this headline">#</a></h4>
+<span id="id136"></span><h4><span class="el-prefix">custom/</span>⁠<strong>numeric</strong> (*)<a class="headerlink" href="#custom-numeric" title="Permalink to this headline">#</a></h4>
 <p>This element creates a custom numeric array in mjModel.</p>
 <dl class="simple" id="custom-numeric-name">
 <dt><span class="at">name</span>: <span class="at-val">string, required</span></dt><dd><p>The name of the array. This attribute is required because the only way to find a custom element of interest at
@@ -9328,7 +9373,7 @@ only when the array size is omitted.</p>
 </dl>
 </section>
 <section id="custom-text">
-<span id="id133"></span><h4><span class="el-prefix">custom/</span>⁠<strong>text</strong> (*)<a class="headerlink" href="#custom-text" title="Permalink to this headline">#</a></h4>
+<span id="id137"></span><h4><span class="el-prefix">custom/</span>⁠<strong>text</strong> (*)<a class="headerlink" href="#custom-text" title="Permalink to this headline">#</a></h4>
 <p>This element creates a custom text field in mjModel. It could be used to store keyword commands for user callbacks and
 other custom computations.</p>
 <dl class="simple" id="custom-text-name">
@@ -9341,7 +9386,7 @@ other custom computations.</p>
 </dl>
 </section>
 <section id="custom-tuple">
-<span id="id134"></span><h4><span class="el-prefix">custom/</span>⁠<strong>tuple</strong> (*)<a class="headerlink" href="#custom-tuple" title="Permalink to this headline">#</a></h4>
+<span id="id138"></span><h4><span class="el-prefix">custom/</span>⁠<strong>tuple</strong> (*)<a class="headerlink" href="#custom-tuple" title="Permalink to this headline">#</a></h4>
 <p>This element creates a custom tuple, which is a list of MuJoCo objects. The list is created by referencing the desired
 objects by name.</p>
 <dl class="simple" id="custom-tuple-name">
@@ -9349,7 +9394,7 @@ objects by name.</p>
 </dd>
 </dl>
 <section id="tuple-element">
-<span id="id135"></span><h5><span class="el-prefix">tuple/</span>⁠<strong>element</strong> (*)<a class="headerlink" href="#tuple-element" title="Permalink to this headline">#</a></h5>
+<span id="id139"></span><h5><span class="el-prefix">tuple/</span>⁠<strong>element</strong> (*)<a class="headerlink" href="#tuple-element" title="Permalink to this headline">#</a></h5>
 <p>This adds an element to the tuple.</p>
 <dl class="simple" id="tuple-element-objtype">
 <dt><span class="at">objtype</span>: <span class="at-val">(any element type that can be named), required</span></dt><dd><p>Type of the object being added.</p>
@@ -9368,12 +9413,12 @@ model. Tuples can also be referenced (including self-references).</p>
 </section>
 </section>
 <section id="extension">
-<span id="id136"></span><h3><strong>extension</strong> (*)<a class="headerlink" href="#extension" title="Permalink to this headline">#</a></h3>
+<span id="id140"></span><h3><strong>extension</strong> (*)<a class="headerlink" href="#extension" title="Permalink to this headline">#</a></h3>
 <p>This is a grouping element for MuJoCo extensions. Extensions allow the user to extend MuJoCo’s capabilities with custom
 code and are described in detail in the Programming chapter’s <a class="reference internal" href="programming/extension.html#exextension"><span class="std std-ref">Extensions</span></a> page. Currently, the only available
 extension type are <a class="reference internal" href="programming/extension.html#explugin"><span class="std std-ref">Engine plugins</span></a>.</p>
 <section id="extension-plugin">
-<span id="id137"></span><h4><span class="el-prefix">extension/</span>⁠<strong>plugin</strong> (*)<a class="headerlink" href="#extension-plugin" title="Permalink to this headline">#</a></h4>
+<span id="id141"></span><h4><span class="el-prefix">extension/</span>⁠<strong>plugin</strong> (*)<a class="headerlink" href="#extension-plugin" title="Permalink to this headline">#</a></h4>
 <p>This element specifies that an engine plugin is required in order to simulate this model.
 See <a class="reference internal" href="programming/extension.html#explugin"><span class="std std-ref">Engine plugins</span></a> for more details.</p>
 <dl class="simple" id="extension-plugin-plugin">
@@ -9381,7 +9426,7 @@ See <a class="reference internal" href="programming/extension.html#explugin"><sp
 </dd>
 </dl>
 <section id="plugin-instance">
-<span id="id138"></span><h5><span class="el-prefix">plugin/</span>⁠<strong>instance</strong> (*)<a class="headerlink" href="#plugin-instance" title="Permalink to this headline">#</a></h5>
+<span id="id142"></span><h5><span class="el-prefix">plugin/</span>⁠<strong>instance</strong> (*)<a class="headerlink" href="#plugin-instance" title="Permalink to this headline">#</a></h5>
 <p>Declares a plugin instance. Explicit instances declaration is required when multiple elements are backed by the same
 plugin, or when global plugin configuration is desired. See plugin <a class="reference internal" href="programming/extension.html#exdeclaration"><span class="std std-ref">declaration</span></a> and
 <a class="reference internal" href="programming/extension.html#exconfiguration"><span class="std std-ref">configuration</span></a> for more details.</p>
@@ -9390,7 +9435,7 @@ plugin, or when global plugin configuration is desired. See plugin <a class="ref
 </dd>
 </dl>
 <section id="instance-config">
-<span id="plugin-config"></span><span id="id139"></span><h6><span class="el-prefix">instance/</span>⁠<strong>config</strong> (*)<a class="headerlink" href="#instance-config" title="Permalink to this headline">#</a></h6>
+<span id="plugin-config"></span><span id="id143"></span><h6><span class="el-prefix">instance/</span>⁠<strong>config</strong> (*)<a class="headerlink" href="#instance-config" title="Permalink to this headline">#</a></h6>
 <p>Configuration of a plugin instance. When implicitly declaring a plugin under a model element, configuration is
 performed with identical semantics using <span class="el">element/plugin/config</span>. The elements which currently support plugins are
 <span class="el">body</span>, <span class="el">composite</span>, <span class="el">actuator</span> and <span class="el">sensor</span>.</p>
@@ -9467,12 +9512,12 @@ performed with identical semantics using <span class="el">element/plugin/config<
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">XML Reference</a><ul>
-<li><a class="reference internal" href="#introduction">Introduction</a><ul>
-<li><a class="reference internal" href="#xml-schema">XML schema</a></li>
-<li><a class="reference internal" href="#attribute-types">Attribute types</a></li>
+<li><a class="reference internal" href="#introduction">Introduction简介</a><ul>
+<li><a class="reference internal" href="#xml-schema-xml">XML schema XML模式</a></li>
+<li><a class="reference internal" href="#attribute-types">Attribute types 属性类型</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#mjcf-reference">MJCF Reference</a><ul>
+<li><a class="reference internal" href="#mjcf-reference-mjcf">MJCF Reference MJCF 参考</a><ul>
 <li><a class="reference internal" href="#include"><strong>include</strong> (*)</a></li>
 <li><a class="reference internal" href="#mujoco"><strong>mujoco</strong> (!)</a></li>
 <li><a class="reference internal" href="#compiler"><strong>compiler</strong> (*)</a><ul>

@@ -7,10 +7,10 @@
     <link sizes="32x32" href="../_static/favicons/favicon-32x32.png" rel="icon" type="image/png">
     <link rel="apple-touch-icon" sizes="180x180" href="../_static/favicons/favicon-180x180.png" type="image/png">
     <link sizes="180x180" href="../_static/favicons/favicon-180x180.png" rel="icon" type="image/png">
-    <link sizes="192x192" href="../_static/favicons/favicon-192x192.png" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Types" href="APItypes.html" /><link rel="prev" title="Extensions" href="../programming/extension.html" />
+    <link sizes="192x192" href="../_static/favicons/favicon-192x192.png" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
 
     <meta name="generator" content="sphinx-4.5.0, furo 2022.09.29"/>
-        <title>API Reference - MuJoCo Documentation</title>
+        <title>Usage - MuJoCo Documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -210,7 +210,7 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul class="current">
+  <ul>
 <li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../computation.html">Computation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modeling.html">Modeling</a></li>
@@ -222,10 +222,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../programming/extension.html">Extensions</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">API Reference</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="APItypes.html">Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html">Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIglobals.html">Globals</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../APIreference/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APItypes.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APIfunctions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APIglobals.html">Globals</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python.html">Python Bindings</a></li>
@@ -266,114 +266,29 @@
           </label>
         </div>
         <article role="main">
-          <section id="api-reference">
-<span id="apireference"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">#</a></h1>
-<p>This chapter is the reference manual for the MuJoCo API. It is automatically kept in sync with MuJoCo’s header files,
-but also contains additional information not available in the headers. The API is composed of 3 categories:</p>
-<p>这个章节是MuJoCo API的参考手册。它会自动与MuJoCo的头文件保持同步，但也包含头文件中没有的额外信息。API由3个类别组成：</p>
-<div class="table-wrapper aligntop docutils container">
-<table class="aligntop docutils align-default">
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="APItypes.html">Types</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="APItypes.html#primitive-types">Primitive types</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#mjtnum">mjtNum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#mjtbyte">mjtByte</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="APItypes.html#enum-types">Enum types</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#model">Model</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#data">Data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#visualization">Visualization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#rendering">Rendering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#user-interface">User Interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#plugins">Plugins</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="APItypes.html#struct-types">Struct types</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#mjmodel">mjModel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#mjoption">mjOption</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#mjdata">mjData</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#auxillary">Auxillary</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#sim-statistics">Sim statistics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#visualisation">Visualisation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#tyrenderstructure">Rendering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#tyuistructure">User Interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#typluginstructure">Plugins</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="APItypes.html#function-types">Function types</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#physics-callbacks">Physics Callbacks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#ui-callbacks">UI Callbacks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#resource-provider-callbacks">Resource Provider Callbacks</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="APItypes.html#notes">Notes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#c-frame-variables">c-frame variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="APItypes.html#convex-hulls">Convex hulls</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+          <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">#</a></h1>
+<section id="installation">
+<span id="id1"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
+<p>To use Lumache, first install it using pip:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(.venv)</span> <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>lumache
+</pre></div>
 </div>
-</td>
-<td><div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="APIfunctions.html">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#parse-and-compile">Parse and compile 解码与编译</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#main-simulation">Main simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#support">Support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#components">Components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#sub-components">Sub components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#ray-collisions">Ray collisions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#printing">Printing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#virtual-file-system">Virtual file system</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#initialization">Initialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#interaction">Interaction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#visualization">Visualization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#opengl-rendering">OpenGL rendering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#ui-framework">UI framework</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#error-and-memory">Error and memory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#standard-math">Standard math</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#vector-math">Vector math</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#quaternions">Quaternions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#poses">Poses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#decompositions-solvers">Decompositions / Solvers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#miscellaneous">Miscellaneous</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#derivatives">Derivatives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#plugins">Plugins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIfunctions.html#macros">Macros</a></li>
-</ul>
-</li>
-</ul>
+</section>
+<section id="creating-recipes">
+<h2>Creating recipes<a class="headerlink" href="#creating-recipes" title="Permalink to this headline">#</a></h2>
+<p>To retrieve a list of random ingredients,
+you can use the <code class="docutils literal notranslate"><span class="pre">lumache.get_random_ingredients()</span></code> function:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">kind</span></code> parameter should be either <code class="docutils literal notranslate"><span class="pre">&quot;meat&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;fish&quot;</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">&quot;veggies&quot;</span></code>. Otherwise, <code class="xref py py-func docutils literal notranslate"><span class="pre">lumache.get_random_ingredients()</span></code>
+will raise an exception.</p>
+<p>For example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">lumache</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lumache</span><span class="o">.</span><span class="n">get_random_ingredients</span><span class="p">()</span>
+<span class="go">[&#39;shells&#39;, &#39;gorgonzola&#39;, &#39;parsley&#39;]</span>
+</pre></div>
 </div>
-</td>
-<td><div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="APIglobals.html">Globals</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="APIglobals.html#error-callbacks">Error callbacks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIglobals.html#memory-callbacks">Memory callbacks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIglobals.html#physics-callbacks">Physics callbacks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIglobals.html#collision-table">Collision table</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIglobals.html#string-constants">String constants</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIglobals.html#numeric-constants">Numeric constants</a></li>
-<li class="toctree-l2"><a class="reference internal" href="APIglobals.html#x-macros">X Macros</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
+</section>
 </section>
 
         </article>
@@ -381,26 +296,8 @@ but also contains additional information not available in the headers. The API i
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="APItypes.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Types</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="../programming/extension.html">
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Extensions</div>
-                
-              </div>
-            </a>
+          
+          
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -433,7 +330,9 @@ but also contains additional information not available in the headers. The API i
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">API Reference</a><ul>
+<li><a class="reference internal" href="#">Usage</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#creating-recipes">Creating recipes</a></li>
 </ul>
 </li>
 </ul>

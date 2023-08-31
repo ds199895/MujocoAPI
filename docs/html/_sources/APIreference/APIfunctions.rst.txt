@@ -7,9 +7,15 @@ Functions
 The main header `mujoco.h <https://github.com/deepmind/mujoco/blob/main/include/mujoco/mujoco.h>`_ exposes a large
 number of functions. However the functions that most users are likely to need are a small fraction.
 
+主要的头文件 mujoco.h 定义了大量的函数。然而，大多数用户可能需要的函数只占其中的一小部分。
+
 API function can be classified as:
 
+API函数可以分类为：
+
 - :ref:`Parse and compile<Parseandcompile>` an :ref:`mjModel` from XML files and assets.
+
+  :ref:`Parse and compile<Parseandcompile>` 从XML文件和资源中解析和编译一个 :ref:`mjModel` 。
 - :ref:`Main simulation<Mainsimulation>` entry points, including :ref:`mj_step`.
 - :ref:`Support<Support>` functions requiring :ref:`mjModel` and :ref:`mjData`.
 - :ref:`Components<Components>` of the simulation pipeline, called from :ref:`mj_step`, :ref:`mj_forward` and :ref:`mj_inverse`.
