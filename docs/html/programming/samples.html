@@ -1,0 +1,532 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <link sizes="16x16" href="../_static/favicons/favicon-16x16.png" rel="icon" type="image/png">
+    <link sizes="32x32" href="../_static/favicons/favicon-32x32.png" rel="icon" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../_static/favicons/favicon-180x180.png" type="image/png">
+    <link sizes="180x180" href="../_static/favicons/favicon-180x180.png" rel="icon" type="image/png">
+    <link sizes="192x192" href="../_static/favicons/favicon-192x192.png" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Extensions" href="extension.html" /><link rel="prev" title="Visualization" href="visualization.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.09.29"/>
+        <title>Code samples - MuJoCo Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --font-stack--monospace: Inconsolata,Consolas,ui-monospace,monospace;
+  --at-color: #bc103e;
+  --at-val-color: #bc103e;
+  --body-color: #14234b;
+  --color-highlight-on-target: #e5e8ed;
+  --primary-header-color: #0053d6;
+  --row-odd-background-color: #f0f3f7;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #123693;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 115%;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --at-color: #ff95a6;
+  --at-val-color: #ff95a6;
+  --body-color: #14234b;
+  --color-admonition-background: #1e1e21;
+  --color-highlight-on-target: #3d4045;
+  --primary-header-color: #a8caff;
+  --row-odd-background-color: #222326;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #458dff;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 115%;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --at-color: #ff95a6;
+  --at-val-color: #ff95a6;
+  --body-color: #14234b;
+  --color-admonition-background: #1e1e21;
+  --color-highlight-on-target: #3d4045;
+  --primary-header-color: #a8caff;
+  --row-odd-background-color: #222326;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #458dff;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 115%;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">MuJoCo Documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/banner.svg" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">MuJoCo Documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computation.html">Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../XMLreference.html">XML Reference</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Programming</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Code samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extension.html">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../APIreference/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APItypes.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APIfunctions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APIglobals.html">Globals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unity.html">Unity Plug-in</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Model Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="code-samples">
+<span id="sample"></span><h1>Code samples<a class="headerlink" href="#code-samples" title="Permalink to this headline">#</a></h1>
+<p>MuJoCo comes with several code samples providing useful functionality. Some of them are quite elaborate
+(<a class="reference internal" href="#sasimulate"><span class="std std-ref">simulate.cc</span></a> in particular) but nevertheless we hope that they will help users learn how to program
+with the library.</p>
+<section id="satestspeed">
+<span id="id1"></span><h2><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/sample/testspeed.cc">testspeed</a><a class="headerlink" href="#satestspeed" title="Permalink to this headline">#</a></h2>
+<p>This code sample tests the simulation speed for a given model. The command line arguments are the model file, the
+number of time steps to simulate, the number of parallel threads to use, and a flag to enable internal profiling (the
+last two are optional). When N threads are specified with N&gt;1, the code allocates a single mjModel and per-thread
+mjData, and runs N identical simulations in parallel. The idea is to test performance with all cores active, similar
+to Reinforcement Learning scenarios where samples are collected in parallel. The optimal N usually equals the number
+of logical cores. By default the simulation starts from the model reference configuration qpos0 and qvel=0. However if
+a keyframe named “test” is present in the model, it is used as the initial state state.</p>
+<p>The timing code is straightforward: the simulation of the passive dynamics is advanced for the specified number of
+steps, while collecting statistics about the number of contacts, scalar constraints, and CPU times from internal
+profiling. The results are then printed in the console. To simulate controlled dynamics instead of passive dynamics
+one can either install the control callback <a class="reference internal" href="../APIreference/APIglobals.html#mjcb-control"><span class="std std-ref">mjcb_control</span></a>, or set control signals
+explicitly as explained in the <a class="reference internal" href="simulation.html#sisimulation"><span class="std std-ref">simulation loop</span></a> section below.</p>
+</section>
+<section id="satestxml">
+<span id="id2"></span><h2><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/sample/testxml.cc">testxml</a><a class="headerlink" href="#satestxml" title="Permalink to this headline">#</a></h2>
+<p>This code sample tests the parser, compiler and XML writer. The testing code does the following:</p>
+<ul class="simple">
+<li><p>Parse and compile a specified XML model in MJCF or URDF. This yields an mjModel structure ready for simulation;</p></li>
+<li><p>Save the model as a temporary MJCF file, using a “canonical” subset of MJCF where a number of conversions have
+already been performed by the compiler;</p></li>
+<li><p>Parse and compile the temporary MJCF file. This yields a second mjModel structure ready for simulation;</p></li>
+<li><p>Compare the two mjModel structures field by field, and print the field with the largest numerical difference. Since
+MJCF is a text format, the real-valued numbers saved in it have lower precision than the double precision used
+internally, thus we cannot expect the two models to be identical on the bit level. But we can expect the largest
+difference to be on the order of 1e-6. A substantially larger difference indicates a bug in the parser, compiler or
+XML writer - and should be reported.</p></li>
+</ul>
+<p>The code uses the <a class="reference internal" href="../APIreference/APIglobals.html#tyxmacro"><span class="std std-ref">X Macros</span></a> described in the Reference chapter. This is a convenient way
+to apply the same operation to all fields in mjModel, without explicitly typing their names. The code sample
+<a class="reference internal" href="#sasimulate"><span class="std std-ref">simulate.cc</span></a> also uses X Macros to implement a watch, where the user can type the name of any mjData
+field which is resolved at runtime.</p>
+</section>
+<section id="sacompile">
+<span id="id3"></span><h2><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/sample/compile.cc">compile</a><a class="headerlink" href="#sacompile" title="Permalink to this headline">#</a></h2>
+<p>This code sample evokes the built-in parser and compiler. It implements all possible model conversions from (MJCF, URDF,
+MJB) format to (MJCF, MJB, TXT) format. Models saved as MJCF use a canonical subset of our format as described in the
+<a class="reference internal" href="../modeling.html"><span class="doc">Modeling</span></a> chapter, and therefore MJCF-to-MJCF conversion will generally result in a different file.
+The TXT format is a human-readable road-map to the model. It cannot be loaded by MuJoCo, but can be a very useful aid
+during model development. It is in one-to-one correspondence with the compiled mjModel. Note also that one can use the
+function <a class="reference internal" href="../APIreference/APIfunctions.html#mj-printdata"><span class="std std-ref">mj_printData</span></a> to create a text file which is in one-to-one correspondence
+with mjData, although this is not done by the code sample.</p>
+</section>
+<section id="sabasic">
+<span id="id4"></span><h2><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/sample/basic.cc">basic</a><a class="headerlink" href="#sabasic" title="Permalink to this headline">#</a></h2>
+<p>This code sample is a minimal interactive simulator. The model file must be provided as command-line argument. It
+opens an OpenGL window using the platform-independent GLFW library, and renders the simulation state at 60 fps while
+advancing the simulation in real-time. Press Backspace to reset the simulation. The mouse can be used to control the
+camera: left drag to rotate, right drag to translate in the vertical plane, shift right drag to translate in the
+horizontal plane, scroll or middle drag to zoom.</p>
+<p>The <a class="reference internal" href="visualization.html#visualization"><span class="std std-ref">Visualization</span></a> programming guide below explains how visualization works. This code sample is a minimal
+illustration of the concepts in that guide.</p>
+</section>
+<section id="sasimulate">
+<span id="id5"></span><h2><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/simulate">simulate</a><a class="headerlink" href="#sasimulate" title="Permalink to this headline">#</a></h2>
+<p>This code sample is a fully-featured interactive simulator. It opens an OpenGL window using the platform-independent
+GLFW library, and renders the simulation state in it. There is built-in help, simulation statistics, profiler, sensor
+data plots. The model file can be specified as a command-line argument, or loaded at runtime using drag-and-drop
+functionality. As of MuJoCo 2.0, this code sample uses the native UI to render various controls, and provides an
+illustration of how the new UI framework is intended to be used. Below is a screen-capture of <code class="docutils literal notranslate"><span class="pre">simulate</span></code> in action:</p>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/0ORsj_E17B0" style="border: 0; height: 345px; width: 560px">
+</iframe></div><p>Interaction is done with the mouse; built-in help with a summary of available commands is available by pressing the
+<code class="docutils literal notranslate"><span class="pre">F1</span></code> key. Briefly, an object is selected by left-double-click. The user can then apply forces and torques on the
+selected object by holding Ctrl and dragging the mouse. Dragging the mouse alone (without Ctrl) moves the camera. There
+are keyboard shortcuts for pausing the simulation, resetting, and re-loading the model file. The latter functionality is
+very useful while editing the model in an XML editor.</p>
+<p>The code is quite long yet reasonably commented, so it is best to just read it. Here we provide a high-level overview.
+The <code class="docutils literal notranslate"><span class="pre">main()</span></code> function initializes both MuJoCo and GLFW, opens a window, and install GLFW callbacks for mouse and
+keyboard handling. Note that there is no render callback; GLFW puts the user in charge, instead of running a rendering
+loop behind the scenes. The main loop handles UI events and rendering. The simulation is handled in a background
+thread, which is synchronized with the main thread.</p>
+<p>The mouse and keyboard callbacks perform whatever action is necessary. Many of these actions invoke functionality
+provided by MuJoCo’s <a class="reference internal" href="visualization.html#abstract"><span class="std std-ref">abstract visualization</span></a> mechanism. Indeed this mechanism is designed to be
+hooked to mouse and keyboard events more or less directly, and provides camera as well as perturbation control.</p>
+<p>The profiler and sensor data plots illustrate the use of the <a class="reference internal" href="../APIreference/APIfunctions.html#mjr-figure"><span class="std std-ref">mjr_figure</span></a> function
+that can plot elaborate 2D figures with grids, annotation, axis scaling etc. The information presented in the profiler
+is extracted from the diagnostic fields of mjData. It is a very useful tool for tuning the parameters of the
+constraint solver algorithms. The outputs of the sensors defined in the model are visualized as a bar graph.</p>
+<p>Note that the profiler shows timing information collected with high-resolution timers. On Windows, depending on the
+power settings, the OS may reduce the CPU frequency; this is because <a class="reference internal" href="#sasimulate"><span class="std std-ref">simulate.cc</span></a> sleeps most of
+the time in order to slow down to realtime. This results in inaccurate timings. To avoid this problem, change the
+Windows power plan so that the minimum processor state is 100%.</p>
+</section>
+<section id="sarecord">
+<span id="id6"></span><h2><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/sample/record.cc">record</a><a class="headerlink" href="#sarecord" title="Permalink to this headline">#</a></h2>
+<p>This code sample simulates the passive dynamics of a given model, renders it offscreen, reads the color and depth pixel
+values, and saves them into a raw data file that can then be converted into a movie file with tools such as ffmpeg. The
+rendering is simplified compared to <a class="reference internal" href="#sasimulate"><span class="std std-ref">simulate.cc</span></a> because there is no user interaction, visualization
+options or timing; instead we simply render with the default settings as fast as possible. The dimensions and number of
+multi-samples for the offscreen buffer are specified in the MuJoCo model, while the simulation duration, frames-per-
+second to be rendered (usually much less than the physics simulation rate), and output file name are specified as
+command-line arguments. For example, a 5 second animation at 60 frames per second is created with:</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>render<span class="w"> </span>humanoid.xml<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">60</span><span class="w"> </span>rgb.out
+</pre></div>
+</div>
+<p>The default humanoid.xml model specifies offscreen rendering with 800x800 resolution. With this information in hand, we
+can compress the (large) raw date file into a playable movie file:</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>ffmpeg<span class="w"> </span>-f<span class="w"> </span>rawvideo<span class="w"> </span>-pixel_format<span class="w"> </span>rgb24<span class="w"> </span>-video_size<span class="w"> </span>800x800
+<span class="w">  </span>-framerate<span class="w"> </span><span class="m">60</span><span class="w"> </span>-i<span class="w"> </span>rgb.out<span class="w"> </span>-vf<span class="w"> </span><span class="s2">&quot;vflip&quot;</span><span class="w"> </span>video.mp4
+</pre></div>
+</div>
+<p>This sample can be compiled in three ways which differ in how the OpenGL context is created: using GLFW with an
+invisible window, using OSMesa, or using EGL. The latter two options are only available on Linux and are envoked by
+defining the symbols MJ_OSMESA or MJ_EGL when compiling record.cc. The functions <code class="docutils literal notranslate"><span class="pre">initOpenGL</span></code> and <code class="docutils literal notranslate"><span class="pre">closeOpenGL</span></code>
+create and close the OpenGL context in three different ways depending on which of the above symbols is defined.</p>
+<p>Note that the MuJoCo rendering code does not depend on how the OpenGL context was created. This is the beauty of
+OpenGL: it leaves context creation to the platform, and the actual rendering is then standard and works in the same
+way on all platforms. In retrospect, the decision to leave context creation out of the standard has led to unnecessary
+proliferation of overlapping technologies, which differ not only between platforms but also within a platform in the
+case of Linux. The addition of a couple of extra functions (such as those provided by OSMesa for example) could have
+avoided a lot of confusion. EGL is a newer standard from Khronos which aims to do this, and it is gaining popularity.
+But we cannot yet assume that all users have it installed.</p>
+</section>
+<section id="saderivative">
+<span id="id7"></span><h2><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/sample/derivative.cc">derivative</a><a class="headerlink" href="#saderivative" title="Permalink to this headline">#</a></h2>
+<p>This code sample illustrates the numerical approximation of forward and inverse dynamics derivatives via finite
+differences. The process involves a number of epochs. In each epoch the simulation is advanced for a specified number
+of steps, derivatives are computed at the last state, and timing and accuracy statistics are collected. The averages
+over epochs are printed at the end.</p>
+<p>The code can be incorporated in user projects where derivatives are needed, and can also be used as a stand-alone tool
+for estimating CPU time and numerical accuracy. Accuracy is estimated in the function <code class="docutils literal notranslate"><span class="pre">checkderiv()</span></code> using several
+mathematical identities about the derivatives of inverse functions; the residuals being computed would be zero if the
+derivatives were exact. Note that these identities involve matrix multiplications which may affect the accuracy
+estimates. Timing tests are applied only to the parallel section, where the function <code class="docutils literal notranslate"><span class="pre">worker()</span></code> is executed in
+multiple threads using OpenMP. There are fewer threads than forward/inverse dynamics evaluations, thus each thread
+executes multiple evaluations. For a more general discussion of parallel processing in MuJoCo see
+<a class="reference internal" href="simulation.html#simultithread"><span class="std std-ref">multi-threading</span></a> below.</p>
+<p>Recall than for a differentiable function <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> the derivative can be approximated as</p>
+<div class="highlight-Text notranslate"><div class="highlight"><pre><span></span>df/dx = (f(x+eps)-f(x))/eps
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">eps</span></code> is a small number. One can also use the centered finite difference method, which is two times slower but
+more accurate. Here <code class="docutils literal notranslate"><span class="pre">f</span></code> is one of the functions</p>
+<div class="highlight-Text notranslate"><div class="highlight"><pre><span></span>forward dynamics:  qacc(qfrc_applied, qvel, qpos)
+inverse dynamics:  qfrc_inverse(qacc, qvel, qpos)
+</pre></div>
+</div>
+<p>The code sample computes six Jacobian matrices, containing the derivative of each function with respect to its three
+arguments. The results are stored in the array <code class="docutils literal notranslate"><span class="pre">deriv</span></code>. All six Jacobian matrices are square, with dimensionality
+equal to the number of degrees of freedom <code class="docutils literal notranslate"><span class="pre">mjModel.nv</span></code>. When the model configuration includes quaternion joints,
+mjData.qpos has larger dimensionality than the other vectors, however the derivative is only defined in the tangent
+space to the configuration manifold. This is why, when differentiating with respect to the elements of <code class="docutils literal notranslate"><span class="pre">mjData.qpos</span></code>,
+we do not directly add <code class="docutils literal notranslate"><span class="pre">eps</span></code> but instead use the function <a class="reference internal" href="../APIreference/APIfunctions.html#mju-quatintegrate"><span class="std std-ref">mju_quatIntegrate</span></a> to perturb the quaternion in the
+tangent space, keeping it normalized. This technique should also be used in any other situation where quaternions need
+to be perturbed.</p>
+<p>There are some important subtleties in this code that improve speed as well as accuracy. To speed up the computation,
+we re-use intermediate results whenever possible. This relies on the skip mechanism described under <a class="reference internal" href="simulation.html#siforward"><span class="std std-ref">forward
+dynamics</span></a> and <a class="reference internal" href="simulation.html#siinverse"><span class="std std-ref">inverse dynamics</span></a> below. We first perturb force dimensions, keeping
+position and velocity fixed. In this way we avoid recomputing results that depend on position and velocity but not on
+force. Then we perturb velocity dimensions, and avoid recomputing results that depend on position but not on velocity
+or force. Finally we perturb position dimensions - which requires full computation because everything depends on
+position.</p>
+<p>Accuracy depends on the value of <code class="docutils literal notranslate"><span class="pre">eps</span></code> which is user-adjustable, as well as the shape of the function. In the case
+of forward dynamics however, the function evaluation involves an iterative constraint solver, and this must be handled
+with care. In general, the difference between <code class="docutils literal notranslate"><span class="pre">f(x+eps)</span></code> and <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> is very small, thus any noise affecting the
+two function evaluations differently can make the resulting derivatives meaningless. Different warm-starts or
+different number of solver iterations can act as such noise here. Therefore we fix the warm-start <code class="docutils literal notranslate"><span class="pre">mjData.qacc</span></code> to a
+value pre-computed at the center point, using <code class="docutils literal notranslate"><span class="pre">nwarmup</span></code> extra major iterations to obtain a more accurate warm-start.
+We also fix the number of solver iterations to <code class="docutils literal notranslate"><span class="pre">niter</span></code> and set <code class="docutils literal notranslate"><span class="pre">mjModel.opt.tolerance</span> <span class="pre">=</span> <span class="pre">0</span></code>; this disables the early
+termination mechanism. Note that the original simulation options are restored in the serial code which advances the
+state.</p>
+<p>We emphasize that the above subtleties are not high-order corrections that can be incorporated later. In the presence
+of unilateral constraints, numerical derivatives are hard to compute and there is no shortcut around it; indeed they
+would not even be defined if it wasn’t for our soft-constraint model. Making the constraints softer results in more
+accurate results. This effect is so strong that in some situations it makes sense to intentionally work with the wrong
+model, i.e., a model that is softer than desired, so as to obtain more accurate derivatives.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="extension.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Extensions</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="visualization.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Visualization</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; DeepMind Technologies Limited
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Code samples</a><ul>
+<li><a class="reference internal" href="#satestspeed">testspeed</a></li>
+<li><a class="reference internal" href="#satestxml">testxml</a></li>
+<li><a class="reference internal" href="#sacompile">compile</a></li>
+<li><a class="reference internal" href="#sabasic">basic</a></li>
+<li><a class="reference internal" href="#sasimulate">simulate</a></li>
+<li><a class="reference internal" href="#sarecord">record</a></li>
+<li><a class="reference internal" href="#saderivative">derivative</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/katex.min.js"></script>
+    <script src="../_static/auto-render.min.js"></script>
+    <script src="../_static/katex_autorenderer.js"></script>
+    </body>
+</html>

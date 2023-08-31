@@ -1,0 +1,846 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <link sizes="16x16" href="_static/favicons/favicon-16x16.png" rel="icon" type="image/png">
+    <link sizes="32x32" href="_static/favicons/favicon-32x32.png" rel="icon" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="_static/favicons/favicon-180x180.png" type="image/png">
+    <link sizes="180x180" href="_static/favicons/favicon-180x180.png" rel="icon" type="image/png">
+    <link sizes="192x192" href="_static/favicons/favicon-192x192.png" rel="icon" type="image/png"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Unity Plug-in" href="unity.html" /><link rel="prev" title="Globals" href="APIreference/APIglobals.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.09.29"/>
+        <title>Python Bindings - MuJoCo Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/katex-math.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --font-stack--monospace: Inconsolata,Consolas,ui-monospace,monospace;
+  --at-color: #bc103e;
+  --at-val-color: #bc103e;
+  --body-color: #14234b;
+  --color-highlight-on-target: #e5e8ed;
+  --primary-header-color: #0053d6;
+  --row-odd-background-color: #f0f3f7;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #123693;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 115%;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --at-color: #ff95a6;
+  --at-val-color: #ff95a6;
+  --body-color: #14234b;
+  --color-admonition-background: #1e1e21;
+  --color-highlight-on-target: #3d4045;
+  --primary-header-color: #a8caff;
+  --row-odd-background-color: #222326;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #458dff;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 115%;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --at-color: #ff95a6;
+  --at-val-color: #ff95a6;
+  --body-color: #14234b;
+  --color-admonition-background: #1e1e21;
+  --color-highlight-on-target: #3d4045;
+  --primary-header-color: #a8caff;
+  --row-odd-background-color: #222326;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #458dff;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 115%;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">MuJoCo Documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/banner.svg" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">MuJoCo Documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computation.html">Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modeling.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="XMLreference.html">XML Reference</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="programming/index.html">Programming</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="programming/simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming/visualization.html">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming/samples.html">Code samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="programming/extension.html">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="APIreference/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="APIreference/APItypes.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIreference/APIfunctions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="APIreference/APIglobals.html">Globals</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Python Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unity.html">Unity Plug-in</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Model Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="python-bindings">
+<h1>Python Bindings<a class="headerlink" href="#python-bindings" title="Permalink to this headline">#</a></h1>
+<p>Starting with version 2.1.2, MuJoCo comes with native Python bindings that are developed in C++ using
+<a class="reference external" href="https://pybind11.readthedocs.io/">pybind11</a>. The Python API is consistent with the underlying C API. This leads to
+some non-Pythonic code structure (e.g. order of function arguments), but it has the benefit that the
+<a class="reference internal" href="APIreference/index.html"><span class="doc">API documentation</span></a> is applicable to both languages.</p>
+<p>The Python bindings are distributed as the <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> package on <a class="reference external" href="https://pypi.org/project/mujoco">PyPI</a>. These are
+low-level bindings that are meant to give as close to a direct access to the MuJoCo library as possible. However, in
+order to provide an API and semantics that developers would expect in a typical Python library, the bindings
+deliberately diverge from the raw MuJoCo API in a number of places, which are documented throughout this page.</p>
+<p>Google DeepMind’s <a class="reference external" href="https://github.com/deepmind/dm_control">dm_control</a> reinforcement learning library (which prior to
+version 1.0.0 implemented its own MuJoCo bindings based on <code class="docutils literal notranslate"><span class="pre">ctypes</span></code>) has been updated to depend on the <code class="docutils literal notranslate"><span class="pre">mujoco</span></code>
+package and continues to be supported by Google DeepMind. Changes in dm_control should be largely transparent to users
+of previous versions, however code that depended directly on its low-level API may need to be updated. Consult the
+<a class="reference external" href="https://github.com/deepmind/dm_control/blob/main/migration_guide_1.0.md">migration guide</a> for detail.</p>
+<p>For mujoco-py users, we include <a class="reference internal" href="#pymjpy-migration"><span class="std std-ref">notes</span></a> below to aid migration.</p>
+<section id="tutorial-notebook">
+<span id="pynotebook"></span><h2>Tutorial notebook<a class="headerlink" href="#tutorial-notebook" title="Permalink to this headline">#</a></h2>
+<p>A MuJoCo tutorial using the Python bindings is available here: <a class="reference external" href="https://colab.research.google.com/github/deepmind/mujoco/blob/main/python/tutorial.ipynb"><img alt="colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+</section>
+<section id="installation">
+<span id="pyinstallation"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
+<p>The recommended way to install this package is via <a class="reference external" href="https://pypi.org/project/mujoco/">PyPI</a>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>mujoco
+</pre></div>
+</div>
+<p>A copy of the MuJoCo library is provided as part of the package and does <strong>not</strong> need to be downloaded or installed
+separately.</p>
+</section>
+<section id="interactive-viewer">
+<span id="pyviewer"></span><h2>Interactive viewer<a class="headerlink" href="#interactive-viewer" title="Permalink to this headline">#</a></h2>
+<p>An interactive GUI viewer is provided as part of the Python package in the <code class="docutils literal notranslate"><span class="pre">mujoco.viewer</span></code> module. It is based on the
+same codebase as the <a class="reference internal" href="programming/samples.html#sasimulate"><span class="std std-ref">simulate</span></a> application that ships with the MuJoCo binary releases. Three distinct
+use cases are supported:</p>
+<section id="standalone-application">
+<span id="pyviewerapp"></span><h3>Standalone application<a class="headerlink" href="#standalone-application" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">mujoco.viewer</span></code> launches an empty visualization session, where a model can be loaded by drag-and-drop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">mujoco.viewer</span> <span class="pre">--mjcf=/path/to/some/mjcf.xml</span></code> launches a visualization session for the specified
+model file.</p></li>
+</ul>
+</section>
+<section id="managed-viewer">
+<span id="pyviewermanaged"></span><h3>Managed viewer<a class="headerlink" href="#managed-viewer" title="Permalink to this headline">#</a></h3>
+<p>Called from a Python program/script, through the function <code class="docutils literal notranslate"><span class="pre">viewer.launch</span></code>. This function <em>blocks user code</em> to
+support precise timing of the physics loop. This mode should be used if user code is implemented as
+<a class="reference internal" href="programming/extension.html#explugin"><span class="std std-ref">engine plugins</span></a> or <a class="reference internal" href="APIreference/APIglobals.html#glphysics"><span class="std std-ref">physics callbacks</span></a>, and is called by MuJoCo during <a class="reference internal" href="APIreference/APIfunctions.html#mj-step"><span class="std std-ref">mj_step</span></a>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">viewer.launch()</span></code> launches an empty visualization session, where a model can be loaded by drag-and-drop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">viewer.launch(model)</span></code> launches a visualization session for the given <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> where the visualizer
+internally creates its own instance of <code class="docutils literal notranslate"><span class="pre">mjData</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">viewer.launch(model,</span> <span class="pre">data)</span></code> is the same as above, except that the visualizer operates directly on the given
+<code class="docutils literal notranslate"><span class="pre">mjData</span></code> instance – upon exit the <code class="docutils literal notranslate"><span class="pre">data</span></code> object will have been modified.</p></li>
+</ul>
+</section>
+<section id="passive-viewer">
+<span id="pyviewerpassive"></span><h3>Passive viewer<a class="headerlink" href="#passive-viewer" title="Permalink to this headline">#</a></h3>
+<p>By calling <code class="docutils literal notranslate"><span class="pre">viewer.launch_passive(model,</span> <span class="pre">data)</span></code>. This function <em>does not block</em>, allowing user code to continue
+execution. In this mode, the user’s script is responsible for timing and advancing the physics state, and mouse-drag
+perturbations will not work unless the user explicitly synchronizes incoming events.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>On MacOS, <code class="docutils literal notranslate"><span class="pre">launch_passive</span></code> requires that the user script is executed via a special <code class="docutils literal notranslate"><span class="pre">mjpython</span></code> launcher.
+The <code class="docutils literal notranslate"><span class="pre">mjpython</span></code> command is installed as part of the <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> package, and can be used as a drop-in replacement
+for the usual <code class="docutils literal notranslate"><span class="pre">python</span></code> command and supports an identical set of command line flags and arguments. For example,
+a script can be executed via <code class="docutils literal notranslate"><span class="pre">mjpython</span> <span class="pre">my_script.py</span></code>, and an IPython shell can be launched via
+<code class="docutils literal notranslate"><span class="pre">mjpython</span> <span class="pre">-m</span> <span class="pre">IPython</span></code>.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">launch_passive</span></code> function returns a handle which can be used to interact with the viewer. It has the following
+attributes:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">scn</span></code>, <code class="docutils literal notranslate"><span class="pre">cam</span></code>, <code class="docutils literal notranslate"><span class="pre">opt</span></code>, and <code class="docutils literal notranslate"><span class="pre">pert</span></code> properties: correspond to <a class="reference internal" href="APIreference/APItypes.html#mjvscene"><span class="std std-ref">mjvScene</span></a>, <a class="reference internal" href="APIreference/APItypes.html#mjvcamera"><span class="std std-ref">mjvCamera</span></a>,
+<a class="reference internal" href="APIreference/APItypes.html#mjvoption"><span class="std std-ref">mjvOption</span></a>, and <a class="reference internal" href="APIreference/APItypes.html#mjvperturb"><span class="std std-ref">mjvPerturb</span></a> structs, respectively.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lock()</span></code>: provides a mutex lock for the viewer as a context manager. Since the viewer operates its own
+thread, user code must ensure that it is holding the viewer lock before modifying any physics or visualization
+state. These include the <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> and <code class="docutils literal notranslate"><span class="pre">mjData</span></code> instance passed to <code class="docutils literal notranslate"><span class="pre">launch_passive</span></code>, and also the <code class="docutils literal notranslate"><span class="pre">scn</span></code>,
+<code class="docutils literal notranslate"><span class="pre">cam</span></code>, <code class="docutils literal notranslate"><span class="pre">opt</span></code>, and <code class="docutils literal notranslate"><span class="pre">pert</span></code> properties of the viewer handle.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sync()</span></code>: synchronizes state between <code class="docutils literal notranslate"><span class="pre">mjModel</span></code>, <code class="docutils literal notranslate"><span class="pre">mjData</span></code>, and GUI user inputs since the previous call to
+<code class="docutils literal notranslate"><span class="pre">sync</span></code>. In order to allow user scripts to make arbitrary modifications to <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> and <code class="docutils literal notranslate"><span class="pre">mjData</span></code> without
+needing to hold the viewer lock, the passive viewer does not access or modify these structs outside of <code class="docutils literal notranslate"><span class="pre">sync</span></code>
+calls.</p>
+<p>User scripts must call <code class="docutils literal notranslate"><span class="pre">sync</span></code> in order for the viewer to reflect physics state changes. The <code class="docutils literal notranslate"><span class="pre">sync</span></code> function
+also transfers user inputs from the GUI back into <code class="docutils literal notranslate"><span class="pre">mjOption</span></code> (inside <code class="docutils literal notranslate"><span class="pre">mjModel</span></code>) and <code class="docutils literal notranslate"><span class="pre">mjData</span></code>, including
+enable/disable flags, control inputs, and mouse perturbations.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_hfield(hfieldid)</span></code>: updates the height field data at the specified <code class="docutils literal notranslate"><span class="pre">hfieldid</span></code> for subsequent renderings.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_mesh(meshid)</span></code>: updates the mesh data at the specified <code class="docutils literal notranslate"><span class="pre">meshid</span></code> for subsequent renderings.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_texture(texid)</span></code>: updates the texture data at the specified <code class="docutils literal notranslate"><span class="pre">texid</span></code> for subsequent renderings.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">close()</span></code>: programmatically closes the viewer window. This method can be safely called without locking.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_running()</span></code>: returns <code class="docutils literal notranslate"><span class="pre">True</span></code> if the viewer window is running and <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is closed.
+This method can be safely called without locking.</p></li>
+</ul>
+<p>The viewer handle can also be used as a context manager which calls <code class="docutils literal notranslate"><span class="pre">close()</span></code> automatically upon exit. A minimal
+example of a user script that uses <code class="docutils literal notranslate"><span class="pre">launch_passive</span></code> might look like the following. (Note that example is a simple
+illustrative example that does <strong>not</strong> necessarily keep the physics ticking at the correct wallclock rate.)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">mujoco</span>
+<span class="kn">import</span> <span class="nn">mujoco.viewer</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">MjModel</span><span class="o">.</span><span class="n">from_xml_path</span><span class="p">(</span><span class="s1">&#39;/path/to/mjcf.xml&#39;</span><span class="p">)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">MjData</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">launch_passive</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">as</span> <span class="n">viewer</span><span class="p">:</span>
+  <span class="c1"># Close the viewer automatically after 30 wall-seconds.</span>
+  <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+  <span class="k">while</span> <span class="n">viewer</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span> <span class="ow">and</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">:</span>
+    <span class="n">step_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+    <span class="c1"># mj_step can be replaced with code that also evaluates</span>
+    <span class="c1"># a policy and applies a control signal before stepping the physics.</span>
+    <span class="n">mujoco</span><span class="o">.</span><span class="n">mj_step</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+
+    <span class="c1"># Example modification of a viewer option: toggle contact points every two seconds.</span>
+    <span class="k">with</span> <span class="n">viewer</span><span class="o">.</span><span class="n">lock</span><span class="p">():</span>
+      <span class="n">viewer</span><span class="o">.</span><span class="n">opt</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="n">mujoco</span><span class="o">.</span><span class="n">mjtVisFlag</span><span class="o">.</span><span class="n">mjVIS_CONTACTPOINT</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">time</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Pick up changes to the physics state, apply perturbations, update options from GUI.</span>
+    <span class="n">viewer</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
+
+    <span class="c1"># Rudimentary time keeping, will drift relative to wall clock.</span>
+    <span class="n">time_until_next_step</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">opt</span><span class="o">.</span><span class="n">timestep</span> <span class="o">-</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">step_start</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">time_until_next_step</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">time_until_next_step</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Optionally, <code class="docutils literal notranslate"><span class="pre">viewer.launch_passive</span></code> also accepts a callable as a keyword argument <code class="docutils literal notranslate"><span class="pre">key_callback</span></code>, which gets called
+each time a keyboard event occurs in the viewer window. This allows user scripts to react to various key presses, e.g.,
+pause or resume the run loop when the spacebar is pressed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">paused</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">def</span> <span class="nf">key_callback</span><span class="p">(</span><span class="n">keycode</span><span class="p">):</span>
+  <span class="k">if</span> <span class="nb">chr</span><span class="p">(</span><span class="n">keycode</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span><span class="p">:</span>
+    <span class="k">nonlocal</span> <span class="n">paused</span>
+    <span class="n">paused</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">paused</span>
+
+<span class="o">...</span>
+
+<span class="k">with</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">viewer</span><span class="o">.</span><span class="n">launch_passive</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">key_callback</span><span class="o">=</span><span class="n">key_callback</span><span class="p">)</span> <span class="k">as</span> <span class="n">viewer</span><span class="p">:</span>
+  <span class="k">while</span> <span class="n">viewer</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+    <span class="o">...</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">paused</span><span class="p">:</span>
+      <span class="n">mujoco</span><span class="o">.</span><span class="n">mj_step</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+      <span class="n">viewer</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="basic-usage">
+<span id="pyusage"></span><h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">#</a></h2>
+<p>Once installed, the package can be imported via <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">mujoco</span></code>. Structs, functions, constants, and enums are
+available directly from the top-level <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> module.</p>
+<section id="structs">
+<span id="pystructs"></span><h3>Structs<a class="headerlink" href="#structs" title="Permalink to this headline">#</a></h3>
+<p>The bindings include Python classes that expose MuJoCo data structures. For maximum performance, these classes provide
+access to the raw memory used by MuJoCo without copying or buffering. This means that some MuJoCo functions (e.g.,
+<a class="reference internal" href="APIreference/APIfunctions.html#mj-step"><span class="std std-ref">mj_step</span></a>) change the content of fields <em>in place</em>. The user is therefore advised to create copies where required.
+For example, when logging the position of a body, one could write
+<code class="docutils literal notranslate"><span class="pre">positions.append(data.body('my_body').xpos.copy())</span></code>. Without the <code class="docutils literal notranslate"><span class="pre">.copy()</span></code>, the list would contain identical
+elements, all pointing to the most recent value.</p>
+<p>In order to conform to <a class="reference external" href="https://peps.python.org/pep-0008/">PEP 8</a>
+naming guidelines, struct names begin with a capital letter, for example <code class="docutils literal notranslate"><span class="pre">mjData</span></code> becomes <code class="docutils literal notranslate"><span class="pre">mujoco.MjData</span></code> in Python.</p>
+<p>All structs other than <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> have constructors in Python. For structs that have an <code class="docutils literal notranslate"><span class="pre">mj_defaultFoo</span></code>-style
+initialization function, the Python constructor calls the default initializer automatically, so for example
+<code class="docutils literal notranslate"><span class="pre">mujoco.MjOption()</span></code> creates a new <code class="docutils literal notranslate"><span class="pre">mjOption</span></code> instance that is pre-initialized with <a class="reference internal" href="APIreference/APIfunctions.html#mj-defaultoption"><span class="std std-ref">mj_defaultOption</span></a>.
+Otherwise, the Python constructor zero-initializes the underlying C struct.</p>
+<p>Structs with a <code class="docutils literal notranslate"><span class="pre">mj_makeFoo</span></code>-style initialization function have corresponding constructor overloads in Python,
+for example <code class="docutils literal notranslate"><span class="pre">mujoco.MjvScene(model,</span> <span class="pre">maxgeom=10)</span></code> in Python creates a new <code class="docutils literal notranslate"><span class="pre">mjvScene</span></code> instance that is
+initialized with <code class="docutils literal notranslate"><span class="pre">mjv_makeScene(model,</span> <span class="pre">[the</span> <span class="pre">new</span> <span class="pre">mjvScene</span> <span class="pre">instance],</span> <span class="pre">10)</span></code> in C. When this form of initialization is
+used, the corresponding deallocation function <code class="docutils literal notranslate"><span class="pre">mj_freeFoo/mj_deleteFoo</span></code> is automatically called when the Python
+object is deleted. The user does not need to manually free resources.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">mujoco.MjModel</span></code> class does not a have Python constructor. Instead, we provide three static factory functions
+that create a new <a class="reference internal" href="APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> instance: <code class="docutils literal notranslate"><span class="pre">mujoco.MjModel.from_xml_string</span></code>, <code class="docutils literal notranslate"><span class="pre">mujoco.MjModel.from_xml_path</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">mujoco.MjModel.from_binary_path</span></code>. The first function accepts a model XML as a string, while the latter two
+functions accept the path to either an XML or MJB model file. All three functions optionally accept a Python
+dictionary which is converted into a MuJoCo <a class="reference internal" href="APIreference/APIfunctions.html#virtualfilesystem"><span class="std std-ref">Virtual file system</span></a> for use during model compilation.</p>
+</section>
+<section id="functions">
+<span id="pyfunctions"></span><h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h3>
+<p>MuJoCo functions are exposed as Python functions of the same name. Unlike with structs, we do not attempt to make
+the function names <a class="reference external" href="https://peps.python.org/pep-0008/">PEP 8</a>-compliant, as MuJoCo uses both underscores and
+CamelCases. In most cases, function arguments appear exactly as they do in C, and keyword arguments are supported
+with the same names as declared in <a class="reference internal" href="programming/index.html#inheader"><span class="std std-ref">mujoco.h</span></a>. Python bindings to C functions that accept array input
+arguments expect NumPy arrays or iterable objects that are convertible to NumPy arrays (e.g. lists). Output
+arguments (i.e. array arguments that MuJoCo expect to write values back to the caller) must always be writeable
+NumPy arrays.</p>
+<p>In the C API, functions that take dynamically-sized arrays as inputs expect a pointer argument to the array along with
+an integer argument that specifies the array’s size. In Python, the size arguments are omitted since we can
+automatically (and indeed, more safely) deduce it from the NumPy array. When calling these functions, pass all
+arguments other than array sizes in the same order as they appear in <a class="reference internal" href="programming/index.html#inheader"><span class="std std-ref">mujoco.h</span></a>, or use keyword
+arguments. For example, <a class="reference internal" href="APIreference/APIfunctions.html#mj-jac"><span class="std std-ref">mj_jac</span></a> should be called as <code class="docutils literal notranslate"><span class="pre">mujoco.mj_jac(m,</span> <span class="pre">d,</span> <span class="pre">jacp,</span> <span class="pre">jacr,</span> <span class="pre">point,</span> <span class="pre">body)</span></code> in Python.</p>
+<p>The bindings <strong>releases the Python Global Interpreter Lock (GIL)</strong> before calling the underlying MuJoCo function.
+This allows for some thread-based parallelism, however users should bear in mind that the GIL is only released for the
+duration of the MuJoCo C function itself, and not during the execution of any other Python code.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>One place where the bindings do offer added functionality is the top-level <a class="reference internal" href="APIreference/APIfunctions.html#mj-step"><span class="std std-ref">mj_step</span></a> function. Since it is
+often called in a loop, we have added an additional <code class="docutils literal notranslate"><span class="pre">nstep</span></code> argument, indicating how many times the underlying
+<a class="reference internal" href="APIreference/APIfunctions.html#mj-step"><span class="std std-ref">mj_step</span></a> should be called. If not specified, <code class="docutils literal notranslate"><span class="pre">nstep</span></code> takes the default value of 1. The following two code
+snippets perform the same computation, but the first one does so without acquiring the GIL in between subsequent
+physics steps:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mj_step</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">nstep</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+  <span class="n">mj_step</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="enums-and-constants">
+<span id="pyenums"></span><h3>Enums and constants<a class="headerlink" href="#enums-and-constants" title="Permalink to this headline">#</a></h3>
+<p>MuJoCo enums are available as <code class="docutils literal notranslate"><span class="pre">mujoco.mjtEnumType.ENUM_VALUE</span></code>, for example <code class="docutils literal notranslate"><span class="pre">mujoco.mjtObj.mjOBJ_SITE</span></code>. MuJoCo
+constants are available with the same name directly under the <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> module, for example <code class="docutils literal notranslate"><span class="pre">mujoco.mjVISSTRING</span></code>.</p>
+</section>
+<section id="minimal-example">
+<span id="pyexample"></span><h3>Minimal example<a class="headerlink" href="#minimal-example" title="Permalink to this headline">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mujoco</span>
+
+<span class="n">XML</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;mujoco&gt;</span>
+<span class="s2">  &lt;asset&gt;</span>
+<span class="s2">    &lt;mesh file=&quot;gizmo.stl&quot;/&gt;</span>
+<span class="s2">  &lt;/asset&gt;</span>
+<span class="s2">  &lt;worldbody&gt;</span>
+<span class="s2">    &lt;body&gt;</span>
+<span class="s2">      &lt;freejoint/&gt;</span>
+<span class="s2">      &lt;geom type=&quot;mesh&quot; name=&quot;gizmo&quot; mesh=&quot;gizmo&quot;/&gt;</span>
+<span class="s2">    &lt;/body&gt;</span>
+<span class="s2">  &lt;/worldbody&gt;</span>
+<span class="s2">&lt;/mujoco&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">ASSETS</span><span class="o">=</span><span class="nb">dict</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/to/gizmo.stl&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">ASSETS</span><span class="p">[</span><span class="s1">&#39;gizmo.stl&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">MjModel</span><span class="o">.</span><span class="n">from_xml_string</span><span class="p">(</span><span class="n">XML</span><span class="p">,</span> <span class="n">ASSETS</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">mujoco</span><span class="o">.</span><span class="n">MjData</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">data</span><span class="o">.</span><span class="n">time</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+  <span class="n">mujoco</span><span class="o">.</span><span class="n">mj_step</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">geom_xpos</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="named-access">
+<span id="pynamed"></span><h3>Named access<a class="headerlink" href="#named-access" title="Permalink to this headline">#</a></h3>
+<p>Most well-designed MuJoCo models assign names to objects (joints, geoms, bodies, etc.) of interest. When the model is
+compiled down to an <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> instance, these names become associated with numeric IDs that are used to index into the
+various array members. For convenience and code readability, the Python bindings provide “named access” API on
+<code class="docutils literal notranslate"><span class="pre">MjModel</span></code> and <code class="docutils literal notranslate"><span class="pre">MjData</span></code>. Each <code class="docutils literal notranslate"><span class="pre">name_fooadr</span></code> field in the <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> struct defines a name category <code class="docutils literal notranslate"><span class="pre">foo</span></code>.</p>
+<p>For each name category <code class="docutils literal notranslate"><span class="pre">foo</span></code>, <code class="docutils literal notranslate"><span class="pre">mujoco.MjModel</span></code> and <code class="docutils literal notranslate"><span class="pre">mujoco.MjData</span></code> objects provide a method <code class="docutils literal notranslate"><span class="pre">foo</span></code> that takes
+a single string argument, and returns an accessor object for all arrays corresponding to the entity <code class="docutils literal notranslate"><span class="pre">foo</span></code> of the
+given name. The accessor object contains attributes whose names correspond to the fields of either <code class="docutils literal notranslate"><span class="pre">mujoco.MjModel</span></code> or
+<code class="docutils literal notranslate"><span class="pre">mujoco.MjData</span></code> but with the part before the underscore removed. In addition, accessor objects also provide <code class="docutils literal notranslate"><span class="pre">id</span></code> and
+<code class="docutils literal notranslate"><span class="pre">name</span></code> properties, which can be used as replacements for <code class="docutils literal notranslate"><span class="pre">mj_name2id</span></code> and <code class="docutils literal notranslate"><span class="pre">mj_id2name</span></code> respectively. For example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">m.geom('gizmo')</span></code> returns an accessor for arrays in the <code class="docutils literal notranslate"><span class="pre">MjModel</span></code> object <code class="docutils literal notranslate"><span class="pre">m</span></code> associated with the geom named
+“gizmo”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m.geom('gizmo').rgba</span></code> is a NumPy array view of length 4 that specifies the RGBA color for the geom.
+Specifically, it corresponds to the portion of <code class="docutils literal notranslate"><span class="pre">m.geom_rgba[4*i:4*i+4]</span></code> where
+<code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">mujoco.mj_name2id(m,</span> <span class="pre">mujoco.mjtObj.mjOBJ_GEOM,</span> <span class="pre">'gizmo')</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m.geom('gizmo').id</span></code> is the same number as returned by <code class="docutils literal notranslate"><span class="pre">mujoco.mj_name2id(m,</span> <span class="pre">mujoco.mjtObj.mjOBJ_GEOM,</span> <span class="pre">'gizmo')</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m.geom(i).name</span></code> is <code class="docutils literal notranslate"><span class="pre">'gizmo'</span></code>, where <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">mujoco.mj_name2id(m,</span> <span class="pre">mujoco.mjtObj.mjOBJ_GEOM,</span> <span class="pre">'gizmo')</span></code>.</p></li>
+</ul>
+<p>Additionally, the Python API define a number of aliases for some name categories corresponding to the XML element name
+in the MJCF schema that defines an entity of that category. For example, <code class="docutils literal notranslate"><span class="pre">m.joint('foo')</span></code> is the same as
+<code class="docutils literal notranslate"><span class="pre">m.jnt('foo')</span></code>. A complete list of these aliases are provided below.</p>
+<p>The accessor for joints is somewhat different that of the other categories. Some <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> and <code class="docutils literal notranslate"><span class="pre">mjData</span></code> fields
+(those of size size <code class="docutils literal notranslate"><span class="pre">nq</span></code> or <code class="docutils literal notranslate"><span class="pre">nv</span></code>) are associated with degrees of freedom (DoFs) rather than joints. This is because
+different types of joints have different numbers of DoFs. We nevertheless associate these fields to their corresponding
+joints, for example through <code class="docutils literal notranslate"><span class="pre">d.joint('foo').qpos</span></code> and <code class="docutils literal notranslate"><span class="pre">d.joint('foo').qvel</span></code>, however the size of these arrays would
+differ between accessors depending on the joint’s type.</p>
+<p>Named access is guaranteed to be O(1) in the number of entities in the model. In other words, the time it takes to
+access an entity by name does not grow with the number of names or entities in the model.</p>
+<p>For completeness, we provide here a complete list of all name categories in MuJoCo, along with their corresponding
+aliases defined in the Python API.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">body</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jnt</span></code> or <code class="docutils literal notranslate"><span class="pre">joint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geom</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">site</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cam</span></code> or <code class="docutils literal notranslate"><span class="pre">camera</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">light</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mesh</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skin</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hfield</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tex</span></code> or <code class="docutils literal notranslate"><span class="pre">texture</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mat</span></code> or <code class="docutils literal notranslate"><span class="pre">material</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pair</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exclude</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eq</span></code> or <code class="docutils literal notranslate"><span class="pre">equality</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tendon</span></code> or <code class="docutils literal notranslate"><span class="pre">ten</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">actuator</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensor</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numeric</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code> or <code class="docutils literal notranslate"><span class="pre">keyframe</span></code></p></li>
+</ul>
+</section>
+<section id="rendering">
+<span id="pyrender"></span><h3>Rendering<a class="headerlink" href="#rendering" title="Permalink to this headline">#</a></h3>
+<p>MuJoCo itself expects users to set up a working OpenGL context before calling any of its <code class="docutils literal notranslate"><span class="pre">mjr_</span></code> rendering routine.
+The Python bindings provide a basic class <code class="docutils literal notranslate"><span class="pre">mujoco.GLContext</span></code> that helps users set up such a context for offscreen
+rendering. To create a context, call <code class="docutils literal notranslate"><span class="pre">ctx</span> <span class="pre">=</span> <span class="pre">mujoco.GLContext(max_width,</span> <span class="pre">max_height)</span></code>. Once the context is created,
+it must be made current before MuJoCo rendering functions can be called, which you can do so via <code class="docutils literal notranslate"><span class="pre">ctx.make_current()</span></code>.
+Note that a context can only be made current on one thread at any given time, and all subsequent rendering calls must be
+made on the same thread.</p>
+<p>The context is freed automatically when the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object is deleted, but in some multi-threaded scenario it may be
+necessary to explicitly free the underlying OpenGL context. To do so, call <code class="docutils literal notranslate"><span class="pre">ctx.free()</span></code>, after which point it is the
+user’s responsibility to ensure that no further rendering calls are made on the context.</p>
+<p>Once the context is created, users can follow MuJoCo’s standard rendering, for example as documented in the
+<a class="reference internal" href="programming/visualization.html#visualization"><span class="std std-ref">Visualization</span></a> section.</p>
+</section>
+<section id="error-handling">
+<span id="pyerror"></span><h3>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">#</a></h3>
+<p>MuJoCo reports irrecoverable errors via the <a class="reference internal" href="APIreference/APIfunctions.html#mju-error"><span class="std std-ref">mju_error</span></a> mechanism, which immediately terminates the entire process.
+Users are permitted to install a custom error handler via the <a class="reference internal" href="APIreference/APIglobals.html#mju-user-error"><span class="std std-ref">mju_user_error</span></a> callback, but it too is expected
+to terminate the process, otherwise the behavior of MuJoCo after the callback returns is undefined. In actuality, it is
+sufficient to ensure that error callbacks do not return <em>to MuJoCo</em>, but it is permitted to use
+<a class="reference external" href="https://en.cppreference.com/w/c/program/longjmp">longjmp</a> to skip MuJoCo’s call stack back to the external callsite.</p>
+<p>The Python bindings utilizes longjmp to allow it to convert irrecoverable MuJoCo errors into Python exceptions of type
+<code class="docutils literal notranslate"><span class="pre">mujoco.FatalError</span></code> that can be caught and processed in the usual Pythonic way. Furthermore, it installs its error
+callback in a thread-local manner using a currently private API, thus allowing for concurrent calls into MuJoCo from
+multiple threads.</p>
+</section>
+<section id="callbacks">
+<span id="pycallbacks"></span><h3>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this headline">#</a></h3>
+<p>MuJoCo allows users to install custom callback functions to modify certain parts of its computation pipeline.
+For example, <a class="reference internal" href="APIreference/APIglobals.html#mjcb-sensor"><span class="std std-ref">mjcb_sensor</span></a> can be used to implement custom sensors, and <a class="reference internal" href="APIreference/APIglobals.html#mjcb-control"><span class="std std-ref">mjcb_control</span></a> can be used to
+implement custom actuators. Callbacks are exposed through the function pointers prefixed <code class="docutils literal notranslate"><span class="pre">mjcb_</span></code> in
+<a class="reference internal" href="programming/index.html#inheader"><span class="std std-ref">mujoco.h</span></a>.</p>
+<p>For each callback <code class="docutils literal notranslate"><span class="pre">mjcb_foo</span></code>, users can set it to a Python callable via <code class="docutils literal notranslate"><span class="pre">mujoco.set_mjcb_foo(some_callable)</span></code>. To
+reset it, call <code class="docutils literal notranslate"><span class="pre">mujoco.set_mjcb_foo(None)</span></code>. To retrieve the currently installed callback, call
+<code class="docutils literal notranslate"><span class="pre">mujoco.get_mjcb_foo()</span></code>. (The getter <strong>should not</strong> be used if the callback is not installed via the Python bindings.)
+The bindings automatically acquire the GIL each time the callback is entered, and release it before reentering MuJoCo.
+This is likely to incur a severe performance impact as callbacks are triggered several times throughout MuJoCo’s
+computation pipeline and is unlikely to be suitable for “production” use case. However, it is expected that this feature
+will be useful for prototyping complex models.</p>
+<p>Alternatively, if a callback is implemented in a native dynamic library, users can use
+<a class="reference external" href="https://docs.python.org/3/library/ctypes.html">ctypes</a> to obtain a Python handle to the C function pointer and pass
+it to <code class="docutils literal notranslate"><span class="pre">mujoco.set_mjcb_foo</span></code>. The bindings will then retrieve the underlying function pointer and assign it directly to
+the raw callback pointer, and the GIL will <strong>not</strong> be acquired each time the callback is entered.</p>
+</section>
+</section>
+<section id="open-loop-rollouts">
+<span id="pysample"></span><h2>Open-loop rollouts<a class="headerlink" href="#open-loop-rollouts" title="Permalink to this headline">#</a></h2>
+<p>We include a code sample showing how to add additional C/C++ functionality, exposed as a Python module via pybind11. The
+sample, implemented in <code class="docutils literal notranslate"><span class="pre">rollout.cc</span></code> and wrapped in <code class="docutils literal notranslate"><span class="pre">rollout.py</span></code>, implements a common use case where tight loops
+implemented outside of Python are beneficial: rolling out a trajectory (i.e., calling <code class="docutils literal notranslate"><span class="pre">mj_step()</span></code> in a loop), given an
+intial state and sequence of controls, and returning subsequent states and sensor values. The canonical usage form is</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">state</span><span class="p">,</span> <span class="n">sensordata</span> <span class="o">=</span> <span class="n">rollout</span><span class="o">.</span><span class="n">rollout</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">initial_state</span></code> is a <code class="docutils literal notranslate"><span class="pre">nstate</span> <span class="pre">x</span> <span class="pre">nqva</span></code> array, with <code class="docutils literal notranslate"><span class="pre">nstate</span></code> initial states of length <code class="docutils literal notranslate"><span class="pre">nqva</span></code>, where <code class="docutils literal notranslate"><span class="pre">nqva</span> <span class="pre">=</span>
+<span class="pre">model.nq</span> <span class="pre">+</span> <span class="pre">model.nv</span> <span class="pre">+</span> <span class="pre">model.na</span></code> is the size of the full MuJoCo mechanical state: positions (<code class="docutils literal notranslate"><span class="pre">data.qpos</span></code>), velocities
+(<code class="docutils literal notranslate"><span class="pre">data.qvel</span></code>) and actuator activations (<code class="docutils literal notranslate"><span class="pre">data.act</span></code>). <code class="docutils literal notranslate"><span class="pre">ctrl</span></code> is a <code class="docutils literal notranslate"><span class="pre">nstate</span> <span class="pre">x</span> <span class="pre">nstep</span> <span class="pre">x</span> <span class="pre">nu</span></code> array of control
+sequences.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">rollout</span></code> function is designed to be completely stateless, so all inputs of the stepping pipeline are set and any
+values already present in the given <code class="docutils literal notranslate"><span class="pre">MjData</span></code> instance will have no effect on the output. In order to facilitate this,
+all inputs including <code class="docutils literal notranslate"><span class="pre">time</span></code> and <code class="docutils literal notranslate"><span class="pre">qacc_warmstart</span></code> are set to default values, as are auxillary controls
+(<code class="docutils literal notranslate"><span class="pre">qfrc_applied</span></code>, <code class="docutils literal notranslate"><span class="pre">xfrc_applied</span></code> and <code class="docutils literal notranslate"><span class="pre">mocap_{pos,quat}</span></code>). These can also be optionally set by the user.</p>
+<p>Since the Global Interpreter Lock can be released, this function can be efficiently threaded using Python threads. See
+the <code class="docutils literal notranslate"><span class="pre">test_threading</span></code> function in
+<a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/python/mujoco/rollout_test.py">rollout_test.py</a> for an example of
+threaded operation.</p>
+</section>
+<section id="migration-from-mujoco-py">
+<span id="pymjpy-migration"></span><h2>Migration from mujoco-py<a class="headerlink" href="#migration-from-mujoco-py" title="Permalink to this headline">#</a></h2>
+<p>In mujoco-py, the main entry point is the <a class="reference external" href="https://github.com/openai/mujoco-py/blob/master/mujoco_py/mjsim.pyx">MjSim</a>
+class.  Users construct a stateful <code class="docutils literal notranslate"><span class="pre">MjSim</span></code> instance from an MJCF model (similar to <code class="docutils literal notranslate"><span class="pre">dm_control.Physics</span></code>), and this
+instance holds references to an <code class="docutils literal notranslate"><span class="pre">mjModel</span></code> instance and its associated <code class="docutils literal notranslate"><span class="pre">mjData</span></code>.  In contrast, the MuJoCo Python
+bindings (<code class="docutils literal notranslate"><span class="pre">mujoco</span></code>) take a more low-level approach, as explained above: following the design principle of the C
+library, the <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> module itself is stateless, and merely wraps the underlying native structs and functions.</p>
+<p>While a complete survey of mujoco-py is beyond the scope of this document, we offer below implementation notes for a
+non-exhaustive list of specific mujoco-py features:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">mujoco_py.load_model_from_xml(bstring)</span></code></dt><dd><p>This factory function constructs a stateful <code class="docutils literal notranslate"><span class="pre">MjSim</span></code> instance. When using <code class="docutils literal notranslate"><span class="pre">mujoco</span></code>, the user should call the
+factory function <code class="docutils literal notranslate"><span class="pre">mujoco.MjModel.from_xml_*</span></code> as described <a class="reference internal" href="#pystructs"><span class="std std-ref">above</span></a>. The user is then responsible
+for holding the resulting <code class="docutils literal notranslate"><span class="pre">MjModel</span></code> struct instance and explicitly generating the corresponding <code class="docutils literal notranslate"><span class="pre">MjData</span></code> by
+calling <code class="docutils literal notranslate"><span class="pre">mujoco.MjData(model)</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sim.reset()</span></code>, <code class="docutils literal notranslate"><span class="pre">sim.forward()</span></code>, <code class="docutils literal notranslate"><span class="pre">sim.step()</span></code></dt><dd><p>Here as above, <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> users needs to call the underlying library functions, passing instances of <code class="docutils literal notranslate"><span class="pre">MjModel</span></code> and
+<code class="docutils literal notranslate"><span class="pre">MjData</span></code>: <a class="reference internal" href="APIreference/APIfunctions.html#mj-resetdata"><span class="std std-ref">mujoco.mj_resetData(model, data)</span></a>, <a class="reference internal" href="APIreference/APIfunctions.html#mj-forward"><span class="std std-ref">mujoco.mj_forward(model, data)</span></a>, and <a class="reference internal" href="APIreference/APIfunctions.html#mj-step"><span class="std std-ref">mujoco.mj_step(model, data)</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sim.get_state()</span></code>, <code class="docutils literal notranslate"><span class="pre">sim.set_state(state)</span></code>, <code class="docutils literal notranslate"><span class="pre">sim.get_flattened_state()</span></code>, <code class="docutils literal notranslate"><span class="pre">sim.set_state_from_flattened(state)</span></code></dt><dd><p>The MuJoCo library’s computation is deterministic given a specific input, as explained in the <a class="reference internal" href="programming/simulation.html#simulation"><span class="std std-ref">Programming
+section</span></a>. mujoco-py implements methods for getting and setting some of the relevant fields (and
+similarly <code class="docutils literal notranslate"><span class="pre">dm_control.Physics</span></code> offers methods that correspond to the flattened case). <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> do not offer such
+abstraction, and the user is expected to get/set the values of the relevant fields explicitly.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sim.model.get_joint_qvel_addr(joint_name)</span></code></dt><dd><p>This is a convenience method in mujoco-py that returns a list of contiguous indices corresponding to this joint. The
+list starts from <code class="docutils literal notranslate"><span class="pre">model.jnt_qposadr[joint_index]</span></code>, and its length depends on the joint type. <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> doesn’t
+offer this functionality, but this list can be easily constructed using <code class="docutils literal notranslate"><span class="pre">model.jnt_qposadr[joint_index]</span></code> and
+<code class="docutils literal notranslate"><span class="pre">xrange</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sim.model.*_name2id(name)</span></code></dt><dd><p>mujoco-py creates dicts in <code class="docutils literal notranslate"><span class="pre">MjSim</span></code> that allow for efficient lookup of indices for objects of different types:
+<code class="docutils literal notranslate"><span class="pre">site_name2id</span></code>, <code class="docutils literal notranslate"><span class="pre">body_name2id</span></code> etc. These functions replace the function <a class="reference internal" href="APIreference/APIfunctions.html#mj-name2id"><span class="std std-ref">mujoco.mj_name2id(model,
+type_enum, name)</span></a>. <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> offers a different approach for using entity names – <a class="reference internal" href="#pynamed"><span class="std std-ref">named access</span></a>, as well as access to the native <a class="reference internal" href="APIreference/APIfunctions.html#mj-name2id"><span class="std std-ref">mj_name2id</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sim.save(fstream,</span> <span class="pre">format_name)</span></code></dt><dd><p>This is the one context in which the MuJoCo library (and therefore also <code class="docutils literal notranslate"><span class="pre">mujoco</span></code>) is stateful: it holds a copy in
+memory of the last XML that was compiled, which is used in <a class="reference internal" href="APIreference/APIfunctions.html#mj-savelastxml"><span class="std std-ref">mujoco.mj_saveLastXML(fname)</span></a>. Note
+that mujoco-py’s implementation has a convenient extra feature, whereby the pose (as determined by <code class="docutils literal notranslate"><span class="pre">sim.data</span></code>’s
+state) is transformed to a keyframe that’s added to the model before saving.  This extra feature is not currently
+available in <code class="docutils literal notranslate"><span class="pre">mujoco</span></code>.</p>
+</dd>
+</dl>
+</section>
+<section id="building-from-source">
+<span id="pybuild"></span><h2>Building from source<a class="headerlink" href="#building-from-source" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Building from source is only necessary if you are modifying the
+Python bindings (or are trying to run on exceptionally old Linux systems).
+If that’s not the case, then we recommend installing the prebuilt binaries
+from PyPI.</p>
+</div>
+<ol class="arabic">
+<li><p>Make sure you have CMake and a C++17 compiler installed.</p></li>
+<li><p>Download the <a class="reference external" href="https://github.com/deepmind/mujoco/releases">latest binary release</a>
+from GitHub. On macOS, the download corresponds to a DMG file from which you
+can drag <code class="docutils literal notranslate"><span class="pre">MuJoCo.app</span></code> into your <code class="docutils literal notranslate"><span class="pre">/Applications</span></code> folder.</p></li>
+<li><p>Clone the entire <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> repository from GitHub and <code class="docutils literal notranslate"><span class="pre">cd</span></code> into the python
+directory:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/deepmind/mujoco.git
+<span class="nb">cd</span><span class="w"> </span>mujoco/python
+</pre></div>
+</div>
+</li>
+<li><p>Create a virtual environment:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>/tmp/mujoco
+<span class="nb">source</span><span class="w"> </span>/tmp/mujoco/bin/activate
+</pre></div>
+</div>
+</li>
+<li><p>Generate a <a class="reference external" href="https://packaging.python.org/en/latest/glossary/#term-Source-Distribution-or-sdist">source distribution</a>
+tarball with the <code class="docutils literal notranslate"><span class="pre">make_sdist.sh</span></code> script.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>python
+bash<span class="w"> </span>make_sdist.sh
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">make_sdist.sh</span></code> script generates additional C++ header files that are
+needed to build the bindings, and also pulls in required files from elsewhere
+in the repository outside the <code class="docutils literal notranslate"><span class="pre">python</span></code> directory into the sdist. Upon
+completion, the script will create a <code class="docutils literal notranslate"><span class="pre">dist</span></code> directory with a
+<code class="docutils literal notranslate"><span class="pre">mujoco-x.y.z.tar.gz</span></code> file (where <code class="docutils literal notranslate"><span class="pre">x.y.z</span></code> is the version number).</p>
+</li>
+<li><p>Use the generated source distribution to build and install the bindings.
+You’ll need to specify the path to the MuJoCo library you downloaded earlier
+in the <code class="docutils literal notranslate"><span class="pre">MUJOCO_PATH</span></code> environment variable.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For macOS, this can be the path to a directory that contains the
+<code class="docutils literal notranslate"><span class="pre">mujoco.framework</span></code>. In particular, you can set
+<code class="docutils literal notranslate"><span class="pre">MUJOCO_PATH=/Applications/MuJoCo.app</span></code> if you installed MuJoCo as
+suggested in step 1.</p>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>dist
+<span class="nv">MUJOCO_PATH</span><span class="o">=</span>/PATH/TO/MUJOCO<span class="w"> </span><span class="nv">MUJOCO_PLUGIN_PATH</span><span class="o">=</span>/PATH/TO/MUJOCO_PLUGIN<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>mujoco-x.y.z.tar.gz
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The Python bindings should now be installed! To check that they’ve been
+successfully installed, <code class="docutils literal notranslate"><span class="pre">cd</span></code> outside of the <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> directory and run
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-c</span> <span class="pre">&quot;import</span> <span class="pre">mujoco&quot;</span></code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>As a reference, a working build configuration can be found in MuJoCo’s
+<a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/.github/workflows/build.yml">continuous integration setup</a> on GitHub.</p>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="unity.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Unity Plug-in</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="APIreference/APIglobals.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Globals</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; DeepMind Technologies Limited
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Python Bindings</a><ul>
+<li><a class="reference internal" href="#tutorial-notebook">Tutorial notebook</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#interactive-viewer">Interactive viewer</a><ul>
+<li><a class="reference internal" href="#standalone-application">Standalone application</a></li>
+<li><a class="reference internal" href="#managed-viewer">Managed viewer</a></li>
+<li><a class="reference internal" href="#passive-viewer">Passive viewer</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-usage">Basic usage</a><ul>
+<li><a class="reference internal" href="#structs">Structs</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#enums-and-constants">Enums and constants</a></li>
+<li><a class="reference internal" href="#minimal-example">Minimal example</a></li>
+<li><a class="reference internal" href="#named-access">Named access</a></li>
+<li><a class="reference internal" href="#rendering">Rendering</a></li>
+<li><a class="reference internal" href="#error-handling">Error handling</a></li>
+<li><a class="reference internal" href="#callbacks">Callbacks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#open-loop-rollouts">Open-loop rollouts</a></li>
+<li><a class="reference internal" href="#migration-from-mujoco-py">Migration from mujoco-py</a></li>
+<li><a class="reference internal" href="#building-from-source">Building from source</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/katex.min.js"></script>
+    <script src="_static/auto-render.min.js"></script>
+    <script src="_static/katex_autorenderer.js"></script>
+    </body>
+</html>

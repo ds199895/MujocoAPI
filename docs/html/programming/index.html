@@ -1,0 +1,588 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <link sizes="16x16" href="../_static/favicons/favicon-16x16.png" rel="icon" type="image/png">
+    <link sizes="32x32" href="../_static/favicons/favicon-32x32.png" rel="icon" type="image/png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../_static/favicons/favicon-180x180.png" type="image/png">
+    <link sizes="180x180" href="../_static/favicons/favicon-180x180.png" rel="icon" type="image/png">
+    <link sizes="192x192" href="../_static/favicons/favicon-192x192.png" rel="icon" type="image/png"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Simulation" href="simulation.html" /><link rel="prev" title="XML Reference" href="../XMLreference.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.09.29"/>
+        <title>Programming - MuJoCo Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/katex-math.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --font-stack--monospace: Inconsolata,Consolas,ui-monospace,monospace;
+  --at-color: #bc103e;
+  --at-val-color: #bc103e;
+  --body-color: #14234b;
+  --color-highlight-on-target: #e5e8ed;
+  --primary-header-color: #0053d6;
+  --row-odd-background-color: #f0f3f7;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #123693;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 115%;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --at-color: #ff95a6;
+  --at-val-color: #ff95a6;
+  --body-color: #14234b;
+  --color-admonition-background: #1e1e21;
+  --color-highlight-on-target: #3d4045;
+  --primary-header-color: #a8caff;
+  --row-odd-background-color: #222326;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #458dff;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 115%;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --at-color: #ff95a6;
+  --at-val-color: #ff95a6;
+  --body-color: #14234b;
+  --color-admonition-background: #1e1e21;
+  --color-highlight-on-target: #3d4045;
+  --primary-header-color: #a8caff;
+  --row-odd-background-color: #222326;
+  --rst-content-a-color: #2980b9;
+  --secondary-header-color: #458dff;
+  --wy-menu-vertical-background-color: #0053d6;
+  --wy-menu-vertical-color: white;
+  --wy-nav-side-background-color: #0053d6;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  --sidebar-item-font-size: 115%;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">MuJoCo Documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/banner.svg" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">MuJoCo Documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../computation.html">Computation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modeling.html">Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../XMLreference.html">XML Reference</a></li>
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Programming</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="simulation.html">Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html">Code samples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extension.html">Extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../APIreference/index.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APItypes.html">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APIfunctions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../APIreference/APIglobals.html">Globals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../python.html">Python Bindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unity.html">Unity Plug-in</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../models.html">Model Gallery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="programming">
+<h1>Programming<a class="headerlink" href="#programming" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<span id="inintro"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>This chapter is the MuJoCo programming guide. A separate chapter contains the <a class="reference internal" href="../APIreference/index.html"><span class="doc">API Reference</span></a>
+documentation. MuJoCo is a dynamic library compatible with Windows, Linux and macOS, which requires a process with AVX
+instructions. The library exposes the full functionality of the simulator through a compiler-independent shared-memory C
+API. It can also be used in C++ programs.</p>
+<p>The MuJoCo codebase is organized into subdirectories corresponding to different major areas of functionality:</p>
+<dl class="simple">
+<dt>Engine</dt><dd><p>The simulator (or physics engine) is written in C. It is responsible for all runtime computations.</p>
+</dd>
+<dt>Parser</dt><dd><p>The XML parser is written in C++. It can parse MJCF models and URDF models, converting them into an internal mjCModel
+C++ object which is not directly exposed to the user.</p>
+</dd>
+<dt>Compiler</dt><dd><p>The compiler is written in C++. It takes an mjCModel C++ object constructed by the parser, and converts it into an
+mjModel C structure used at runtime.</p>
+</dd>
+<dt>Abstract visualizer</dt><dd><p>The abstract visualizer is written in C. It generates a list of abstract geometric entities representing the
+simulation state, with all information needed for actual rendering. It also provides abstract mouse hooks for camera
+and perturbation control.</p>
+</dd>
+<dt>OpenGL renderer</dt><dd><p>The renderer is written in C and is based on fixed-function OpenGL. It does not have all the features of
+state-of-the-art rendering engines (and can be replaced with such an engine if desired) but nevertheless it provides
+efficient and informative 3D rendering.</p>
+</dd>
+<dt>UI framework</dt><dd><p>The UI framework (new in MuJoCo 2.0) is written in C. UI elements are rendered in OpenGL. It has its own event
+mechanism and abstract hooks for keyboard and mouse input. The code samples use it with GLFW, but it can also be used
+with other window libraries.</p>
+</dd>
+</dl>
+</section>
+<section id="getting-started">
+<span id="instart"></span><h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h2>
+<p>MuJoCo is an open-source project. Pre-built dynamic libraries are available for x86_64 and arm64 machines running
+Windows, Linux, and macOS. These can be downloaded from the <a class="reference external" href="https://github.com/deepmind/mujoco/releases">GitHub Releases page</a>. Users who do not intend to develop or modify core MuJoCo code are
+encouraged to use our pre-built libraries, as these come bundled with the same versions of dependencies that we
+regularly test against, and benefit from build flags that have been tuned for performance. Our pre-built libraries are
+almost entirely self-contained and do not require any other library to be present, outside the standard C runtime. We
+also hide all symbols apart from those that form MuJoCo’s public API, thus ensuring that it can coexist with any other
+libraries that may be loaded into the process (including other versions of libraries that MuJoCo depends on).</p>
+<p>The pre-built distribution is a single .zip on Windows, .dmg on macOS, and .tar.gz on Linux. There is no installer.
+On Windows and Linux, simply extract the archive in a directory of your choice. From the <code class="docutils literal notranslate"><span class="pre">bin</span></code> subdirectory, you can
+now run the precompiled code samples, for example:</p>
+<div class="highlight-Text notranslate"><div class="highlight"><pre><span></span>Windows:           simulate ..\model\humanoid\humanoid.xml
+Linux and macOS:   ./simulate ../model/humanoid/humanoid.xml
+</pre></div>
+</div>
+<p>The directory structure is shown below. Users can re-organize it if needed, as well as install the dynamic libraries in
+other directories and set the path accordingly. The only file created automatically is MUJOCO_LOG.TXT in the executable
+directory; it contains error and warning messages, and can be deleted at any time.</p>
+<div class="highlight-Text notranslate"><div class="highlight"><pre><span></span>bin     - dynamic libraries, executables, MUJOCO_LOG.TXT
+doc     - README.txt and REFERENCE.txt
+include - header files needed to develop with MuJoCo
+model   - model collection
+sample  - code samples and makefile need to build them
+</pre></div>
+</div>
+<p>After verifying that the simulator works, you may also want to re-compile the code samples to ensure that you have a
+working development environment. We provide Makefiles for <a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/sample/Makefile.windows">Windows</a>, <a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/sample/Makefile.macos">macOS</a>, and <a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/sample/Makefile">Linux</a>, and also a cross-platform <a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/sample/CMakeLists.txt">CMake</a> setup that can be used to build sample
+applications independently of the MuJoCo library itself. If you are using the vanilla Makefile, we assume that you are
+using Visual Studio on Windows and LLVM/Clang on Linux. On Windows, you also need to either open a Visual Studio command
+prompt with native x64 tools or call the <code class="docutils literal notranslate"><span class="pre">vcvarsall.bat</span></code> script that comes with your MSVC installation to set up the
+appropriate environment variables.</p>
+<p>On macOS, the DMG disk image contains <code class="docutils literal notranslate"><span class="pre">MuJoCo.app</span></code>, which you can double-click to launch the <code class="docutils literal notranslate"><span class="pre">simulate</span></code> GUI. You can
+also drag <code class="docutils literal notranslate"><span class="pre">MuJoCo.app</span></code> into the <code class="docutils literal notranslate"><span class="pre">/Application</span></code> on your system, as you would to install any other app. While
+<code class="docutils literal notranslate"><span class="pre">MuJoCo.app</span></code> may look like a file, it is in fact an <a class="reference external" href="https://developer.apple.com/go/?id=bundle-structure">Application Bundle</a>, which is a directory that contains executable binaries for all of MuJoCo’s sample applications, along with
+an embedded <a class="reference external" href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Concepts/WhatAreFrameworks.html">framework</a>,
+which is a subdirectory containing the MuJoCo dynamic library and all of its public headers. In other words,
+<code class="docutils literal notranslate"><span class="pre">MuJoCo.app</span></code> contains all the same files that are shipped in the archive on Windows and Linux. To see this, right
+click (or control-click) on <code class="docutils literal notranslate"><span class="pre">MuJoCo.app</span></code> and click “Show Package Contents”.</p>
+<p>As mentioned above, <code class="docutils literal notranslate"><span class="pre">mujoco.framework</span></code> contains the library and headers that are necessary to build any application
+that depends on MuJoCo. If you are using Xcode, you can import it as a framework dependency on your project. (This also
+works for Swift projects without any modification). If you are building manually, you can use <code class="docutils literal notranslate"><span class="pre">-F</span></code> and
+<code class="docutils literal notranslate"><span class="pre">-framework</span> <span class="pre">mujoco</span></code> to specify the header search path and the library search path respectively. The macOS Makefile
+provides an example for this.</p>
+</section>
+<section id="building-from-source">
+<span id="inbuild"></span><h2>Building from source<a class="headerlink" href="#building-from-source" title="Permalink to this headline">#</a></h2>
+<p>To build MuJoCo from source, you will need CMake and a working C++17 compiler installed. The steps are:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Clone the <code class="docutils literal notranslate"><span class="pre">mujoco</span></code> repository from GitHub.</p></li>
+<li><p>Create a new build directory somewhere, and <code class="docutils literal notranslate"><span class="pre">cd</span></code> into it.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">$PATH_TO_CLONED_REPO</span></code> to configure the build.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--build</span> <span class="pre">.</span></code> to build.</p></li>
+</ol>
+</div></blockquote>
+<p>MuJoCo’s build system automatically fetches dependencies from upstream repositories over the Internet using CMake’s
+<a class="reference external" href="https://cmake.org/cmake/help/latest/module/FetchContent.html">FetchContent</a> module.</p>
+<p>The main CMake setup will build the MuJoCo library itself along with all sample applications, but the Python
+bindings are not built. Those come with their own build instructions, which can be found in the <a class="reference internal" href="../python.html"><span class="doc">Python Bindings</span></a>
+section of the documentation.</p>
+<p>Additionally, the CMake setup also implements an installation phase which will copy and organize the output files to a
+target directory.</p>
+<blockquote>
+<div><ol class="arabic simple" start="5">
+<li><p>Select the directory: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">$PATH_TO_CLONED_REPO</span> <span class="pre">-DCMAKE_INSTALL_PREFIX=&lt;my_install_dir&gt;</span></code></p></li>
+<li><p>After building, install with <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--install</span> <span class="pre">.</span></code></p></li>
+</ol>
+</div></blockquote>
+<p>When building on Windows, use Visual Studio 2019 or later and make sure Windows SDK version 10.0.22000 or later is
+installed (see <a class="reference external" href="https://github.com/deepmind/mujoco/issues/862">here</a> for more details).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>As a reference, a working build configuration can be found in MuJoCo’s
+<a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/.github/workflows/build.yml">continuous integration setup</a> on GitHub.</p>
+</div>
+</section>
+<section id="header-files">
+<span id="inheader"></span><h2>Header files<a class="headerlink" href="#header-files" title="Permalink to this headline">#</a></h2>
+<p>The distribution contains several header files which are identical on all platforms. They are also available from the
+links below, to make this documentation self-contained.</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mujoco.h">mujoco.h</a></dt><dd><p>This is the main header file and must be included in all programs using MuJoCo. It defines all API functions and
+global variables, and includes the all other header files except mjxmacro.h.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjmodel.h">mjmodel.h</a></dt><dd><p>Defines the C structure <a class="reference internal" href="../APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a> which is the runtime representation of the
+model being simulated. It also defines a number of primitive types and other structures needed to define mjModel.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjdata.h">mjdata.h</a></dt><dd><p>Defines the C structure <a class="reference internal" href="../APIreference/APItypes.html#mjdata"><span class="std std-ref">mjData</span></a> which is the workspace where all computations
+read their inputs and write their outputs. It also defines primitive types and other structures needed to define
+mjData.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjvisualize.h">mjvisualize.h</a></dt><dd><p>Defines the primitive types and structures needed by the abstract visualizer.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjrender.h">mjrender.h</a></dt><dd><p>Defines the primitive types and structures needed by the OpenGL renderer.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjui.h">mjui.h</a></dt><dd><p>Defines the primitive types and structures needed by the UI framework.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjtnum.h">mjtnum.h</a></dt><dd><p>Defines MuJoCo’s <code class="docutils literal notranslate"><span class="pre">mjtNum</span></code> floating-point type to be either <code class="docutils literal notranslate"><span class="pre">double</span></code> or <code class="docutils literal notranslate"><span class="pre">float</span></code>. See <a class="reference internal" href="../APIreference/APItypes.html#mjtnum"><span class="std std-ref">mjtNum</span></a>.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjmacro.h">mjmacro.h</a></dt><dd><p>Defines C macros that are useful in user code.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjxmacro.h">mjxmacro.h</a></dt><dd><p>This file is optional and is not included by mujoco.h. It defines <a class="reference internal" href="../APIreference/APIglobals.html#tyxmacro"><span class="std std-ref">X Macros</span></a> that can
+automate the mapping of mjModel and mjData into scripting languages, as well as other operations that require
+accessing all fields of mjModel and mjData. See code sample <a class="reference internal" href="samples.html#satestxml"><span class="std std-ref">testxml.cc</span></a>.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjexport.h">mjexport.h</a></dt><dd><p>Macros used for exporting public symbols from the MuJoCo library. This header should not be used directly by client
+code.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/deepmind/mujoco/blob/main/include/mujoco/mjplugin.h">mjplugin.h</a></dt><dd><p>Defines data structures required by <a class="reference internal" href="extension.html#explugin"><span class="std std-ref">engine plugins</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="versions-and-compatibility">
+<span id="inversion"></span><h2>Versions and compatibility<a class="headerlink" href="#versions-and-compatibility" title="Permalink to this headline">#</a></h2>
+<p>MuJoCo has been used extensively since 2010 and is quite mature (even though our version numbering scheme is quite
+conservative). Nevertheless it remains under active development, and we have many exciting ideas for new features and
+are also making changes based on user feedback. This leads to unavoidable changes in both the modeling language in the
+API. While we encourage users to upgrade to the latest version, we recognize that this is not always feasible,
+especially when other developers release software that relies on MuJoCo. Therefore we have introduced simple
+mechanisms to help avoid version conflicts, as follows.</p>
+<p>The situation is more subtle if existing code was developed with a certain version of MuJoCo, and is now being
+compiled and linked with a different version. If the definitions of the API functions used in that code have changed,
+either the compiler or the linker will generate errors. But even if the function definitions have not changed, it may
+still be a good idea to assert that the software version is the same. To this end, the main header (mujoco.h) defines
+the symbol <a class="reference internal" href="../APIreference/APIglobals.html#glnumeric"><span class="std std-ref">mjVERSION_HEADER</span></a> and the library provides the function
+<a class="reference internal" href="../APIreference/APIfunctions.html#mj-version"><span class="std std-ref">mj_version</span></a>. Thus the header and library versions can be compared with:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="c1">// recommended version check</span>
+<span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="n">mjVERSION_HEADER</span><span class="o">!=</span><span class="n">mj_version</span><span class="p">()</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="n">complain</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Note that only the main header defines this symbol. We assume that the collection of headers released with each software
+version will stay together and will not be mixed between versions. To avoid complications with floating-point
+comparisons, the above symbol and function use integers that are 100x the version number, so for example in software
+version 2.1 the symbol mjVERSION_HEADER is defined as 210.</p>
+</section>
+<section id="naming-convention">
+<span id="innaming"></span><h2>Naming convention<a class="headerlink" href="#naming-convention" title="Permalink to this headline">#</a></h2>
+<p>All symbols defined in the API start with the prefix “mj”. The character after “mj” in the prefix determines the family
+to which the symbol belongs. First we list the prefixes corresponding to type definitions.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">mj</span></code></dt><dd><p>Core simulation data structure (C struct), for example <a class="reference internal" href="../APIreference/APItypes.html#mjmodel"><span class="std std-ref">mjModel</span></a>. If all characters
+after the prefix are capital, for example <a class="reference internal" href="../APIreference/APIfunctions.html#mjmin"><span class="std std-ref">mjMIN</span></a>, this is a macro or a symbol (#define).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mjt</span></code></dt><dd><p>Primitive type, for example <a class="reference internal" href="../APIreference/APItypes.html#mjtgeom"><span class="std std-ref">mjtGeom</span></a>. Except for mjtByte and mjtNum, all other
+definitions in this family are enums.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mjf</span></code></dt><dd><p>Callback function type, for example <a class="reference internal" href="../APIreference/APItypes.html#mjfgeneric"><span class="std std-ref">mjfGeneric</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mjv</span></code></dt><dd><p>Data structure related to abstract visualization, for example <a class="reference internal" href="../APIreference/APItypes.html#mjvcamera"><span class="std std-ref">mjvCamera</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mjr</span></code></dt><dd><p>Data structure related to OpenGL rendering, for example <a class="reference internal" href="../APIreference/APItypes.html#mjrcontext"><span class="std std-ref">mjrContext</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mjui</span></code></dt><dd><p>Data structure related to UI framework, for example <a class="reference internal" href="../APIreference/APItypes.html#mjuisection"><span class="std std-ref">mjuiSection</span></a>.</p>
+</dd>
+</dl>
+<p>Next we list the prefixes corresponding to function definitions. Note that function prefixes always end with underscore.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">mj_</span></code></dt><dd><p>Core simulation function, for example <a class="reference internal" href="../APIreference/APIfunctions.html#mj-step"><span class="std std-ref">mj_step</span></a>. Almost all such functions have
+pointers to mjModel and mjData as their first two arguments, possibly followed by other arguments. They usually write
+their outputs to mjData.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mju_</span></code></dt><dd><p>Utility function, for example <a class="reference internal" href="../APIreference/APIfunctions.html#mju-mulmatvec"><span class="std std-ref">mju_mulMatVec</span></a>. These functions are self-contained
+in the sense that they do not have mjModel and mjData pointers as their arguments.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mjv_</span></code></dt><dd><p>Function related to abstract visualization, for example <a class="reference internal" href="../APIreference/APIfunctions.html#mjv-updatescene"><span class="std std-ref">mjv_updateScene</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mjr_</span></code></dt><dd><p>Function related to OpenGL rendering, for example <a class="reference internal" href="../APIreference/APIfunctions.html#mjr-render"><span class="std std-ref">mjr_render</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mjui_</span></code></dt><dd><p>Function related to UI framework, for example <a class="reference internal" href="../APIreference/APIfunctions.html#mjui-update"><span class="std std-ref">mjui_update</span></a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mjcb_</span></code></dt><dd><p>Global callback function pointer, for example <a class="reference internal" href="../APIreference/APIglobals.html#mjcb-control"><span class="std std-ref">mjcb_control</span></a>. The user can install
+custom callbacks by setting these global pointers to user-defined functions.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mjd_</span></code></dt><dd><p>Functions for computing derivatives, for example <a class="reference internal" href="../APIreference/APIfunctions.html#mjd-transitionfd"><span class="std std-ref">mjd_transitionFD</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="using-opengl">
+<span id="inopengl"></span><h2>Using OpenGL<a class="headerlink" href="#using-opengl" title="Permalink to this headline">#</a></h2>
+<p>The use of MuJoCo’s native OpenGL renderer will be explained in <a class="reference internal" href="visualization.html#rendering"><span class="std std-ref">OpenGL Rendering</span></a>. For rendering, MuJoCo uses OpenGL 1.5
+in the compatibility profile with the <code class="docutils literal notranslate"><span class="pre">ARB_framebuffer_object</span></code> and <code class="docutils literal notranslate"><span class="pre">ARB_vertex_buffer_object</span></code> extensions. OpenGL
+symbols are loaded via <a class="reference external" href="https://github.com/Dav1dde/glad">GLAD</a> the first time the <a class="reference internal" href="../APIreference/APIfunctions.html#mjr-makecontext"><span class="std std-ref">mjr_makeContext</span></a> function
+is called. This means that the MuJoCo library itself does not have an explicit dependency on OpenGL and can be used
+on systems without OpenGL support, as long as <code class="docutils literal notranslate"><span class="pre">mjr_</span></code> functions are not called.</p>
+<p>Applications that use MuJoCo’s built-in rendering functionalities are responsible for linking against an appropriate
+OpenGL context creation library and for ensuring that there is an OpenGL context that is made current on the running
+thread. On Windows and macOS, there is a canonical OpenGL library provided by the operating system. On Linux, MuJoCo
+currently supports GLX for rendering to an X11 window, OSMesa for headless software rendering, and EGL for hardware
+accelerated headless rendering.</p>
+<p>Before version 2.1.4, MuJoCo used GLEW rather than GLAD to manage OpenGL symbols, which required linking against
+different GLEW libraries at build time depending on the GL implementation used. In order to avoid having manage OpenGL
+dependency when no rendering was required, “nogl” builds of the library was made available. Since OpenGL symbols are
+now lazily resolved at runtime after the switch to GLAD, the “nogl” libraries are no longer provided.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="simulation.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Simulation</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../XMLreference.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">XML Reference</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; DeepMind Technologies Limited
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Programming</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li><a class="reference internal" href="#building-from-source">Building from source</a></li>
+<li><a class="reference internal" href="#header-files">Header files</a></li>
+<li><a class="reference internal" href="#versions-and-compatibility">Versions and compatibility</a></li>
+<li><a class="reference internal" href="#naming-convention">Naming convention</a></li>
+<li><a class="reference internal" href="#using-opengl">Using OpenGL</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/katex.min.js"></script>
+    <script src="../_static/auto-render.min.js"></script>
+    <script src="../_static/katex_autorenderer.js"></script>
+    </body>
+</html>
